@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Send_Location_TA</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+    <key>NSAllowsArbitraryLoads</key>
+    <true/> <!-- 모든 HTTP 요청 허용 -->
+    <key>NSExceptionDomains</key>
+    <dict>
+        <key>takensoftai.iptime.org</key>
+        <dict>
+            <key>NSExceptionAllowsInsecureHTTPLoads</key>
+            <true/>
+            <key>NSExceptionMinimumTLSVersion</key>
+            <string>TLSv1.2</string>
+            <key>NSIncludesSubdomains</key>
+            <true/>
+        </dict>
+    </dict>
+</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>앱이 Apple Music에 접근하여 음악 재생 목록을 관리할 수 있도록 허용해주세요.</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>앱이 Bluetooth 장치에 항상 연결될 수 있도록 허용해주세요.</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>앱이 Bluetooth 장치에 접근하여 데이터를 송수신할 수 있도록 허용해주세요.</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>앱이 캘린더에 완전히 접근하여 일정 관리를 도와줄 수 있도록 허용해주세요.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>앱이 캘린더에 접근할 수 있도록 허용해주세요.</string>
+	<key>NSCalendarsWriteOnlyAccessUsageDescription</key>
+	<string>앱이 캘린더에 일정만 추가할 수 있도록 허용해주세요.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>카메라에 접근할 수 있도록 허용해주세요.</string>
+	<key>NSContactsUsageDescription</key>
+	<string>앱이 연락처에 접근하여 연락처 정보를 제공할 수 있도록 허용해주세요.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>앱이 Face ID를 사용하여 안전하게 인증할 수 있도록 허용해주세요.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>앱이 사용자의 위치 정보를 항상 및 사용 중에 접근하여 위치 기반 서비스를 제공할 수 있도록 허용해주세요.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>앱이 백그라운드에서도 위치 접근을 허용합니다.</string>
+	<key>NSLocationTemporaryUsageDescriptionDictionary</key>
+	<dict>
+		<key>NearbyEvents</key>
+		<string>앱이 주변 이벤트를 찾기 위해 일시적으로 위치 데이터를 사용합니다.</string>
+	</dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>앱을 사용할 때 위치 접근을 허용합니다.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>앱이 마이크에 접근하여 음성을 녹음할 수 있도록 허용해주세요.</string>
+	<key>NSMotionUsageDescription</key>
+	<string>앱이 모션 데이터를 사용하여 사용자 활동을 추적할 수 있도록 허용해주세요.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>앱이 사진 라이브러리에 사진을 추가할 수 있도록 허용해주세요.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>앱이 사진 라이브러리에 접근하여 사진을 선택하거나 업로드할 수 있도록 허용해주세요.</string>
+	<key>NSRemindersFullAccessUsageDescription</key>
+	<string>앱이 미리 알림에 완전히 접근하여 일정 관리를 도와줄 수 있도록 허용해주세요.</string>
+	<key>NSSiriUsageDescription</key>
+	<string>앱이 Siri를 사용하여 음성 명령을 처리할 수 있도록 허용해주세요.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>앱이 음성 인식을 사용하여 음성 명령을 처리할 수 있도록 허용해주세요.</string>
+	<key>NSUserTrackingUsageDescription</key>
+	<string>앱이 사용자 활동을 추적하여 맞춤형 광고를 제공할 수 있도록 허용해주세요.</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AntDesign.ttf</string>
+		<string>Entypo.ttf</string>
+		<string>EvilIcons.ttf</string>
+		<string>Feather.ttf</string>
+		<string>FontAwesome.ttf</string>
+		<string>FontAwesome5_Brands.ttf</string>
+		<string>FontAwesome5_Regular.ttf</string>
+		<string>FontAwesome5_Solid.ttf</string>
+		<string>FontAwesome6_Brands.ttf</string>
+		<string>FontAwesome6_Regular.ttf</string>
+		<string>FontAwesome6_Solid.ttf</string>
+		<string>Foundation.ttf</string>
+		<string>Ionicons.ttf</string>
+		<string>MaterialIcons.ttf</string>
+		<string>MaterialCommunityIcons.ttf</string>
+		<string>SimpleLineIcons.ttf</string>
+		<string>Octicons.ttf</string>
+		<string>Zocial.ttf</string>
+		<string>Fontisto.ttf</string>
+	</array>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>arm64</string>
+	</array>
+	<key>UIStatusBarStyle</key>
+	<string></string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string> <!--
+
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>-->
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
+</plist>
