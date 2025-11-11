@@ -80,7 +80,8 @@ const GpsScreen = () => {
         const fetchUserData = async () => {
             try {
                 const storedUserId = await AsyncStorage.getItem('user_id');
-                setSafty(storedSafty || '');
+                const storedSafty = await AsyncStorage.getItem('safty_helmet_on');
+                setSafty(storedSafty || 'false');
                 if (storedUserId) {
                     setUserId(storedUserId);
                 }
@@ -239,7 +240,7 @@ const GpsScreen = () => {
                         const dataToSend = {
                             user_id: userId,
                             trip_id: tripId,
-                            safty_helmet_on: "true",
+                            safty_helmet_on: safty,
                             trip_log: filteredData,
                             accel: accelFormatted,
                             gyro: gyroFormatted,

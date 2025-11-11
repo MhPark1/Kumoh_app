@@ -163,6 +163,9 @@ const MainScreen = ({ navigation }) => {
       </View>
 
       {/* 주행 시작 버튼 */}
+      <TouchableOpacity style={styles.startButton} onPress={() => navigation.navigate("Camera")}>
+        <Text style={styles.startButtonText}>주행 시작(카메라 페이지)</Text>
+      </TouchableOpacity>
       <TouchableOpacity style={styles.startButton} onPress={() => navigation.navigate("Gps")}>
         <Text style={styles.startButtonText}>주행 시작</Text>
       </TouchableOpacity>

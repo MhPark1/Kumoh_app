@@ -17,6 +17,7 @@ import MainScreen from './src/view/MainScreen';
 import Gps from './src/view/GpsScreen';
 import HistoryScreen from './src/view/HistoryScreen';
 import Analysis from './src/view/AnalysisScreen';
+import Camera from './src/view/CameraScreen';
 
 import { LogBox } from 'react-native';
 LogBox.ignoreLogs(['Sending `onAnimatedValueUpdate` with no listeners registered']);
@@ -46,6 +47,7 @@ const SelectionStackNavigator = () => (
   >
     <SelectionStack.Screen name="Selection" component={MainScreen} options={{ title: '홈', headerShown: false }} />
     <SelectionStack.Screen name="Gps" component={Gps} options={{ title: '운행', headerShown: false }} />
+    <SelectionStack.Screen name="Camera" component={Camera} options={{ title: '카메라 분석', }} />
     <SelectionStack.Screen name="Analysis" component={Analysis} options={{ title: '분석결과', headerShown: false, gestureEnabled: false, }} />
   </SelectionStack.Navigator>
 );

@@ -3,8 +3,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // API 인스턴스 생성
 const apiInstance = axios.create({
-  //baseURL: 'http://localhost:24050',
-  baseURL: 'http://takensoftai.iptime.org:27461',
+  baseURL: 'http://localhost:24050',
+  //baseURL: 'http://takensoftai.iptime.org:27461',
   headers: {
     'Content-Type': 'application/json',
   },
