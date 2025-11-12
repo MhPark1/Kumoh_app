@@ -137511,7 +137511,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     register: function () {
       var _register = (0, _asyncToGenerator2.default)(function* (userData) {
         try {
-          var response = yield apiInstance.post('/api/auth/register', userData);
+          var response = yield apiInstance.post('api/app/users/register', userData);
           return response.data;
         } catch (error) {
           var _error$response;
@@ -148914,7 +148914,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           console.log('위치서비스 종료');
         }
       };
-    }, []);
+    }, [watchId]);
     var startLocationTracking = function startLocationTracking() {
       if (watchId !== null) {
         _reactNativeGeolocationService.default.clearWatch(watchId); // 기존 감시 중단
@@ -149159,7 +149159,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
 
       // 컴포넌트가 마운트될 때 checkToken 함수를 호출
       checkToken();
-    }, []);
+    }, [startLocationTracking]);
     var login = /*#__PURE__*/function () {
       var _ref3 = (0, _asyncToGenerator2.default)(function* (token) {
         try {
@@ -150090,8 +150090,6 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function AgreementScreen() {
     var navigation = (0, _$$_REQUIRE(_dependencyMap[10], "@react-navigation/native").useNavigation)();
-
-    // email, sex 제거 / phone 활성화
     var _useState = (0, _react.useState)({
         id: '',
         password: '',
@@ -150184,17 +150182,17 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           return;
         }
         try {
-          // 백엔드 스키마에 맞춰 데이터 전송 (email, sex 제외)
+          // [수정됨] 백엔드 컨트롤러 스키마에 맞춰 데이터 전송
+          // login_id -> userId
+          // user_pw -> password
+          // user_name -> nickname
+          // telno -> telNum
+          // role: 'user' 삭제 (서버 컨트롤러에서 받지 않음)
           var response = yield _ApiUtils.default.register({
-            login_id: id,
-            // 백엔드에서 login_id로 받음
-            user_pw: password,
-            // 백엔드에서 user_pw로 받음
-            user_name: nickname,
-            // 백엔드 user_name에 닉네임 매핑
-            telno: phone,
-            // 백엔드 t_user 테이블 telno 컬럼 대응
-            role: 'user' // 기본값
+            userId: id,
+            password: password,
+            nickname: nickname,
+            telNum: phone
           });
           console.log(response);
           _reactNative.Alert.alert('가입 성공', '회원가입이 완료되었습니다.', [{
@@ -169903,14 +169901,25 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     }, []);
 
     // 📌 페이지 다시 진입 시 카메라 재설정
-    (0, _react.useEffect)(function () {
-      if (navigation.isFocused()) {
-        setIsDeviceReady(false);
-        setTimeout(function () {
-          setIsDeviceReady(true);
-        }, 50); // 0.5초 후에 카메라 재시작
-      }
-    }, [navigation.isFocused()]);
+    //   useEffect(() => {
+    //     if (navigation.isFocused()) {
+    //       setIsDeviceReady(false);
+    //       setTimeout(() => {
+    //         setIsDeviceReady(true);
+    //       }, 50); // 0.5초 후에 카메라 재시작
+    //     }
+    //   }, [navigation.isFocused()]);
+    (0, _$$_REQUIRE(_dependencyMap[9], "@react-navigation/native").useFocusEffect)(_react.default.useCallback(function () {
+      // 화면에 들어왔을 때 실행
+      setIsDeviceReady(false);
+      var timer = setTimeout(function () {
+        setIsDeviceReady(true);
+      }, 50);
+      return function () {
+        // 화면을 나갈 때 혹은 cleanup 시 실행
+        clearTimeout(timer);
+      };
+    }, []));
     var handleCapture = /*#__PURE__*/function () {
       var _ref3 = (0, _asyncToGenerator2.default)(function* () {
         if (camera.current) {

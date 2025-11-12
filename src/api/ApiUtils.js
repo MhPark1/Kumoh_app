@@ -41,7 +41,10 @@ const ApiUtils = {
   // 회원가입
   register: async userData => {
     try {
-      const response = await apiInstance.post('/api/auth/register', userData);
+      const response = await apiInstance.post(
+        'api/app/users/register',
+        userData,
+      );
       return response.data;
     } catch (error) {
       console.error('Register error:', error.response || error);

@@ -22,7 +22,6 @@ import {useNavigation} from '@react-navigation/native';
 export default function AgreementScreen() {
   const navigation = useNavigation();
 
-  // email, sex 제거 / phone 활성화
   const [agreementData, setAgreement] = useState({
     id: '',
     password: '',
@@ -117,13 +116,17 @@ export default function AgreementScreen() {
     }
 
     try {
-      // 백엔드 스키마에 맞춰 데이터 전송 (email, sex 제외)
+      // [수정됨] 백엔드 컨트롤러 스키마에 맞춰 데이터 전송
+      // login_id -> userId
+      // user_pw -> password
+      // user_name -> nickname
+      // telno -> telNum
+      // role: 'user' 삭제 (서버 컨트롤러에서 받지 않음)
       const response = await Api.register({
-        login_id: id, // 백엔드에서 login_id로 받음
-        user_pw: password, // 백엔드에서 user_pw로 받음
-        user_name: nickname, // 백엔드 user_name에 닉네임 매핑
-        telno: phone, // 백엔드 t_user 테이블 telno 컬럼 대응
-        role: 'user', // 기본값
+        userId: id,
+        password: password,
+        nickname: nickname,
+        telNum: phone,
       });
 
       console.log(response);
