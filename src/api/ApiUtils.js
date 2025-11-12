@@ -3,6 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // API 인스턴스 생성
 const apiInstance = axios.create({
+  //baseURL: 'http://localhost:24050',
   baseURL: 'http://localhost:8080',
   headers: {
     'Content-Type': 'application/json',
@@ -40,7 +41,7 @@ const ApiUtils = {
   // 회원가입
   register: async userData => {
     try {
-      const response = await apiInstance.post('/auth/register', userData);
+      const response = await apiInstance.post('/api/auth/register', userData);
       return response.data;
     } catch (error) {
       console.error('Register error:', error.response || error);
@@ -50,7 +51,8 @@ const ApiUtils = {
   // 로그인
   login: async credentials => {
     try {
-      const response = await apiInstance.post('/auth/login', credentials);
+      const response = await apiInstance.post('/api/auth/login', credentials);
+
       return response.data;
     } catch (error) {
       console.log('Axios baseURL:', apiInstance.defaults.baseURL);

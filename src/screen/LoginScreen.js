@@ -56,20 +56,40 @@ const LoginScreen = () => {
 
     try {
       const response = await Api.login(credentials);
-      console.log(response);
-      // if (response.result === 'success') {
-      if (response.result) {
-        console.log('response::::', response);
-        await login(response.token);
-        await AsyncStorage.setItem('user_id', credentials.login_id);
+      console.log('로그인 응답 데이터:', response); // 디버깅용 로그
+
+      // [수정 1] 백엔드는 success: true 로 응답합니다 (result 아님)
+      if (response.success) {
+        // [수정 2] 토큰과 유저 정보는 response.data 안에 들어있습니다.
+        const {token, user} = response.data;
+
+        console.log('토큰:', token);
+
+        await login(token);
+        // [수정 3] user_id 저장 (user 객체 안에 있는 user_id 사용)
+        await AsyncStorage.setItem('user_id', user?.user_id || userId);
         await AsyncStorage.setItem('first_login', 'false');
-        // 로그인 성공 후 위치 수집 시작
+
         startLocationTracking();
       } else {
-        Alert.alert('로그인 정보를 다시 한번 확인해주세요.');
+        // success가 false인 경우 메시지 출력
+        Alert.alert(
+          '로그인 실패',
+          response.message || '로그인 정보를 확인해주세요.',
+        );
       }
     } catch (error) {
-      Alert.alert('로그인 실패', error.message);
+      console.error('로그인 에러 객체:', error);
+
+      // [수정 4] 에러 메시지 추출 방식 변경
+      // 백엔드 에러 핸들러(error.handler.js)는 { error: { message: "..." } } 형태로 보냅니다.
+      // ApiUtils에서 error.response.data를 throw하므로, 여기서 받아야 합니다.
+      const errorMessage =
+        error.error?.message || // 백엔드 표준 에러
+        error.message || // 일반 에러
+        '로그인 중 오류가 발생했습니다.';
+
+      Alert.alert('로그인 실패', errorMessage);
     }
   };
 

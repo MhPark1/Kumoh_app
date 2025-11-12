@@ -3,7 +3,6 @@ import {
   ScrollView,
   View,
   Text,
-  TextInput,
   TouchableOpacity,
   KeyboardAvoidingView,
   Platform,
@@ -17,31 +16,27 @@ import {Card} from '../component/Card';
 import {colors} from '../component/constants/colors';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React, {useState} from 'react';
-// import RadioButton from '../component/RadioButton';
 import Api from '../api/ApiUtils';
 import {useNavigation} from '@react-navigation/native';
 
 export default function AgreementScreen() {
   const navigation = useNavigation();
+
+  // email, sex 제거 / phone 활성화
   const [agreementData, setAgreement] = useState({
     id: '',
     password: '',
-    confirmPassword: '', // 추가
-    // email: '',
-    // sex: null,
-    // phone: '',
+    confirmPassword: '',
+    phone: '',
     nickname: '',
   });
+
   const [agreements, setAgreements] = useState({
     terms: false,
     privacy: false,
     marketing: false,
   });
 
-  //const radio_props = [
-  //   { label: '여성', value: '여성' },
-  //   { label: '남성', value: '남성' },
-  // ];
   const handleInputChange = (field, value) => {
     setAgreement(prevAgreement => ({
       ...prevAgreement,
@@ -49,10 +44,31 @@ export default function AgreementScreen() {
     }));
   };
 
-  const handleSubmit = async () => {
-    const {id, password, email, phone, sex} = agreementData;
+  // 전화번호 포맷팅 함수 활성화
+  const formatPhoneNumber = text => {
+    const cleaned = text.replace(/\D/g, ''); // 숫자가 아닌 문자는 제거
+    if (cleaned.length <= 3) {
+      return cleaned;
+    } else if (cleaned.length <= 7) {
+      return `${cleaned.slice(0, 3)}-${cleaned.slice(3)}`;
+    } else {
+      // 11자리까지만 처리 (010-XXXX-XXXX)
+      return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 7)}-${cleaned.slice(
+        7,
+        11,
+      )}`;
+    }
+  };
 
-    // username (id) 유효성 검사
+  const handlePhoneChange = text => {
+    const formatted = formatPhoneNumber(text);
+    handleInputChange('phone', formatted);
+  };
+
+  const handleSubmit = async () => {
+    const {id, password, phone, nickname, confirmPassword} = agreementData;
+
+    // 아이디 유효성 검사
     if (!id.trim()) {
       Alert.alert('입력 오류', '아이디를 입력해주세요.');
       return;
@@ -61,10 +77,24 @@ export default function AgreementScreen() {
       Alert.alert('입력 오류', '아이디는 26자 이내로 입력해주세요.');
       return;
     }
+
+    // 닉네임 유효성 검사
     if (!nickname.trim()) {
       Alert.alert('입력 오류', '닉네임을 입력해주세요.');
       return;
     }
+
+    // 전화번호 유효성 검사 활성화
+    const phoneDigits = phone.replace(/-/g, '');
+    const phoneRegex = /^010\d{8}$/;
+    if (!phoneRegex.test(phoneDigits)) {
+      Alert.alert(
+        '입력 오류',
+        '전화번호는 010으로 시작하는 11자리 숫자여야 합니다.',
+      );
+      return;
+    }
+
     // 비밀번호 유효성 검사
     if (!password.trim()) {
       Alert.alert('입력 오류', '비밀번호를 입력해주세요.');
@@ -75,53 +105,45 @@ export default function AgreementScreen() {
       return;
     }
 
-    if (password !== agreementData.confirmPassword) {
+    if (password !== confirmPassword) {
       Alert.alert('입력 오류', '비밀번호가 일치하지 않습니다.');
       return;
     }
 
-    // // 이메일 형식 검사
-    // const emailRegex = /^[^@]+@[^@]+\.[^@]+$/;
-    // if (!emailRegex.test(email.trim())) {
-    //   Alert.alert('입력 오류', '유효한 이메일 주소를 입력해주세요.');
-    //   return;
-    // }
-
-    // // 전화번호 유효성 검사
-    // const phoneDigits = phone.replace(/-/g, '');
-    // const phoneRegex = /^010\d{8}$/;
-    // if (!phoneRegex.test(phoneDigits)) {
-    //   Alert.alert(
-    //     '입력 오류',
-    //     '전화번호는 010으로 시작하는 11자리 숫자여야 합니다.',
-    //   );
-    //   return;
-    // }
+    // 필수 약관 동의 확인
+    if (!agreements.terms || !agreements.privacy) {
+      Alert.alert('약관 동의', '필수 약관에 동의해주세요.');
+      return;
+    }
 
     try {
-      const response = await Api.register(agreementData);
+      // 백엔드 스키마에 맞춰 데이터 전송 (email, sex 제외)
+      const response = await Api.register({
+        login_id: id, // 백엔드에서 login_id로 받음
+        user_pw: password, // 백엔드에서 user_pw로 받음
+        user_name: nickname, // 백엔드 user_name에 닉네임 매핑
+        telno: phone, // 백엔드 t_user 테이블 telno 컬럼 대응
+        role: 'user', // 기본값
+      });
+
       console.log(response);
-      navigation.navigate('Login');
+      Alert.alert('가입 성공', '회원가입이 완료되었습니다.', [
+        {text: '확인', onPress: () => navigation.navigate('Login')},
+      ]);
     } catch (error) {
-      Alert.alert('가입 실패', error.message);
+      // 에러 객체 처리 강화
+      const errorMessage =
+        error.message ||
+        (error.response && error.response.data) ||
+        '회원가입 중 오류가 발생했습니다.';
+      Alert.alert(
+        '가입 실패',
+        typeof errorMessage === 'object'
+          ? JSON.stringify(errorMessage)
+          : errorMessage,
+      );
     }
   };
-  // // 전화번호 포맷팅
-  // const formatPhoneNumber = text => {
-  //   const cleaned = text.replace(/\D/g, ''); // Remove all non-numeric characters
-  //   if (cleaned.length === 11) {
-  //     const match = cleaned.match(/^(\d{3})(\d{4})(\d{4})$/);
-  //     if (match) {
-  //       return `${match[1]}-${match[2]}-${match[3]}`;
-  //     }
-  //   }
-  //   return text;
-  // };
-
-  // const handlePhoneChange = text => {
-  //   const formatted = formatPhoneNumber(text);
-  //   handleInputChange('phone', formatted);
-  // };
 
   const toggleAgreement = key => {
     setAgreements({...agreements, [key]: !agreements[key]});
@@ -150,13 +172,7 @@ export default function AgreementScreen() {
             keyboardShouldPersistTaps="handled">
             {/* Header */}
             <View style={styles.header}>
-              {/* <TouchableOpacity
-                style={styles.backButton}
-                onPress={() => navigation.goBack()}>
-                <Ionicons name="arrow-back" size={24} color={colors.white} />
-              </TouchableOpacity> */}
               <View>
-                {/* <Text style={styles.title}>회원가입</Text> */}
                 <Text style={styles.subtitle}>SafeRide와 함께 시작하세요</Text>
               </View>
             </View>
@@ -170,35 +186,23 @@ export default function AgreementScreen() {
                     icon="person-outline"
                     placeholder="아이디를 입력하세요"
                     placeholderTextColor={'#aaa'}
-                    // value={formData.name}
+                    value={agreementData.id}
                     onChangeText={text => handleInputChange('id', text)}
                   />
                 </View>
 
-                {/* 닉네임 */}
                 <View style={styles.inputGroup}>
                   <Text style={styles.label}>닉네임</Text>
                   <Input
                     icon="happy-outline"
                     placeholder="닉네임을 입력하세요"
                     placeholderTextColor={'#aaa'}
+                    value={agreementData.nickname}
                     onChangeText={text => handleInputChange('nickname', text)}
                   />
                 </View>
 
-                {/* <View style={styles.inputGroup}>
-                  <Text style={styles.label}>이메일</Text>
-                  <Input
-                    icon="mail-outline"
-                    placeholder="example@email.com"
-                    placeholderTextColor={'#aaa'}
-                    // value={formData.email}
-                    onChangeText={text => handleInputChange('email', text)}
-                    keyboardType="email-address"
-                    autoCapitalize="none"
-                  />
-                </View>
-
+                {/* 휴대폰 번호 입력 (활성화됨) */}
                 <View style={styles.inputGroup}>
                   <Text style={styles.label}>휴대폰 번호</Text>
                   <Input
@@ -208,17 +212,19 @@ export default function AgreementScreen() {
                     onChangeText={handlePhoneChange}
                     value={agreementData.phone}
                     keyboardType="phone-pad"
+                    maxLength={13}
                   />
-                </View> */}
+                </View>
 
                 <View style={styles.inputGroup}>
                   <Text style={styles.label}>비밀번호</Text>
                   <Input
                     icon="lock-closed-outline"
-                    placeholder="비밀번호"
+                    placeholder="비밀번호 (8자 이상)"
                     placeholderTextColor={'#aaa'}
                     onChangeText={text => handleInputChange('password', text)}
                     secureTextEntry
+                    value={agreementData.password}
                   />
                 </View>
 
