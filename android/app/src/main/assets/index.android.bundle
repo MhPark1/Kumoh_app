@@ -30662,7 +30662,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _LogBoxLog = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "./LogBoxLog"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[9], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[10], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\Data\\LogBoxData.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\Data\\LogBoxData.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
@@ -63909,7 +63909,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[8], "react"));
   _$$_REQUIRE(_dependencyMap[9], "../Utilities/BackHandler");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[10], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\ReactNative\\renderApplication.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\ReactNative\\renderApplication.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -64038,7 +64038,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[9], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[10], "react/jsx-runtime");
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\ReactNative\\AppContainer-dev.js";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\ReactNative\\AppContainer-dev.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -64190,7 +64190,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
   var _excluded = ["accessibilityElementsHidden", "accessibilityLabel", "accessibilityLabelledBy", "accessibilityLiveRegion", "accessibilityState", "accessibilityValue", "aria-busy", "aria-checked", "aria-disabled", "aria-expanded", "aria-hidden", "aria-label", "aria-labelledby", "aria-live", "aria-selected", "aria-valuemax", "aria-valuemin", "aria-valuenow", "aria-valuetext", "focusable", "id", "importantForAccessibility", "nativeID", "pointerEvents", "tabIndex"];
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\View\\View.js";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\View\\View.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -66343,7 +66343,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _DebuggingOverlayNativeComponent = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[4], "./DebuggingOverlayNativeComponent"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[5], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Debugging\\DebuggingOverlay.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Debugging\\DebuggingOverlay.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -70350,7 +70350,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _LogBoxNotification = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "./UI/LogBoxNotification"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[6], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[7], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\LogBoxNotificationContainer.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\LogBoxNotificationContainer.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -70449,7 +70449,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var LogBoxStyle = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[9], "./LogBoxStyle"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[10], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[11], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxNotification.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxNotification.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -70665,7 +70665,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[12], "react/jsx-runtime");
   var _excluded = ["height", "width"];
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Image\\Image.android.js";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Image\\Image.android.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -71385,7 +71385,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[10], "react/jsx-runtime");
   var _excluded = ["accessible", "accessibilityLabel", "accessibilityState", "allowFontScaling", "aria-busy", "aria-checked", "aria-disabled", "aria-expanded", "aria-label", "aria-selected", "ellipsizeMode", "id", "nativeID", "onLongPress", "onPress", "onPressIn", "onPressOut", "onResponderGrant", "onResponderMove", "onResponderRelease", "onResponderTerminate", "onResponderTerminationRequest", "onStartShouldSetResponder", "pressRetentionOffset", "suppressHighlighting"];
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Text\\Text.js";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Text\\Text.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -71625,7 +71625,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _normalizeColor = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "../StyleSheet/normalizeColor"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[3], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Pressability\\PressabilityDebug.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Pressability\\PressabilityDebug.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -72802,7 +72802,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var LogBoxStyle = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[5], "./LogBoxStyle"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[6], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[7], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxButton.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxButton.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -72859,7 +72859,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[10], "react/jsx-runtime");
   var _excluded = ["onBlur", "onFocus"],
     _excluded2 = ["aria-disabled"];
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Touchable\\TouchableWithoutFeedback.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Touchable\\TouchableWithoutFeedback.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } /**
@@ -73060,7 +73060,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _Text = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "../../Text/Text"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[4], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxMessage.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxMessage.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -73463,7 +73463,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _interopRequireDefault = _$$_REQUIRE(_dependencyMap[0], "@babel/runtime/helpers/interopRequireDefault");
   var _slicedToArray2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/slicedToArray"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[2], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\Inspector.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\Inspector.js";
   var React = _$$_REQUIRE(_dependencyMap[3], "react");
   var useState = React.useState;
   function Inspector(_ref) {
@@ -73668,7 +73668,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   'use strict';
 
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[0], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\InspectorOverlay.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\InspectorOverlay.js";
   var React = _$$_REQUIRE(_dependencyMap[1], "react");
   function InspectorOverlay(_ref) {
     var inspected = _ref.inspected,
@@ -73729,7 +73729,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _possibleConstructorReturn = _$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/possibleConstructorReturn");
   var _getPrototypeOf = _$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/getPrototypeOf");
   var _inherits = _$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/inherits");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\ElementBox.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\ElementBox.js";
   function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
   var React = _$$_REQUIRE(_dependencyMap[6], "react");
@@ -74067,7 +74067,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _possibleConstructorReturn = _$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/possibleConstructorReturn");
   var _getPrototypeOf = _$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/getPrototypeOf");
   var _inherits = _$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/inherits");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\BorderBox.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\BorderBox.js";
   function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
   var React = _$$_REQUIRE(_dependencyMap[6], "react");
@@ -74120,7 +74120,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/inherits"));
   var _SafeAreaView = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "../Components/SafeAreaView/SafeAreaView"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[7], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\InspectorPanel.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\InspectorPanel.js";
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
   var React = _$$_REQUIRE(_dependencyMap[8], "react");
@@ -74378,7 +74378,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _nullthrows = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[29], "nullthrows"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[30], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[31], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\ScrollView\\ScrollView.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\ScrollView\\ScrollView.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } /**
@@ -80451,7 +80451,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _useAnimatedProps3 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "./useAnimatedProps"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[6], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[7], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Animated\\createAnimatedComponent.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Animated\\createAnimatedComponent.js";
   var _excluded = ["style"];
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
@@ -82373,7 +82373,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[6], "react"));
   var React = _react;
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[7], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\ScrollView\\ScrollViewStickyHeader.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\ScrollView\\ScrollViewStickyHeader.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -82829,7 +82829,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _memoizeOne = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "memoize-one"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[9], "react/jsx-runtime");
   var _excluded = ["numColumns", "columnWrapperStyle", "removeClippedSubviews", "strictMode"];
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Lists\\FlatList.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Lists\\FlatList.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } /**
@@ -83619,7 +83619,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[20], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[21], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[22], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-native\\virtualized-lists\\Lists\\VirtualizedList.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-native\\virtualized-lists\\Lists\\VirtualizedList.js";
   var _excluded = ["onContentSizeChange"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
@@ -86172,7 +86172,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[7], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[8], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[9], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-native\\virtualized-lists\\Lists\\VirtualizedListCellRenderer.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-native\\virtualized-lists\\Lists\\VirtualizedListCellRenderer.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } /**
@@ -86357,7 +86357,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[0], "react"));
   var React = _react;
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[1], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-native\\virtualized-lists\\Lists\\VirtualizedListContext.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-native\\virtualized-lists\\Lists\\VirtualizedListContext.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -86630,7 +86630,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[11], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[12], "react/jsx-runtime");
   var _excluded = ["ItemSeparatorComponent", "SectionSeparatorComponent", "renderItem", "renderSectionFooter", "renderSectionHeader", "sections", "stickySectionHeadersEnabled"];
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-native\\virtualized-lists\\Lists\\VirtualizedSectionList.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-native\\virtualized-lists\\Lists\\VirtualizedSectionList.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } /**
@@ -87079,7 +87079,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[11], "react"));
   var React = _react;
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[12], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Animated\\components\\AnimatedScrollView.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Animated\\components\\AnimatedScrollView.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -87184,7 +87184,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _AndroidSwipeRefreshLayoutNativeComponent = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[7], "./AndroidSwipeRefreshLayoutNativeComponent"));
   var _PullToRefreshViewNativeComponent = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[8], "./PullToRefreshViewNativeComponent"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[9], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\RefreshControl\\RefreshControl.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\RefreshControl\\RefreshControl.js";
   var _excluded = ["enabled", "colors", "progressBackgroundColor", "size"],
     _excluded2 = ["tintColor", "titleColor", "title"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
@@ -87528,7 +87528,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _Platform = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "../Utilities/Platform"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[8], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[9], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Lists\\SectionList.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Lists\\SectionList.js";
   var _excluded = ["stickySectionHeadersEnabled"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
@@ -115419,7 +115419,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/getPrototypeOf"));
   var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/inherits"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\ElementProperties.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\ElementProperties.js";
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
   var React = _$$_REQUIRE(_dependencyMap[7], "react");
@@ -115557,7 +115557,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _Platform = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[10], "../../Utilities/Platform"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[11], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[12], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Touchable\\TouchableHighlight.js",
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Touchable\\TouchableHighlight.js",
     _this3 = this;
   var _excluded = ["onBlur", "onFocus"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
@@ -115908,7 +115908,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _possibleConstructorReturn = _$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/possibleConstructorReturn");
   var _getPrototypeOf = _$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/getPrototypeOf");
   var _inherits = _$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/inherits");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\StyleInspector.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\StyleInspector.js";
   function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
   var React = _$$_REQUIRE(_dependencyMap[6], "react");
@@ -115990,7 +115990,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _possibleConstructorReturn = _$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/possibleConstructorReturn");
   var _getPrototypeOf = _$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/getPrototypeOf");
   var _inherits = _$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/inherits");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\BoxInspector.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\BoxInspector.js";
   function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
   var React = _$$_REQUIRE(_dependencyMap[6], "react");
@@ -116128,7 +116128,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _possibleConstructorReturn = _$$_REQUIRE(_dependencyMap[3], "@babel/runtime/helpers/possibleConstructorReturn");
   var _getPrototypeOf = _$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/getPrototypeOf");
   var _inherits = _$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/inherits");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\PerformanceOverlay.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\PerformanceOverlay.js";
   function _callSuper(t, o, e) { return o = _getPrototypeOf(o), _possibleConstructorReturn(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], _getPrototypeOf(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
   var React = _$$_REQUIRE(_dependencyMap[6], "react");
@@ -116208,7 +116208,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _getPrototypeOf2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@babel/runtime/helpers/getPrototypeOf"));
   var _inherits2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "@babel/runtime/helpers/inherits"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\NetworkOverlay.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\NetworkOverlay.js";
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
   var React = _$$_REQUIRE(_dependencyMap[7], "react");
@@ -117112,7 +117112,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _ElementBox = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "./ElementBox"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[6], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[7], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\ReactDevToolsOverlay.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Inspector\\ReactDevToolsOverlay.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -117265,7 +117265,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[3], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\ReactNative\\AppContainer-prod.js";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\ReactNative\\AppContainer-prod.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -117527,7 +117527,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _LogBoxInspector = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "./UI/LogBoxInspector"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[10], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[11], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\LogBoxInspectorContainer.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\LogBoxInspectorContainer.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } /**
@@ -117613,7 +117613,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var LogBoxStyle = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[14], "./LogBoxStyle"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[15], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[16], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspector.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspector.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -117761,7 +117761,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var LogBoxStyle = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[11], "./LogBoxStyle"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[12], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[13], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorCodeFrame.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorCodeFrame.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -117941,7 +117941,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _Text = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "../../Text/Text"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[4], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\AnsiHighlight.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\AnsiHighlight.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -118693,7 +118693,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var LogBoxStyle = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[4], "./LogBoxStyle"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[5], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorSection.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorSection.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -118757,7 +118757,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var LogBoxStyle = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[6], "./LogBoxStyle"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[7], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorFooter.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorFooter.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -118867,7 +118867,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var LogBoxStyle = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[8], "./LogBoxStyle"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[9], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[10], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorHeader.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorHeader.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -119598,7 +119598,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var LogBoxStyle = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[5], "./LogBoxStyle"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[6], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[7], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorMessageHeader.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorMessageHeader.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -119722,7 +119722,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var LogBoxStyle = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[9], "./LogBoxStyle"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[10], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[11], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorReactFrames.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorReactFrames.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -119923,7 +119923,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var LogBoxStyle = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[10], "./LogBoxStyle"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[11], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[12], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorStackFrames.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorStackFrames.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -120113,7 +120113,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var LogBoxStyle = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[7], "./LogBoxStyle"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[8], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[9], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorSourceMapStatus.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorSourceMapStatus.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -120272,7 +120272,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var LogBoxStyle = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[6], "./LogBoxStyle"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[7], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorStackFrame.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\LogBox\\UI\\LogBoxInspectorStackFrame.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -125969,7 +125969,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
   var _excluded = ["animating", "color", "hidesWhenStopped", "onLayout", "size", "style"];
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\ActivityIndicator\\ActivityIndicator.js";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\ActivityIndicator\\ActivityIndicator.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var PlatformActivityIndicator = _Platform.default.OS === 'android' ? _$$_REQUIRE(_dependencyMap[7], "../ProgressBarAndroid/ProgressBarAndroid") : _$$_REQUIRE(_dependencyMap[8], "./ActivityIndicatorViewNativeComponent").default;
   var GRAY = '#999999';
@@ -126088,7 +126088,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[3], "react/jsx-runtime");
   var _excluded = ["styleAttr", "indeterminate", "animating"];
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\ProgressBarAndroid\\ProgressBarAndroid.android.js";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\ProgressBarAndroid\\ProgressBarAndroid.android.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -126300,7 +126300,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[8], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[9], "react/jsx-runtime");
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Button.js";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Button.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   /**
     A basic button component that should render nicely on any platform. Supports a
@@ -126563,7 +126563,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[12], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[13], "react/jsx-runtime");
   var _excluded = ["onBlur", "onFocus"];
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Touchable\\TouchableNativeFeedback.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Touchable\\TouchableNativeFeedback.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } /**
@@ -126819,7 +126819,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _Platform = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[11], "../../Utilities/Platform"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[12], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[13], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Touchable\\TouchableOpacity.js",
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Touchable\\TouchableOpacity.js",
     _this3 = this;
   var _excluded = ["onBlur", "onFocus"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
@@ -127129,7 +127129,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _nullthrows = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[12], "nullthrows"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[13], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[14], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\DrawerAndroid\\DrawerLayoutAndroid.android.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\DrawerAndroid\\DrawerLayoutAndroid.android.js";
   var _excluded = ["drawerBackgroundColor", "onDrawerStateChanged", "renderNavigationView", "onDrawerOpen", "onDrawerClose"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
@@ -127517,7 +127517,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _Image = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[10], "./Image"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[11], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[12], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Image\\ImageBackground.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Image\\ImageBackground.js";
   var _excluded = ["children", "style", "imageStyle", "imageRef", "importantForAccessibility"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
@@ -127622,7 +127622,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[4], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\TextInput\\InputAccessoryView.js";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\TextInput\\InputAccessoryView.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -127793,7 +127793,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _Keyboard = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[13], "./Keyboard"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[14], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[15], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Keyboard\\KeyboardAvoidingView.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Keyboard\\KeyboardAvoidingView.js";
   var _excluded = ["behavior", "children", "contentContainerStyle", "enabled", "keyboardVerticalOffset", "style", "onLayout"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
@@ -128032,7 +128032,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _NativeModalManager = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "./NativeModalManager"));
   var _RCTModalHostViewNativeComponent = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[10], "./RCTModalHostViewNativeComponent"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[11], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Modal\\Modal.js",
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Modal\\Modal.js",
     _ModalInjection$unsta;
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } /**
@@ -128388,7 +128388,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[7], "react"));
   var React = _react;
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Pressable\\Pressable.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Pressable\\Pressable.js";
   var _excluded = ["accessible", "accessibilityState", "aria-live", "android_disableSound", "android_ripple", "aria-busy", "aria-checked", "aria-disabled", "aria-expanded", "aria-label", "aria-selected", "cancelable", "children", "delayHoverIn", "delayHoverOut", "delayLongPress", "disabled", "focusable", "hitSlop", "onHoverIn", "onHoverOut", "onLongPress", "onPress", "onPressIn", "onPressOut", "pressRetentionOffset", "style", "testOnly_pressed", "unstable_pressDelay"];
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
@@ -128630,7 +128630,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _SwitchNativeComponent = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[7], "./SwitchNativeComponent"));
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[8], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[9], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Switch\\Switch.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Switch\\Switch.js";
   var _excluded = ["disabled", "ios_backgroundColor", "onChange", "onValueChange", "style", "thumbColor", "trackColor", "value"];
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
@@ -128988,7 +128988,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[13], "react"));
   var React = _react;
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[14], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\TextInput\\TextInput.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\TextInput\\TextInput.js";
   var _excluded = ["aria-busy", "aria-checked", "aria-disabled", "aria-expanded", "aria-selected", "accessibilityState", "id", "tabIndex", "selection", "selectionColor", "selectionHandleColor", "cursorColor"],
     _excluded2 = ["onBlur", "onFocus"],
     _excluded3 = ["allowFontScaling", "rejectResponderTermination", "underlineColorAndroid", "autoComplete", "textContentType", "readOnly", "editable", "enterKeyHint", "returnKeyType", "inputMode", "showSoftInputOnFocus", "keyboardType"];
@@ -129718,7 +129718,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[7], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8], "react/jsx-runtime");
   var _this2 = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Touchable\\Touchable.js";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native\\Libraries\\Components\\Touchable\\Touchable.js";
   /**
    * Copyright (c) Meta Platforms, Inc. and affiliates.
    *
@@ -132960,7 +132960,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[14], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[15], "react/jsx-runtime");
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\App.js";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\App.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   _reactNative.LogBox.ignoreLogs(['Sending `onAnimatedValueUpdate` with no listeners registered']);
   var AuthStack = (0, _$$_REQUIRE(_dependencyMap[16], "@react-navigation/stack").createStackNavigator)();
@@ -132992,7 +132992,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var SelectionStackNavigator = function SelectionStackNavigator() {
     return /*#__PURE__*/(0, _jsxRuntime.jsxs)(SelectionStack.Navigator, {
       screenOptions: {
-        headerTintColor: '#ff6a33'
+        headerTintColor: _$$_REQUIRE(_dependencyMap[18], "./src/component/constants/colors").colors.primary
       },
       children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(SelectionStack.Screen, {
         name: "Selection",
@@ -133087,7 +133087,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               color: color
             });
           },
-          tabBarActiveTintColor: '#ff6a33',
+          tabBarActiveTintColor: '#2563eb',
           tabBarInactiveTintColor: 'gray',
           tabBarStyle: {
             backgroundColor: '#fff',
@@ -133190,7 +133190,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _iconButton = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[14], "./icon-button"));
   var _NativeRNVectorIcons = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[15], "./NativeRNVectorIcons"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[16], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-vector-icons\\lib\\create-icon-set.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-vector-icons\\lib\\create-icon-set.js";
   var _excluded = ["name", "size", "color", "style", "children"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
@@ -134573,7 +134573,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _propTypes = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "prop-types"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[9], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[10], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-vector-icons\\lib\\icon-button.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-vector-icons\\lib\\icon-button.js";
   var _excluded = ["style", "iconStyle", "children"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
@@ -135505,7 +135505,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _asyncStorage = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "@react-native-async-storage/async-storage"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[9], "react/jsx-runtime");
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\src\\screen\\LoginScreen.js"; // Context import
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\src\\screen\\LoginScreen.js"; // Context import
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var LoginScreen = function LoginScreen() {
     var _useState = (0, _react.useState)(''),
@@ -135543,8 +135543,8 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     var handleLogin = /*#__PURE__*/function () {
       var _ref2 = (0, _asyncToGenerator2.default)(function* () {
         var credentials = {
-          adminLoginId: userId,
-          password: password
+          login_id: userId,
+          user_pw: password
         };
         try {
           var response = yield _ApiUtils.default.login(credentials);
@@ -135786,7 +135786,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[8], "react-native");
   var _common = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "./common"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[10], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-linear-gradient\\index.ios.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-linear-gradient\\index.ios.js";
   var _excluded = ["start", "end", "colors", "locations", "useAngle", "angleCenter", "angle"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
@@ -135886,7 +135886,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[8], "react-native");
   var _common = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "./common"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[10], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-linear-gradient\\index.android.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-linear-gradient\\index.android.js";
   var _excluded = ["children", "colors", "end", "locations", "useAngle", "angleCenter", "angle", "start", "style"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
@@ -136011,7 +136011,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[8], "react-native");
   var _common = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "./common"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[10], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-linear-gradient\\index.windows.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-linear-gradient\\index.windows.js";
   var _excluded = ["children", "start", "end", "colors", "locations", "useAngle", "angleCenter", "angle", "style"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
@@ -142497,7 +142497,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _useOptionsGetters2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[17], "./useOptionsGetters"));
   var _useSyncState3 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[18], "./useSyncState"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[19], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\core\\src\\BaseNavigationContainer.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\core\\src\\BaseNavigationContainer.tsx";
   var _excluded = ["key", "routeNames"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var serializableWarnings = [];
@@ -142934,7 +142934,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.default = EnsureSingleNavigator;
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[0], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[1], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\core\\src\\EnsureSingleNavigator.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\core\\src\\EnsureSingleNavigator.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var MULTIPLE_NAVIGATOR_ERROR = `Another navigator is already registered for this container. You likely have multiple navigators under a single "NavigationContainer" or "Screen". Make sure each navigator is under a separate "Screen" container. See https://reactnavigation.org/docs/nesting-navigators for a guide on nesting.`;
   var SingleNavigatorContext = exports.SingleNavigatorContext = React.createContext(undefined);
@@ -145995,7 +145995,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _NavigationRouteContext = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "./NavigationRouteContext"));
   var _PreventRemoveContext = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "./PreventRemoveContext"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\core\\src\\PreventRemoveProvider.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\core\\src\\PreventRemoveProvider.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   /**
    * Util function to transform map of prevented routes to a simpler object.
@@ -146312,7 +146312,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _useRegisterNavigator = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[26], "./useRegisterNavigator"));
   var _useScheduleUpdate = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[27], "./useScheduleUpdate"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[28], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\core\\src\\useNavigationBuilder.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\core\\src\\useNavigationBuilder.tsx";
   var _excluded = ["children", "screenListeners"]; // This is to make TypeScript compiler happy
   // eslint-disable-next-line babel/no-unused-expressions
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
@@ -146797,7 +146797,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.default = useComponent;
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[0], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[1], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\core\\src\\useComponent.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\core\\src\\useComponent.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var NavigationContent = function NavigationContent(_ref) {
     var render = _ref.render,
@@ -146868,7 +146868,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _useNavigationCache = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "./useNavigationCache"));
   var _useRouteCache = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[10], "./useRouteCache"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[11], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\core\\src\\useDescriptors.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\core\\src\\useDescriptors.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == typeof i ? i : i + ""; }
   function _toPrimitive(t, r) { if ("object" != typeof t || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != typeof i) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
@@ -147004,7 +147004,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _StaticContainer = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "./StaticContainer"));
   var _useOptionsGetters2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "./useOptionsGetters"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\core\\src\\SceneView.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\core\\src\\SceneView.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   /**
    * Component which takes care of rendering the screen for a route.
@@ -148179,7 +148179,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _useLinking2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "./useLinking"));
   var _useThenable3 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[10], "./useThenable"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[11], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\native\\src\\NavigationContainer.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\native\\src\\NavigationContainer.tsx";
   var _excluded = ["theme", "linking", "fallback", "documentTitle", "onReady"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   global.REACT_NAVIGATION_DEVTOOLS = new WeakMap();
@@ -148306,7 +148306,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[1], "react"));
   var _ThemeContext = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "./ThemeContext"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[3], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\native\\src\\theming\\ThemeProvider.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\native\\src\\theming\\ThemeProvider.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function ThemeProvider(_ref) {
     var value = _ref.value,
@@ -148632,7 +148632,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[1], "react"));
   var _ServerContext = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "./ServerContext"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[3], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\native\\src\\ServerContainer.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\native\\src\\ServerContainer.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   /**
    * Container component for server rendering.
@@ -148889,7 +148889,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNativeGeolocationService = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "react-native-geolocation-service"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\src\\context\\LocationProvider.js";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\src\\context\\LocationProvider.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var LocationContext = (0, _react.createContext)();
   var LocationProvider = exports.LocationProvider = function LocationProvider(_ref) {
@@ -149114,7 +149114,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _asyncStorage = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "@react-native-async-storage/async-storage"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\src\\context\\AuthContext.js";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\src\\context\\AuthContext.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var AuthContext = exports.AuthContext = (0, _react.createContext)();
   var AuthProvider = exports.AuthProvider = function AuthProvider(_ref) {
@@ -149640,7 +149640,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[3], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[4], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-safe-area-context\\src\\SafeAreaContext.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-safe-area-context\\src\\SafeAreaContext.tsx";
   var _excluded = ["children", "initialMetrics", "initialSafeAreaInsets", "style"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var isDev = process.env.NODE_ENV !== 'production';
@@ -149812,7 +149812,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
   var _excluded = ["edges"];
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-safe-area-context\\src\\SafeAreaView.tsx";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-safe-area-context\\src\\SafeAreaView.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var defaultEdges = {
     top: 'additive',
@@ -149906,7 +149906,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[2], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[3], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\src\\component\\Card.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\src\\component\\Card.js";
   function Card(_ref) {
     var children = _ref.children,
       style = _ref.style;
@@ -149942,7 +149942,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
   var _Ionicons = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "react-native-vector-icons/Ionicons"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\src\\component\\Input.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\src\\component\\Input.js";
   var _excluded = ["icon", "containerStyle", "style"];
   function Input(_ref) {
     var icon = _ref.icon,
@@ -149997,7 +149997,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[2], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[3], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\src\\component\\Button.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\src\\component\\Button.js";
   function Button(_ref) {
     var title = _ref.title,
       onPress = _ref.onPress,
@@ -150086,7 +150086,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[7], "react"));
   var _ApiUtils = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[8], "../api/ApiUtils"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[9], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\src\\screen\\AgreementScreen.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\src\\screen\\AgreementScreen.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function AgreementScreen() {
     var navigation = (0, _$$_REQUIRE(_dependencyMap[10], "@react-navigation/native").useNavigation)();
@@ -150516,7 +150516,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[4], "react-native");
   var _Ionicons = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "react-native-vector-icons/Ionicons"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\src\\view\\OptionScreen.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\src\\view\\OptionScreen.js";
   /**
    * 파일 경로: src/view/ProfileScreen.js
    */
@@ -150992,7 +150992,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _AntDesign = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "react-native-vector-icons/AntDesign"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\src\\view\\GuideScreen.js"; // AntDesign 아이콘 임포트
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\src\\view\\GuideScreen.js"; // AntDesign 아이콘 임포트
   var GuideScreen = function GuideScreen() {
     var navigation = (0, _$$_REQUIRE(_dependencyMap[5], "@react-navigation/native").useNavigation)(); // 네비게이션 훅 사용
 
@@ -151051,7 +151051,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             children: ["\u2705 \uC57C\uAC04 \uC8FC\uD589 \uC2DC ", /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
               style: styles.highlight,
               children: "\uC804\uC870\uB4F1 \uC810\uB4F1"
-            }), " \uD655\uC778"]
+            }), ' ', "\uD655\uC778"]
           }), /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.Text, {
             style: styles.item,
             children: ["\u2705 \uC8FC\uBCC0 \uD658\uACBD \uBC0F ", /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
@@ -151078,7 +151078,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             })]
           }), /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.Text, {
             style: styles.item,
-            children: ["\u2022 \uAD50\uCC28\uB85C \uBC0F \uD6A1\uB2E8\uBCF4\uB3C4\uC5D0\uC11C\uB294 ", /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
+            children: ["\u2022 \uAD50\uCC28\uB85C \uBC0F \uD6A1\uB2E8\uBCF4\uB3C4\uC5D0\uC11C\uB294", ' ', /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
               style: styles.highlight,
               children: "\uB0B4\uB824\uC11C \uC774\uB3D9"
             })]
@@ -151099,7 +151099,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             children: "\uD83D\uDCF5 \uC6B4\uC804 \uC911 \uC2A4\uB9C8\uD2B8\uD3F0 \uC0AC\uC6A9 \uAE08\uC9C0"
           }), /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.Text, {
             style: styles.item,
-            children: ["\u2022 \uAE38\uC744 \uD655\uC778\uD574\uC57C \uD560 \uACBD\uC6B0 ", /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
+            children: ["\u2022 \uAE38\uC744 \uD655\uC778\uD574\uC57C \uD560 \uACBD\uC6B0", ' ', /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
               style: styles.highlight,
               children: "\uC548\uC804\uD55C \uACF3\uC5D0 \uC815\uCC28 \uD6C4 \uD655\uC778"
             })]
@@ -151111,50 +151111,50 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var styles = _reactNative.StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: "#fff",
+      backgroundColor: '#fff',
       padding: 20
     },
     title: {
       fontSize: 22,
-      fontWeight: "bold",
-      color: "#ff6a33",
+      fontWeight: 'bold',
+      color: '#ff6a33',
       marginBottom: 20
     },
     section: {
-      backgroundColor: "#ffeeee",
+      backgroundColor: '#dcfce7',
       padding: 15,
       borderRadius: 10,
       marginBottom: 20
     },
     sectionTitle: {
       fontSize: 18,
-      fontWeight: "bold",
-      color: "#ff6a33",
+      fontWeight: 'bold',
+      color: '#ff6a33',
       marginBottom: 10
     },
     subTitle: {
       fontSize: 16,
-      fontWeight: "bold",
-      color: "#ff6a33",
+      fontWeight: 'bold',
+      color: '#ff6a33',
       marginTop: 10
     },
     item: {
       fontSize: 16,
-      color: "#333",
+      color: '#333',
       marginTop: 5
     },
     highlight: {
-      fontWeight: "bold",
-      color: "#ff6a33"
+      fontWeight: 'bold',
+      color: '#ff6a33'
     },
     header: {
-      flexDirection: "row",
-      alignItems: "center",
+      flexDirection: 'row',
+      alignItems: 'center',
       marginBottom: 20
     },
     title: {
       fontSize: 24,
-      fontWeight: "bold",
+      fontWeight: 'bold',
       marginLeft: 10
     }
   });
@@ -151172,7 +151172,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNativeLinearGradient = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "react-native-linear-gradient"));
   var _Ionicons = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "react-native-vector-icons/Ionicons"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\src\\view\\MainScreen.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\src\\view\\MainScreen.js";
   /**
    * 파일 경로: src/view/HomeScreen.js
    */
@@ -151739,7 +151739,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNativeCompassHeading = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "react-native-compass-heading"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[10], "react/jsx-runtime");
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\src\\view\\GpsScreen.js"; // 각도 계산을 위한 유틸
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\src\\view\\GpsScreen.js"; // 각도 계산을 위한 유틸
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var toDegrees = function toDegrees(rad) {
     return rad * (180 / Math.PI);
@@ -169101,7 +169101,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
   var _Ionicons = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "react-native-vector-icons/Ionicons"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\src\\view\\HistoryScreen.js";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\src\\view\\HistoryScreen.js";
   /**
    * 파일 경로: src/view/HistoryScreen.js
    */
@@ -169509,7 +169509,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "react"));
   var _AntDesign = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "react-native-vector-icons/AntDesign"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\src\\view\\AnalysisScreen.js"; // AntDesign 아이콘 임포트
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\src\\view\\AnalysisScreen.js"; // AntDesign 아이콘 임포트
   function AnalysisScreen(_ref) {
     var route = _ref.route;
     var result = route.params.result;
@@ -169783,7 +169783,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _ApiUtils = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "../api/ApiUtils"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[7], "react/jsx-runtime");
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\src\\view\\CameraScreen.js";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\src\\view\\CameraScreen.js";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var CameraScreen = function CameraScreen() {
     var _useState = (0, _react.useState)(false),
@@ -170619,7 +170619,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[10], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[11], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-vision-camera\\src\\Camera.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-vision-camera\\src\\Camera.tsx";
   var _excluded = ["onRecordingError", "onRecordingFinished", "videoBitRate"],
     _excluded2 = ["device", "frameProcessor", "codeScanner", "enableFpsGraph", "fps"];
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
@@ -171727,7 +171727,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[2], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-vision-camera\\src\\FpsGraph.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-vision-camera\\src\\FpsGraph.tsx";
   var _excluded = ["averageFpsSamples", "targetMaxFps", "style"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var MAX_BARS = exports.MAX_BARS = 30;
@@ -171816,7 +171816,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _objectWithoutProperties2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/objectWithoutProperties"));
   var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[3], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-vision-camera\\src\\skia\\SkiaCameraCanvas.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-vision-camera\\src\\skia\\SkiaCameraCanvas.tsx";
   var _excluded = ["offscreenTextures", "resizeMode", "children"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function SkiaCameraCanvasImpl(_ref) {
@@ -186226,7 +186226,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[6], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[7], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-reanimated\\src\\component\\LayoutAnimationConfig.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-reanimated\\src\\component\\LayoutAnimationConfig.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
@@ -186319,7 +186319,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[0], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[1], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[2], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-reanimated\\src\\component\\PerformanceMonitor.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-reanimated\\src\\component\\PerformanceMonitor.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function createCircularDoublesBuffer(size) {
     'worklet';
@@ -186583,7 +186583,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _JSPropsUpdater = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[10], "./JSPropsUpdater"));
   var _setAndForwardRef = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[11], "./setAndForwardRef"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[12], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-reanimated\\src\\createAnimatedComponent\\createAnimatedComponent.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-reanimated\\src\\createAnimatedComponent\\createAnimatedComponent.tsx";
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
   var IS_WEB = (0, _$$_REQUIRE(_dependencyMap[13], "../PlatformChecker").isWeb)();
@@ -194116,7 +194116,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
   var _excluded = ["itemLayoutAnimation", "skipEnteringExitingAnimations"];
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-reanimated\\src\\component\\FlatList.tsx";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-reanimated\\src\\component\\FlatList.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var AnimatedFlatList = (0, _$$_REQUIRE(_dependencyMap[5], "../createAnimatedComponent").createAnimatedComponent)(_reactNative.FlatList);
   var createCellRendererComponent = function createCellRendererComponent(itemLayoutAnimationRef) {
@@ -194215,7 +194215,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
   var _excluded = ["scrollViewOffset"];
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-reanimated\\src\\component\\ScrollView.tsx"; // Since createAnimatedComponent return type is ComponentClass that has the props of the argument,
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-reanimated\\src\\component\\ScrollView.tsx"; // Since createAnimatedComponent return type is ComponentClass that has the props of the argument,
   // but not things like NativeMethods, etc. we need to add them manually by extending the type.
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var AnimatedScrollViewComponent = (0, _$$_REQUIRE(_dependencyMap[5], "../createAnimatedComponent").createAnimatedComponent)(_reactNative.ScrollView);
@@ -196428,7 +196428,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _warnOnce = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "warn-once"));
   var _StackView = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../views/Stack/StackView"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\navigators\\createStackNavigator.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\navigators\\createStackNavigator.tsx";
   var _excluded = ["id", "initialRouteName", "children", "screenListeners", "screenOptions"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function StackNavigator(_ref) {
@@ -196536,7 +196536,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _CardStack = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[12], "./CardStack"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[13], "react/jsx-runtime");
   var _excluded = ["state", "descriptors"];
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Stack\\StackView.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Stack\\StackView.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
@@ -196950,7 +196950,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[2], "react-native");
   var _Header = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "./Header"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Header\\HeaderContainer.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Header\\HeaderContainer.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function HeaderContainer(_ref) {
     var _this = this;
@@ -197074,7 +197074,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _ModalPresentationContext = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "../../utils/ModalPresentationContext"));
   var _HeaderSegment = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "./HeaderSegment"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Header\\Header.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Header\\Header.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var _default = exports.default = React.memo(function Header(_ref) {
     var back = _ref.back,
@@ -197151,7 +197151,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[4], "react-native");
   var _memoize = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "../../utils/memoize"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Header\\HeaderSegment.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Header\\HeaderSegment.tsx";
   var _excluded = ["progress", "layout", "modal", "onGoBack", "headerTitle", "headerLeft", "headerRight", "headerBackImage", "headerBackTitle", "headerBackTitleVisible", "headerTruncatedBackTitle", "headerBackAccessibilityLabel", "headerBackTestID", "headerBackAllowFontScaling", "headerBackTitleStyle", "headerTitleContainerStyle", "headerLeftContainerStyle", "headerRightContainerStyle", "headerBackgroundContainerStyle", "headerStyle", "headerStatusBarHeight", "styleInterpolator"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function HeaderSegment(props) {
@@ -197491,7 +197491,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[2], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\Background.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\Background.tsx";
   var _excluded = ["style"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function Background(_ref) {
@@ -197565,7 +197565,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _HeaderShownContext = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "./HeaderShownContext"));
   var _HeaderTitle = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "./HeaderTitle"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\Header\\Header.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\Header\\Header.tsx";
   var _excluded = ["height", "minHeight", "maxHeight", "backgroundColor", "borderBottomColor", "borderBottomEndRadius", "borderBottomLeftRadius", "borderBottomRightRadius", "borderBottomStartRadius", "borderBottomWidth", "borderColor", "borderEndColor", "borderEndWidth", "borderLeftColor", "borderLeftWidth", "borderRadius", "borderRightColor", "borderRightWidth", "borderStartColor", "borderStartWidth", "borderStyle", "borderTopColor", "borderTopEndRadius", "borderTopLeftRadius", "borderTopRightRadius", "borderTopStartRadius", "borderTopWidth", "borderWidth", "boxShadow", "elevation", "shadowColor", "shadowOffset", "shadowOpacity", "shadowRadius", "opacity", "transform"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var warnIfHeaderStylesDefined = function warnIfHeaderStylesDefined(styles) {
@@ -197817,7 +197817,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[2], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\Header\\HeaderBackground.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\Header\\HeaderBackground.tsx";
   var _excluded = ["style"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function HeaderBackground(_ref) {
@@ -197896,7 +197896,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[2], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\Header\\HeaderTitle.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\Header\\HeaderTitle.tsx";
   var _excluded = ["tintColor", "style"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function HeaderTitle(_ref) {
@@ -197945,7 +197945,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _MaskedView = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../MaskedView"));
   var _PlatformPressable = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "../PlatformPressable"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\Header\\HeaderBackButton.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\Header\\HeaderBackButton.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function HeaderBackButton(_ref) {
     var _this = this;
@@ -198175,7 +198175,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[2], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\MaskedViewNative.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\MaskedViewNative.tsx";
   var _excluded = ["children"];
   /**
    * The native MaskedView that we explicitly re-export for supported platforms: Android, iOS.
@@ -198212,7 +198212,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[3], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[4], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\PlatformPressable.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\PlatformPressable.tsx";
   var _excluded = ["onPressIn", "onPressOut", "android_ripple", "pressColor", "pressOpacity", "style"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var AnimatedPressable = _reactNative.Animated.createAnimatedComponent(_reactNative.Pressable);
@@ -198338,7 +198338,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[0], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[1], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[2], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\MissingIcon.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\MissingIcon.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function MissingIcon(_ref) {
     var color = _ref.color,
@@ -198368,7 +198368,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[2], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\ResourceSavingView.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\ResourceSavingView.tsx";
   var _excluded = ["visible", "children", "style"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var FAR_FAR_AWAY = 30000; // this should be big enough to move the whole view out of its container
@@ -198432,7 +198432,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[2], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\SafeAreaProviderCompat.tsx",
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\SafeAreaProviderCompat.tsx",
     _this = this;
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var _Dimensions$get = _reactNative.Dimensions.get('window'),
@@ -198565,7 +198565,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _HeaderHeightContext = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "./Header/HeaderHeightContext"));
   var _HeaderShownContext = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "./Header/HeaderShownContext"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\Screen.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\elements\\src\\Screen.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function Screen(props) {
     var dimensions = (0, _$$_REQUIRE(_dependencyMap[9], "react-native-safe-area-context").useSafeAreaFrame)();
@@ -198661,7 +198661,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _getDistanceForDirection = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[11], "../../utils/getDistanceForDirection"));
   var _CardContainer = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[12], "./CardContainer"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[13], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Stack\\CardStack.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Stack\\CardStack.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
@@ -200995,7 +200995,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _useKeyboardManager2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "../../utils/useKeyboardManager"));
   var _Card = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "./Card"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[7], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Stack\\CardContainer.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Stack\\CardContainer.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var EPSILON = 0.1;
   function CardContainer(_ref) {
@@ -201352,7 +201352,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[16], "react/jsx-runtime");
   var _excluded = ["styleInterpolator", "interpolationIndex", "current", "gesture", "next", "layout", "insets", "overlay", "overlayEnabled", "shadowEnabled", "gestureEnabled", "gestureDirection", "pageOverflowEnabled", "headerDarkContent", "children", "containerStyle", "contentStyle"];
   var _Card,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Stack\\Card.tsx";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Stack\\Card.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
@@ -201839,7 +201839,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[2], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\ModalStatusBarManager.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\ModalStatusBarManager.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function ModalStatusBarManager(_ref) {
     var _flattenedStyle$trans, _flattenedStyle$trans2;
@@ -201887,7 +201887,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[3], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[4], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Stack\\CardSheet.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Stack\\CardSheet.tsx";
   var _excluded = ["enabled", "layout", "style"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   // This component will render a page which overflows the screen
@@ -201974,7 +201974,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[2], "react"));
   var _GestureHandlerRefContext = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "../utils/GestureHandlerRefContext"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\GestureHandlerNative.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\GestureHandlerNative.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function PanGestureHandler(props) {
     var gestureRef = React.useRef(null);
@@ -202251,7 +202251,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _createNativeWrapper = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "../handlers/createNativeWrapper"));
   var _GestureHandlerButton = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[10], "./GestureHandlerButton"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[11], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\GestureButtons.tsx",
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\GestureButtons.tsx",
     _this2 = this;
   var _excluded = ["rippleColor"],
     _excluded2 = ["children", "style"],
@@ -202462,7 +202462,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[2], "react"));
   var React = _react;
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[3], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\handlers\\createNativeWrapper.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\handlers\\createNativeWrapper.tsx";
   /*
    * This array should consist of:
    *   - All keys in propTypes from NativeGestureHandler
@@ -202554,7 +202554,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _GestureHandlerRootViewContext = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[11], "../GestureHandlerRootViewContext"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[12], "react/jsx-runtime");
   var _UIManagerAny$getView,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\handlers\\createHandler.tsx";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\handlers\\createHandler.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
@@ -203332,7 +203332,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _excluded = ["refreshControl", "waitFor"],
     _excluded2 = ["waitFor", "refreshControl"];
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\GestureComponents.tsx";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\GestureComponents.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var RefreshControl = exports.RefreshControl = (0, _createNativeWrapper.default)(_reactNative.RefreshControl, {
     disallowInterruption: true,
@@ -204981,7 +204981,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _GestureHandlerRootViewContext = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "../../../GestureHandlerRootViewContext"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\handlers\\gestures\\GestureDetector\\index.tsx";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\handlers\\gestures\\GestureDetector\\index.tsx";
   /* eslint-disable react/no-unused-prop-types */
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function propagateDetectorConfig(props, gesture) {
@@ -206359,7 +206359,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _react;
   var _GenericTouchable = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[9], "./GenericTouchable"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[10], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\touchables\\TouchableNativeFeedback.android.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\touchables\\TouchableNativeFeedback.android.tsx";
   var _excluded = ["style"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
@@ -206460,7 +206460,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _react;
   var _reactNative = _$$_REQUIRE(_dependencyMap[7], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\touchables\\GenericTouchable.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\touchables\\GenericTouchable.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
@@ -206731,7 +206731,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _GenericTouchable = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "./GenericTouchable"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[3], "react/jsx-runtime");
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\touchables\\TouchableWithoutFeedback.tsx";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\touchables\\TouchableWithoutFeedback.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var TouchableWithoutFeedback = React.forwardRef(function (props, ref) {
     return /*#__PURE__*/(0, _jsxRuntime.jsx)(_GenericTouchable.default, Object.assign({
@@ -206758,7 +206758,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[9], "react"));
   var React = _react;
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[10], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\touchables\\TouchableOpacity.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\touchables\\TouchableOpacity.tsx";
   var _excluded = ["style"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
@@ -206838,7 +206838,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[9], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[10], "react/jsx-runtime");
   var _excluded = ["style"];
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\touchables\\TouchableHighlight.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\touchables\\TouchableHighlight.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); }
@@ -206933,7 +206933,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _hoistNonReactStatics = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "hoist-non-react-statics"));
   var _GestureHandlerRootView = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "./GestureHandlerRootView"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\gestureHandlerRootHOC.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\gestureHandlerRootHOC.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function gestureHandlerRootHOC(Component, containerStyles) {
     function Wrapper(props) {
@@ -207355,7 +207355,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _GestureHandlerRootViewContext = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../GestureHandlerRootViewContext"));
   var _RNGestureHandlerRootViewNativeComponent = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "../specs/RNGestureHandlerRootViewNativeComponent"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\GestureHandlerRootView.android.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\GestureHandlerRootView.android.tsx";
   var _excluded = ["style"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function GestureHandlerRootView(_ref) {
@@ -207431,7 +207431,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _react;
   var _reactNative = _$$_REQUIRE(_dependencyMap[7], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\Swipeable.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\Swipeable.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } // Similarily to the DrawerLayout component this deserves to be put in a
@@ -207807,7 +207807,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[3], "react-native");
   var _GestureHandlerButton = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../GestureHandlerButton"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\Pressable\\Pressable.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\Pressable\\Pressable.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var DEFAULT_LONG_PRESS_DURATION = 500;
   function Pressable(props) {
@@ -208216,7 +208216,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _invariant = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "invariant"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[8], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[9], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\DrawerLayout.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-gesture-handler\\src\\components\\DrawerLayout.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function _callSuper(t, o, e) { return o = (0, _getPrototypeOf2.default)(o), (0, _possibleConstructorReturn2.default)(t, _isNativeReflectConstruct() ? Reflect.construct(o, e || [], (0, _getPrototypeOf2.default)(t).constructor) : o.apply(t, e)); }
   function _isNativeReflectConstruct() { try { var t = !Boolean.prototype.valueOf.call(Reflect.construct(Boolean, [], function () {})); } catch (t) {} return (_isNativeReflectConstruct = function _isNativeReflectConstruct() { return !!t; })(); } // This component is based on RN's DrawerLayoutAndroid API
@@ -208723,7 +208723,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _excluded = ["enabled"],
     _excluded2 = ["enabled", "active"];
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Screens.tsx";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\stack\\src\\views\\Screens.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var Screens;
   try {
@@ -209018,7 +209018,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _ScreenStackHeaderSubviewNativeComponent = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../fabric/ScreenStackHeaderSubviewNativeComponent"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-screens\\src\\components\\ScreenStackHeaderConfig.tsx"; // Native components
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-screens\\src\\components\\ScreenStackHeaderConfig.tsx"; // Native components
   var ScreenStackHeaderConfig = exports.ScreenStackHeaderConfig = _ScreenStackHeaderConfigNativeComponent.default;
   var ScreenStackHeaderSubview = exports.ScreenStackHeaderSubview = _ScreenStackHeaderSubviewNativeComponent.default;
   var ScreenStackHeaderBackButtonImage = exports.ScreenStackHeaderBackButtonImage = function ScreenStackHeaderBackButtonImage(props) {
@@ -209233,7 +209233,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _ScreenNativeComponent = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "../fabric/ScreenNativeComponent"));
   var _ModalScreenNativeComponent = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "../fabric/ModalScreenNativeComponent"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-screens\\src\\components\\Screen.tsx",
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-screens\\src\\components\\Screen.tsx",
     _this = this;
   var _excluded = ["enabled", "freezeOnBlur"],
     _excluded2 = ["active", "activityState", "children", "isNativeStack", "gestureResponseDistance", "onGestureCancel"],
@@ -209394,7 +209394,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _slicedToArray2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/slicedToArray"));
   var _react = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[3], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-screens\\src\\components\\helpers\\DelayedFreeze.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-screens\\src\\components\\helpers\\DelayedFreeze.tsx";
   // This component allows one more render before freezing the screen.
   // Allows activityState to reach the native side and useIsFocused to work correctly.
   function DelayedFreeze(_ref) {
@@ -209427,7 +209427,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   exports.Freeze = Freeze;
   var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[0], "react"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[1], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-freeze\\src\\index.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-freeze\\src\\index.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var infiniteThenable = {
     then: function then() {}
@@ -209660,7 +209660,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _ScreenContainerNativeComponent = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../fabric/ScreenContainerNativeComponent"));
   var _ScreenNavigationContainerNativeComponent = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "../fabric/ScreenNavigationContainerNativeComponent"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-screens\\src\\components\\ScreenContainer.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-screens\\src\\components\\ScreenContainer.tsx";
   var _excluded = ["enabled", "hasTwoStates"]; // Native components
   var NativeScreenContainer = exports.NativeScreenContainer = _reactNative.Platform.OS !== 'web' ? _ScreenContainerNativeComponent.default : _reactNative.View;
   var NativeScreenNavigationContainer = exports.NativeScreenNavigationContainer = _reactNative.Platform.OS !== 'web' ? _ScreenNavigationContainerNativeComponent.default : _reactNative.View;
@@ -209723,7 +209723,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _DelayedFreeze = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "./helpers/DelayedFreeze"));
   var _ScreenStackNativeComponent = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../fabric/ScreenStackNativeComponent"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-screens\\src\\components\\ScreenStack.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-screens\\src\\components\\ScreenStack.tsx";
   var _excluded = ["children", "gestureDetectorBridge"]; // Native components
   var NativeScreenStack = _ScreenStackNativeComponent.default;
   function isFabric() {
@@ -209801,7 +209801,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[2], "react-native");
   var _SearchBarNativeComponent = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[3], "../fabric/SearchBarNativeComponent"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-screens\\src\\components\\SearchBar.tsx"; // Native components
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-screens\\src\\components\\SearchBar.tsx"; // Native components
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var NativeSearchBar = exports.NativeSearchBar = _SearchBarNativeComponent.default;
   var NativeSearchBarCommands = exports.NativeSearchBarCommands = _SearchBarNativeComponent.Commands;
@@ -209970,7 +209970,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[2], "react-native");
   var _FullWindowOverlayNativeComponent = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "../fabric/FullWindowOverlayNativeComponent"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\react-native-screens\\src\\components\\FullWindowOverlay.tsx"; // Native components
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\react-native-screens\\src\\components\\FullWindowOverlay.tsx"; // Native components
   var NativeFullWindowOverlay = _FullWindowOverlayNativeComponent.default;
   function FullWindowOverlay(props) {
     if (_reactNative.Platform.OS !== 'ios') {
@@ -210123,7 +210123,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _warnOnce = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "warn-once"));
   var _BottomTabView = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[4], "../views/BottomTabView"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[5], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\bottom-tabs\\src\\navigators\\createBottomTabNavigator.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\bottom-tabs\\src\\navigators\\createBottomTabNavigator.tsx";
   var _excluded = ["id", "initialRouteName", "backBehavior", "children", "screenListeners", "screenOptions", "sceneContainerStyle"],
     _excluded2 = ["lazy", "tabBarOptions"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
@@ -210208,7 +210208,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _BottomTabBarHeightContext = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "../utils/BottomTabBarHeightContext"));
   var _BottomTabBar = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[7], "./BottomTabBar"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\bottom-tabs\\src\\views\\BottomTabView.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\bottom-tabs\\src\\views\\BottomTabView.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   function BottomTabView(props) {
     var _this = this;
@@ -210374,7 +210374,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _useIsKeyboardShown = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "../utils/useIsKeyboardShown"));
   var _BottomTabItem = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[7], "./BottomTabItem"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[8], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\bottom-tabs\\src\\views\\BottomTabBar.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\bottom-tabs\\src\\views\\BottomTabBar.tsx";
   var _excluded = ["state", "descriptors", "dimensions", "insets", "style"];
   var DEFAULT_TABBAR_HEIGHT = 49;
   var COMPACT_TABBAR_HEIGHT = 32;
@@ -210713,7 +210713,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[4], "react-native");
   var _TabBarIcon = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "./TabBarIcon"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\bottom-tabs\\src\\views\\BottomTabItem.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\bottom-tabs\\src\\views\\BottomTabItem.tsx";
   var _excluded = ["children", "style", "onPress", "to", "accessibilityRole"];
   function BottomTabBarItem(_ref) {
     var _this = this;
@@ -210894,7 +210894,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _reactNative = _$$_REQUIRE(_dependencyMap[2], "react-native");
   var _Badge = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "./Badge"));
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[4], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\bottom-tabs\\src\\views\\TabBarIcon.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\bottom-tabs\\src\\views\\TabBarIcon.tsx";
   function TabBarIcon(_ref) {
     var _ = _ref.route,
       horizontal = _ref.horizontal,
@@ -210983,7 +210983,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var React = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[4], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[5], "react-native");
   var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
-  var _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\bottom-tabs\\src\\views\\Badge.tsx";
+  var _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\bottom-tabs\\src\\views\\Badge.tsx";
   var _excluded = ["children", "style", "visible", "size"],
     _excluded2 = ["backgroundColor"];
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
@@ -211084,7 +211084,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _excluded = ["enabled"],
     _excluded2 = ["visible", "children"];
   var _this = this,
-    _jsxFileName = "C:\\Users\\JunSik\\Kumoh_app\\node_modules\\@react-navigation\\bottom-tabs\\src\\views\\ScreenFallback.tsx";
+    _jsxFileName = "C:\\ReactNative\\Kumoh_app\\node_modules\\@react-navigation\\bottom-tabs\\src\\views\\ScreenFallback.tsx";
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
   var Screens;
   try {

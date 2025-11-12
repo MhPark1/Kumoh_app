@@ -55,7 +55,7 @@ const AuthNavigator = () => (
 const SelectionStackNavigator = () => (
   <SelectionStack.Navigator
     screenOptions={{
-      headerTintColor: '#ff6a33',
+      headerTintColor: colors.primary,
     }}>
     <SelectionStack.Screen
       name="Selection"
@@ -127,7 +127,7 @@ const MainTabNavigator = () => {
           }
           return <Icon name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: '#ff6a33',
+        tabBarActiveTintColor: '#2563eb',
         tabBarInactiveTintColor: 'gray',
         tabBarStyle: {
           backgroundColor: '#fff',
