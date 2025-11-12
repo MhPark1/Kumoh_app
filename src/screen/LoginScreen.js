@@ -1,18 +1,35 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { View, TextInput, Text, TouchableOpacity, Alert, StyleSheet, Platform } from 'react-native';
+import React, {useState, useEffect, useContext} from 'react';
+import {
+  View,
+  // TextInput,
+  Text,
+  TouchableOpacity,
+  Alert,
+  StyleSheet,
+  Platform,
+  KeyboardAvoidingView,
+  ScrollView,
+} from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
+import {SafeAreaView} from 'react-native-safe-area-context';
+import {Button} from '../component/Button';
+import {Input} from '../component/Input';
+import {Card} from '../component/Card';
+import {colors} from '../component/constants/colors';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Api from '../api/ApiUtils';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
-import { request, PERMISSIONS, RESULTS } from 'react-native-permissions';
-import { useLocation } from '../context/LocationProvider'; // Context import
-import { AuthContext } from '../context/AuthContext';
+import {useNavigation} from '@react-navigation/native';
+import {request, PERMISSIONS, RESULTS} from 'react-native-permissions';
+import {useLocation} from '../context/LocationProvider'; // Context import
+import {AuthContext} from '../context/AuthContext';
 
 const LoginScreen = () => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
-  const { startLocationTracking } = useLocation();
-  const { login } = useContext(AuthContext);
+  const {startLocationTracking} = useLocation();
+  const {login} = useContext(AuthContext);
 
   useEffect(() => {
     requestLocationPermission();
@@ -33,17 +50,18 @@ const LoginScreen = () => {
 
   const handleLogin = async () => {
     const credentials = {
-      id: userId,
-      password: password,
+      login_id: userId,
+      user_pw: password,
     };
 
     try {
       const response = await Api.login(credentials);
       console.log(response);
-      if (response.result === 'success') {
-        console.log('response::::',response)
+      // if (response.result === 'success') {
+      if (response.result) {
+        console.log('response::::', response);
         await login(response.token);
-        await AsyncStorage.setItem('user_id', credentials.id);
+        await AsyncStorage.setItem('user_id', credentials.login_id);
         await AsyncStorage.setItem('first_login', 'false');
         // 로그인 성공 후 위치 수집 시작
         startLocationTracking();
@@ -56,80 +74,162 @@ const LoginScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.logo}>로그인</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="아이디"
-        placeholderTextColor={"#ddd"}
-        value={userId}
-        onChangeText={setUserId}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="비밀번호"
-        placeholderTextColor={"#ddd"}
-        secureTextEntry
-        value={password}
-        onChangeText={setPassword}
-      />
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>로그인</Text>
-      </TouchableOpacity>
-      <View style={styles.footer}>
-        <TouchableOpacity onPress={() => navigation.navigate('Agreement')}>
-          <Text style={styles.footerText}>회원가입</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <LinearGradient
+      colors={[colors.green600, colors.emerald700]}
+      style={styles.gradient}>
+      <SafeAreaView style={styles.container}>
+        <KeyboardAvoidingView
+          behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+          style={styles.keyboardView}>
+          <ScrollView
+            contentContainerStyle={styles.scrollContent}
+            keyboardShouldPersistTaps="handled">
+            {/* Logo & Header */}
+            <View style={styles.header}>
+              <View style={styles.logoContainer}>
+                <Ionicons name="flash" size={40} color={colors.green600} />
+              </View>
+              <Text style={styles.title}>SafeRide</Text>
+              <Text style={styles.subtitle}>안전한 킥보드 라이딩의 시작</Text>
+            </View>
+            {/* Login Form */}
+            <Card style={styles.card}>
+              <View style={styles.form}>
+                <View style={styles.inputGroup}>
+                  <Text style={styles.label}>아이디</Text>
+                  <Input
+                    icon="mail-outline"
+                    placeholder="ID"
+                    placeholderTextColor={'#ddd'}
+                    value={userId}
+                    onChangeText={setUserId}
+                  />
+                </View>
+
+                <View style={styles.inputGroup}>
+                  <Text style={styles.label}>비밀번호</Text>
+                  <Input
+                    icon="lock-closed-outline"
+                    placeholder="PASSWORD"
+                    placeholderTextColor={'#ddd'}
+                    value={password}
+                    onChangeText={setPassword}
+                    secureTextEntry
+                  />
+                </View>
+
+                {/* <View style={styles.forgotContainer}>
+                  <TouchableOpacity>
+                    <Text style={styles.forgotText}>비밀번호 찾기</Text>
+                  </TouchableOpacity>
+                </View> */}
+
+                <Button title="로그인" onPress={handleLogin} />
+
+                <View style={styles.signupContainer}>
+                  <Text style={styles.signupText}>
+                    아직 계정이 없으신가요?{' '}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => navigation.navigate('Agreement')}>
+                    <Text style={styles.signupLink}>회원가입</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            </Card>
+
+            {/* Footer */}
+            <Text style={styles.footer}>
+              로그인하면 이용약관 및 개인정보처리방침에 동의하게 됩니다
+            </Text>
+          </ScrollView>
+        </KeyboardAvoidingView>
+      </SafeAreaView>
+    </LinearGradient>
   );
 };
 
 const styles = StyleSheet.create({
+  gradient: {
+    flex: 1,
+  },
   container: {
     flex: 1,
+  },
+  keyboardView: {
+    flex: 1,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    padding: 16,
     justifyContent: 'center',
-    padding: 20,
-    backgroundColor: '#F7F7F7',
   },
-  logo: {
-    fontSize: 28,
-    color: '#ff6a33',
-    fontWeight: 'bold',
-    marginBottom: 30,
-    textAlign: 'center',
-  },
-  input: {
-    height: 50,
-    borderColor: '#CED4DA',
-    borderWidth: 1,
-    borderRadius: 10,
-    paddingHorizontal: 15,
-    marginBottom: 15,
-    backgroundColor: '#FFFFFF',
-    fontSize: 16,
-    color: '#000',
-  },
-  button: {
-    backgroundColor: '#ff6a33',
-    paddingVertical: 15,
-    borderRadius: 10,
+  header: {
     alignItems: 'center',
-    marginBottom: 20,
+    marginBottom: 32,
   },
-  buttonText: {
-    color: '#FFFFFF',
-    fontSize: 16,
+  logoContainer: {
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: colors.white,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 4},
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 8,
+  },
+  title: {
+    fontSize: 32,
     fontWeight: 'bold',
+    color: colors.white,
+    marginBottom: 8,
+  },
+  subtitle: {
+    fontSize: 16,
+    color: colors.green100,
+  },
+  card: {
+    marginBottom: 24,
+  },
+  form: {
+    gap: 16,
+  },
+  inputGroup: {
+    gap: 8,
+  },
+  label: {
+    fontSize: 14,
+    color: colors.gray700,
+  },
+  forgotContainer: {
+    alignItems: 'flex-end',
+  },
+  forgotText: {
+    fontSize: 14,
+    color: colors.blue600,
+  },
+  signupContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginTop: 8,
+  },
+  signupText: {
+    fontSize: 14,
+    color: colors.gray600,
+  },
+  signupLink: {
+    fontSize: 14,
+    color: colors.green600,
+    fontWeight: '600',
   },
   footer: {
-    alignItems: 'center',
-    marginTop: 20,
-  },
-  footerText: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 10,
+    fontSize: 12,
+    color: colors.green100,
+    textAlign: 'center',
   },
 });
 

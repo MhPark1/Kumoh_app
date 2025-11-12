@@ -1,13 +1,17 @@
-import React, { useContext, useEffect } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import { AuthProvider, AuthContext } from './src/context/AuthContext';
-import { LocationProvider } from './src/context/LocationProvider';
+import React, {useContext, useEffect} from 'react';
+import {NavigationContainer} from '@react-navigation/native';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {createStackNavigator} from '@react-navigation/stack';
+import {AuthProvider, AuthContext} from './src/context/AuthContext';
+import {LocationProvider} from './src/context/LocationProvider';
 import Icon from 'react-native-vector-icons/AntDesign';
-import { SafeAreaProvider, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useNavigation } from '@react-navigation/native';
+import {
+  SafeAreaProvider,
+  useSafeAreaInsets,
+} from 'react-native-safe-area-context';
+import {useNavigation} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {colors} from './src/component/constants/colors';
 
 import LoginScreen from './src/screen/LoginScreen';
 import AgreementScreen from './src/screen/AgreementScreen';
@@ -19,8 +23,10 @@ import HistoryScreen from './src/view/HistoryScreen';
 import Analysis from './src/view/AnalysisScreen';
 import Camera from './src/view/CameraScreen';
 
-import { LogBox } from 'react-native';
-LogBox.ignoreLogs(['Sending `onAnimatedValueUpdate` with no listeners registered']);
+import {LogBox} from 'react-native';
+LogBox.ignoreLogs([
+  'Sending `onAnimatedValueUpdate` with no listeners registered',
+]);
 
 const AuthStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -30,11 +36,18 @@ const OptionStack = createStackNavigator();
 const AuthNavigator = () => (
   <AuthStack.Navigator
     screenOptions={{
-      headerTintColor: '#ff6a33',
-    }}
-  >
-    <AuthStack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
-    <AuthStack.Screen name="Agreement" component={AgreementScreen} options={{ title: '회원가입' }} />
+      headerTintColor: colors.primary,
+    }}>
+    <AuthStack.Screen
+      name="Login"
+      component={LoginScreen}
+      options={{headerShown: false}}
+    />
+    <AuthStack.Screen
+      name="Agreement"
+      component={AgreementScreen}
+      options={{title: '회원가입'}}
+    />
   </AuthStack.Navigator>
 );
 
@@ -43,23 +56,45 @@ const SelectionStackNavigator = () => (
   <SelectionStack.Navigator
     screenOptions={{
       headerTintColor: '#ff6a33',
-    }}
-  >
-    <SelectionStack.Screen name="Selection" component={MainScreen} options={{ title: '홈', headerShown: false }} />
-    <SelectionStack.Screen name="Gps" component={Gps} options={{ title: '운행', headerShown: false }} />
-    <SelectionStack.Screen name="Camera" component={Camera} options={{ title: '카메라 분석', }} />
-    <SelectionStack.Screen name="Analysis" component={Analysis} options={{ title: '분석결과', headerShown: false, gestureEnabled: false, }} />
+    }}>
+    <SelectionStack.Screen
+      name="Selection"
+      component={MainScreen}
+      options={{title: '홈', headerShown: false}}
+    />
+    <SelectionStack.Screen
+      name="Gps"
+      component={Gps}
+      options={{title: '운행', headerShown: false}}
+    />
+    <SelectionStack.Screen
+      name="Camera"
+      component={Camera}
+      options={{title: '카메라 분석'}}
+    />
+    <SelectionStack.Screen
+      name="Analysis"
+      component={Analysis}
+      options={{title: '분석결과', headerShown: false, gestureEnabled: false}}
+    />
   </SelectionStack.Navigator>
 );
 const OptionStackNavigator = () => (
   <OptionStack.Navigator>
-    <OptionStack.Screen name="Option" component={OptionScreen} options={{ title: '설정', headerShown: false }} />
-    <OptionStack.Screen name="Guide" component={GuideScreen} options={{ title: '주행 가이드', headerShown: false }} />
+    <OptionStack.Screen
+      name="Option"
+      component={OptionScreen}
+      options={{title: '설정', headerShown: false}}
+    />
+    <OptionStack.Screen
+      name="Guide"
+      component={GuideScreen}
+      options={{title: '주행 가이드', headerShown: false}}
+    />
   </OptionStack.Navigator>
 );
 // 하단 탭에는 SelectionStack과 History만 등록
 const MainTabNavigator = () => {
-
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -80,8 +115,8 @@ const MainTabNavigator = () => {
 
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
+      screenOptions={({route}) => ({
+        tabBarIcon: ({focused, color, size}) => {
           let iconName;
           if (route.name === 'SelectionTab') {
             iconName = 'home';
@@ -102,29 +137,28 @@ const MainTabNavigator = () => {
           fontSize: 14, // 원하는 폰트 크기로 설정
           fontWeight: 'bold', // 필요하면 글씨 두께 설정 가능
         },
-      })}
-    >
+      })}>
       <Tab.Screen
         name="SelectionTab"
         component={SelectionStackNavigator}
-        options={{ title: '홈', headerShown: false }}
+        options={{title: '홈', headerShown: false}}
       />
       <Tab.Screen
         name="History"
         component={HistoryScreen}
-        options={{ title: '주행기록', headerShown: false }}
+        options={{title: '주행기록', headerShown: false}}
       />
       <Tab.Screen
         name="OptionTab"
         component={OptionStackNavigator}
-        options={{ title: '설정', headerShown: false }}
+        options={{title: '설정', headerShown: false}}
       />
     </Tab.Navigator>
   );
 };
 
 const AppContent = () => {
-  const { isLoggedIn, loading } = useContext(AuthContext);
+  const {isLoggedIn, loading} = useContext(AuthContext);
 
   if (loading) {
     return null;
@@ -145,7 +179,6 @@ export default function App() {
           <AppContent />
         </AuthProvider>
       </LocationProvider>
-
     </SafeAreaProvider>
   );
 }

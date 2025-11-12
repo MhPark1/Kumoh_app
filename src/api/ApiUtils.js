@@ -3,15 +3,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // API 인스턴스 생성
 const apiInstance = axios.create({
-  baseURL: 'http://localhost:24050',
-  //baseURL: 'http://takensoftai.iptime.org:27461',
+  baseURL: 'http://localhost:8080',
   headers: {
     'Content-Type': 'application/json',
   },
 });
 
 // 토큰 가져오기 함수
-const getAccessToken = async (navigation) => {
+const getAccessToken = async navigation => {
   try {
     const tokenString = await AsyncStorage.getItem('token');
     if (tokenString) {
@@ -26,7 +25,7 @@ const getAccessToken = async (navigation) => {
 
       return accessToken;
     } else {
-      console.log("토큰이 스토리지에 없습니다.");
+      console.log('토큰이 스토리지에 없습니다.');
       navigation.navigate('Login');
       return null;
     }
@@ -39,7 +38,7 @@ const getAccessToken = async (navigation) => {
 
 const ApiUtils = {
   // 회원가입
-  register: async (userData) => {
+  register: async userData => {
     try {
       const response = await apiInstance.post('/auth/register', userData);
       return response.data;
@@ -49,12 +48,12 @@ const ApiUtils = {
     }
   },
   // 로그인
-  login: async (credentials) => {
+  login: async credentials => {
     try {
       const response = await apiInstance.post('/auth/login', credentials);
       return response.data;
     } catch (error) {
-    console.log('Axios baseURL:', apiInstance.defaults.baseURL);
+      console.log('Axios baseURL:', apiInstance.defaults.baseURL);
       console.error('Login error:', error.response || error);
       throw error.response?.data || error;
     }
@@ -78,7 +77,11 @@ const ApiUtils = {
 
       return response.data;
     } catch (error) {
-      console.error('save trip log error:', error.response?.status, error.response?.data || error.message);
+      console.error(
+        'save trip log error:',
+        error.response?.status,
+        error.response?.data || error.message,
+      );
       throw error.response?.data || error;
     }
   },
@@ -91,15 +94,23 @@ const ApiUtils = {
       // accessToken이 없으면 중단
       if (!accessToken) return;
 
-      const response = await apiInstance.post('/action/trip_and_score_update', result, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: accessToken,
+      const response = await apiInstance.post(
+        '/action/trip_and_score_update',
+        result,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: accessToken,
+          },
         },
-      });
+      );
       return response.data;
     } catch (error) {
-      console.error('result save error:', error.response?.status, error.response?.data || error.message);
+      console.error(
+        'result save error:',
+        error.response?.status,
+        error.response?.data || error.message,
+      );
       throw error.response?.data || error;
     }
   },
@@ -118,10 +129,14 @@ const ApiUtils = {
           Authorization: accessToken,
         },
       });
-      console.log(response.data.data)
+      console.log(response.data.data);
       return response.data;
     } catch (error) {
-      console.error('getHistory error:', error.response?.status, error.response?.data || error.message);
+      console.error(
+        'getHistory error:',
+        error.response?.status,
+        error.response?.data || error.message,
+      );
       throw error.response?.data || error;
     }
   },
@@ -130,16 +145,24 @@ const ApiUtils = {
     try {
       const accessToken = await getAccessToken(navigation);
       if (!accessToken) return;
-      const response = await apiInstance.post('/action/get_history_main', result, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: accessToken,
+      const response = await apiInstance.post(
+        '/action/get_history_main',
+        result,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: accessToken,
+          },
         },
-      });
-      console.log(response.data.data)
+      );
+      console.log(response.data.data);
       return response.data;
     } catch (error) {
-      console.error('getMainScreenData error:', error.response?.status, error.response?.data || error.message);
+      console.error(
+        'getMainScreenData error:',
+        error.response?.status,
+        error.response?.data || error.message,
+      );
       throw error.response?.data || error;
     }
   },
@@ -148,16 +171,24 @@ const ApiUtils = {
     try {
       const accessToken = await getAccessToken(navigation);
       if (!accessToken) return;
-      const response = await apiInstance.post('/action/get_history_by_period', result, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: accessToken,
+      const response = await apiInstance.post(
+        '/action/get_history_by_period',
+        result,
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: accessToken,
+          },
         },
-      });
-      console.log(response.data.data)
+      );
+      console.log(response.data.data);
       return response.data;
     } catch (error) {
-      console.error('getMainScreenData error:', error.response?.status, error.response?.data || error.message);
+      console.error(
+        'getMainScreenData error:',
+        error.response?.status,
+        error.response?.data || error.message,
+      );
       throw error.response?.data || error;
     }
   },
