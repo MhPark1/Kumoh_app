@@ -1,13 +1,13 @@
-import React, { createContext, useState, useEffect } from 'react';
+import React, {createContext, useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useLocation } from './LocationProvider';
+import {useLocation} from './LocationProvider';
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export const AuthProvider = ({children}) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
-  const { startLocationTracking } = useLocation();
+  const {startLocationTracking} = useLocation();
 
   useEffect(() => {
     const checkToken = async () => {
@@ -34,11 +34,11 @@ export const AuthProvider = ({ children }) => {
 
     // 컴포넌트가 마운트될 때 checkToken 함수를 호출
     checkToken();
-  }, []);
+  }, [startLocationTracking]);
 
-  const login = async (token) => {
+  const login = async token => {
     try {
-      await AsyncStorage.setItem('token', JSON.stringify({ accessToken: token }))
+      await AsyncStorage.setItem('token', JSON.stringify({accessToken: token}));
       setIsLoggedIn(true);
     } catch (error) {
       console.error('Login error:', error);
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ isLoggedIn, loading, login, logout }}>
+    <AuthContext.Provider value={{isLoggedIn, loading, login, logout}}>
       {children}
     </AuthContext.Provider>
   );

@@ -99,14 +99,28 @@ const CameraScreen = () => {
   }, []);
 
   // 📌 페이지 다시 진입 시 카메라 재설정
-  useEffect(() => {
-    if (navigation.isFocused()) {
+  //   useEffect(() => {
+  //     if (navigation.isFocused()) {
+  //       setIsDeviceReady(false);
+  //       setTimeout(() => {
+  //         setIsDeviceReady(true);
+  //       }, 50); // 0.5초 후에 카메라 재시작
+  //     }
+  //   }, [navigation.isFocused()]);
+  useFocusEffect(
+    React.useCallback(() => {
+      // 화면에 들어왔을 때 실행
       setIsDeviceReady(false);
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         setIsDeviceReady(true);
-      }, 50); // 0.5초 후에 카메라 재시작
-    }
-  }, [navigation.isFocused()]);
+      }, 50);
+
+      return () => {
+        // 화면을 나갈 때 혹은 cleanup 시 실행
+        clearTimeout(timer);
+      };
+    }, []),
+  );
 
   const handleCapture = async () => {
     if (camera.current) {

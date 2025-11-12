@@ -50,8 +50,8 @@ const LoginScreen = () => {
 
   const handleLogin = async () => {
     const credentials = {
-      login_id: userId,
-      user_pw: password,
+      adminLoginId: userId,
+      password: password,
     };
 
     try {

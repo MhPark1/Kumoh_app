@@ -1,11 +1,15 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, {createContext, useState, useContext, useEffect} from 'react';
 import Geolocation from 'react-native-geolocation-service';
 
 const LocationContext = createContext();
 
-export const LocationProvider = ({ children }) => {
+export const LocationProvider = ({children}) => {
   const [watchId, setWatchId] = useState(null);
-  const [locationData, setLocationData] = useState({ latitude: [], longitude: [], timestamp: [] });
+  const [locationData, setLocationData] = useState({
+    latitude: [],
+    longitude: [],
+    timestamp: [],
+  });
 
   useEffect(() => {
     // 컴포넌트 언마운트 시 위치 감시 중단
@@ -15,7 +19,7 @@ export const LocationProvider = ({ children }) => {
         console.log('위치서비스 종료');
       }
     };
-  }, []);
+  }, [watchId]);
 
   const startLocationTracking = () => {
     if (watchId !== null) {
@@ -23,20 +27,20 @@ export const LocationProvider = ({ children }) => {
     }
 
     const id = Geolocation.watchPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
+      position => {
+        const {latitude, longitude} = position.coords;
         const time = new Date().toISOString();
         const timestamp = formatDate(time);
 
-        console.log('위치 업데이트:', { latitude, longitude, timestamp });
+        console.log('위치 업데이트:', {latitude, longitude, timestamp});
 
-        setLocationData((prevData) => ({
+        setLocationData(prevData => ({
           latitude: [...prevData.latitude, latitude],
           longitude: [...prevData.longitude, longitude],
           timestamp: [...prevData.timestamp, timestamp],
         }));
       },
-      (error) => {
+      error => {
         console.error('위치 감시 중 오류:', error);
       },
       {
@@ -45,7 +49,7 @@ export const LocationProvider = ({ children }) => {
         interval: 1000,
         fastestInterval: 1000,
         forceRequestLocation: true,
-      }
+      },
     );
 
     setWatchId(id);
@@ -59,7 +63,7 @@ export const LocationProvider = ({ children }) => {
   //   }
   // };
 
-  const formatDate = (time) => {
+  const formatDate = time => {
     const date = new Date(time);
     const year = date.getFullYear();
     const month = `0${date.getMonth() + 1}`.slice(-2);
@@ -73,7 +77,8 @@ export const LocationProvider = ({ children }) => {
   };
 
   return (
-    <LocationContext.Provider value={{ startLocationTracking, locationData, setLocationData }}>
+    <LocationContext.Provider
+      value={{startLocationTracking, locationData, setLocationData}}>
       {children}
     </LocationContext.Provider>
   );
