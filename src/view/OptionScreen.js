@@ -86,7 +86,7 @@ export default function ProfileScreen({navigation}) {
               <Text style={styles.userName}>김철수</Text>
               <Text style={styles.userEmail}>chulsoo@email.com</Text>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('UserEdit')}>
               <Text style={styles.editButton}>편집</Text>
             </TouchableOpacity>
           </View>
