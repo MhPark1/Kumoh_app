@@ -22,6 +22,8 @@ import Gps from './src/view/GpsScreen';
 import HistoryScreen from './src/view/HistoryScreen';
 import Analysis from './src/view/AnalysisScreen';
 import Camera from './src/view/CameraScreen';
+import MapScreen from './src/view/MapScreen';
+import HelmetVerificationScreen from './src/view/HelmetVerificationScreen';
 
 import {LogBox} from 'react-native';
 LogBox.ignoreLogs([
@@ -77,6 +79,16 @@ const SelectionStackNavigator = () => (
       component={Analysis}
       options={{title: '분석결과', headerShown: false, gestureEnabled: false}}
     />
+    <SelectionStack.Screen
+      name="Map"
+      component={MapScreen}
+      options={{title: '지도', headerShown: false}}
+    />
+    <SelectionStack.Screen
+      name="HelmetVerification"
+      component={HelmetVerificationScreen}
+      options={{title: '헬멧 인증', headerShown: false}}
+    />
   </SelectionStack.Navigator>
 );
 const OptionStackNavigator = () => (
@@ -109,7 +121,7 @@ const MainTabNavigator = () => {
     };
 
     checkFirstLogin();
-  }, []);
+  }, [navigation]);
 
   const insets = useSafeAreaInsets();
 

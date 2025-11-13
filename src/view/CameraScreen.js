@@ -1,7 +1,6 @@
 import React, {useEffect, useState, useRef} from 'react';
 import {
   View,
-  Button,
   Text,
   TouchableOpacity,
   StyleSheet,
@@ -12,7 +11,7 @@ import {
 import {Camera, useCameraDevice} from 'react-native-vision-camera';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Api from '../api/ApiUtils';
+import Api from '../api/ApiUtils'; // API 유틸 (실제 연동 시 사용)
 
 const CameraScreen = () => {
   const [hasPermission, setHasPermission] = useState(false);
@@ -50,6 +49,7 @@ const CameraScreen = () => {
     requestCameraPermission();
   }, []);
 
+  // 탭바 숨김 처리
   useEffect(() => {
     navigation.getParent()?.setOptions({tabBarStyle: {display: 'none'}});
 
@@ -69,14 +69,13 @@ const CameraScreen = () => {
       // 화면 진입 시
       setIsCameraActive(true);
       return () => {
-        // 화면을 벗어나기 전 isActive를 false로 설정하고 딜레이 후 cleanup 실행
+        // 화면을 벗어나기 전 처리
         setIsCameraActive(false);
         setTimeout(() => {
-          // 필요하다면 추가 cleanup 작업 수행
           if (camera.current) {
             camera.current = null;
           }
-        }, 50); // 500ms 정도의 딜레이
+        }, 50);
       };
     }, []),
   );
@@ -85,7 +84,7 @@ const CameraScreen = () => {
   const cleanupCamera = async () => {
     if (camera.current) {
       try {
-        await camera.current.stopRecording(); // 비디오 촬영 중이면 정지
+        await camera.current.stopRecording();
       } catch (error) {
         console.log('카메라 정리 중 오류:', error);
       }
@@ -94,34 +93,24 @@ const CameraScreen = () => {
 
   useEffect(() => {
     return () => {
-      cleanupCamera(); // 페이지 벗어날 때 카메라 세션 정리
+      cleanupCamera();
     };
   }, []);
 
-  // 📌 페이지 다시 진입 시 카메라 재설정
-  //   useEffect(() => {
-  //     if (navigation.isFocused()) {
-  //       setIsDeviceReady(false);
-  //       setTimeout(() => {
-  //         setIsDeviceReady(true);
-  //       }, 50); // 0.5초 후에 카메라 재시작
-  //     }
-  //   }, [navigation.isFocused()]);
   useFocusEffect(
     React.useCallback(() => {
-      // 화면에 들어왔을 때 실행
       setIsDeviceReady(false);
       const timer = setTimeout(() => {
         setIsDeviceReady(true);
       }, 50);
 
       return () => {
-        // 화면을 나갈 때 혹은 cleanup 시 실행
         clearTimeout(timer);
       };
     }, []),
   );
 
+  // [수정됨] 사진 촬영 및 인증 로직
   const handleCapture = async () => {
     if (camera.current) {
       try {
@@ -131,20 +120,20 @@ const CameraScreen = () => {
         });
 
         const uri = photo.path;
-        // 헬멧 썼ㄴ느지 아닌지 API 호출
-        //const response = await Api.uploadPhoto(uri);
+        // 실제 서버 전송 시: const response = await Api.uploadPhoto(uri);
 
-        // 임의의 응답 데이터, 0이면 실패, 2이면 사람 없음, 1이면 통과였음
+        // [테스트용] 임의의 응답 데이터 (1: 성공, 0: 실패)
+        // 테스트를 위해 성공(1)으로 설정했습니다.
         const response = {
-          class_id: 0,
+          class_id: 1,
         };
 
         // 응답 상태 코드에 따른 처리
         if (response.class_id !== 1) {
+          // === 실패 시 로직 ===
           let alertMessage = '';
           let alertTitle = '분석 실패';
 
-          // 클래스 ID에 따른 메시지 설정
           switch (response.class_id) {
             case 0:
               alertMessage =
@@ -162,19 +151,23 @@ const CameraScreen = () => {
           Alert.alert(alertTitle, alertMessage, [
             {
               text: '사진 다시 찍기',
-              onPress: () => {}, // 사진을 다시 찍는 함수 호출
+              onPress: () => {},
             },
             {
-              text: '다음으로 넘어가기',
+              text: '다음으로 넘어가기 (감점)',
               onPress: async () => {
-                // onPress 핸들러를 async로 정의
                 try {
                   await AsyncStorage.setItem(
                     'safty_helmet_on',
                     JSON.stringify(false),
                   );
-                  // 점수 감점 처리 로직 (필요시 추가)
-                  navigation.navigate('Gps'); // 다음 스텝으로 이동
+                  // 실패했지만 강제 진행 시에도 HelmetVerification 화면으로 돌아가서 '완료' 상태로 만듦
+                  // (혹은 바로 Gps로 보내고 싶다면 기존처럼 Gps로 보내도 됩니다)
+                  navigation.navigate({
+                    name: 'HelmetVerification',
+                    params: {verificationSuccess: true}, // 일단 절차는 완료했으므로 true 처리 (단, 내부적으론 헬멧 미착용 기록)
+                    merge: true,
+                  });
                 } catch (error) {
                   console.error('AsyncStorage error:', error);
                 }
@@ -183,10 +176,16 @@ const CameraScreen = () => {
             },
           ]);
         } else {
+          // === 성공 시 로직 (class_id === 1) ===
           try {
             await AsyncStorage.setItem('safty_helmet_on', JSON.stringify(true));
-            // 응답 상태 코드가 1일 경우 다음 페이지로 이동
-            navigation.navigate('Gps');
+
+            // [변경] Gps로 바로 가지 않고, HelmetVerification 화면으로 복귀하며 성공 신호 전달
+            navigation.navigate({
+              name: 'HelmetVerification',
+              params: {verificationSuccess: true},
+              merge: true,
+            });
           } catch (error) {
             console.error('AsyncStorage error:', error);
           }
@@ -199,10 +198,10 @@ const CameraScreen = () => {
   };
 
   const toggleCamera = () => {
-    setIsDeviceReady(false); // 먼저 false로 설정하여 리셋
+    setIsDeviceReady(false);
     setCameraPosition(prev => (prev === 'back' ? 'front' : 'back'));
     setTimeout(() => {
-      setIsDeviceReady(true); // 약간의 딜레이 후 다시 true로 설정
+      setIsDeviceReady(true);
     }, 50);
   };
 
@@ -226,18 +225,16 @@ const CameraScreen = () => {
     <View style={styles.container}>
       {isDeviceReady && device ? (
         <Camera
-          key={`camera-${Date.now()}`} // 타임스탬프를 사용하여 항상 새로운 키 생성
+          key={`camera-${Date.now()}`}
           ref={camera}
           style={styles.camera}
           device={device}
-          isActive={isCameraActive} // 위에서 관리하는 상태 변수 사용
+          isActive={isCameraActive}
           photo={true}
         />
       ) : (
         <View style={styles.buttonContainer}>
           <Text>카메라 장치를 찾을 수 없습니다.</Text>
-          {/*
-                    <Button title="다음 페이지로 이동" onPress={() => navigation.navigate('Gps')} />*/}
         </View>
       )}
 
@@ -469,7 +466,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: 'rgba(128,128,128,0.5)', // 반투명 회색
+    backgroundColor: 'rgba(128,128,128,0.5)',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -492,7 +489,7 @@ const styles = StyleSheet.create({
   },
   modalText: {
     fontSize: 14,
-    lineHeight: 18, // 줄 간격 조절
+    lineHeight: 18,
   },
   boldText: {
     fontWeight: 'bold',
@@ -510,7 +507,11 @@ const styles = StyleSheet.create({
     color: '#FF6347',
     flex: 1,
   },
-
+  permissionContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   closeButton: {padding: 10},
   closeButtonText: {fontSize: 20, fontWeight: 'bold'},
 });
