@@ -22,6 +22,7 @@ import Gps from './src/view/GpsScreen';
 import HistoryScreen from './src/view/HistoryScreen';
 import Analysis from './src/view/AnalysisScreen';
 import Camera from './src/view/CameraScreen';
+import UserEditScreen from './src/view/UserEditScreen';
 import MapScreen from './src/view/MapScreen';
 import HelmetVerificationScreen from './src/view/HelmetVerificationScreen';
 
@@ -97,6 +98,11 @@ const OptionStackNavigator = () => (
       name="Option"
       component={OptionScreen}
       options={{title: '설정', headerShown: false}}
+    />
+    <OptionStack.Screen
+      name="UserEdit"
+      component={UserEditScreen}
+      options={{title: '회원 정보 수정', headerShown: false}}
     />
     <OptionStack.Screen
       name="Guide"
