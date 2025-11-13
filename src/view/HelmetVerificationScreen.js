@@ -37,8 +37,11 @@ export default function HelmetVerificationScreen({route, navigation}) {
   // 최종 라이딩 시작 버튼 클릭
   const handleConfirm = () => {
     if (photoTaken && agreedToSafety) {
-      // Gps 화면(주행 시작)으로 이동하면서 킥보드 정보 전달
-      navigation.navigate('Gps', {scooterId: scooter?.id});
+      // Gps 화면으로 이동 (scooter 정보 전달)
+      navigation.navigate('Gps', {
+        scooterId: scooter?.number,
+        rideId: 'new_ride_123', // 서버에서 받은 rideId가 있다면 여기 넣음
+      });
     } else {
       Alert.alert('알림', '모든 단계를 완료해주세요.');
     }
