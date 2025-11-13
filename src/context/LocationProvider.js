@@ -1,29 +1,42 @@
-import React, {createContext, useState, useContext, useEffect} from 'react';
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  useCallback,
+  useRef,
+  useMemo,
+} from 'react';
 import Geolocation from 'react-native-geolocation-service';
 
 const LocationContext = createContext();
 
 export const LocationProvider = ({children}) => {
-  const [watchId, setWatchId] = useState(null);
+  // [변경 1] watchId를 useState 대신 useRef로 관리
+  // (ID가 바뀌어도 리렌더링을 유발하지 않기 위함)
+  const watchIdRef = useRef(null);
+
   const [locationData, setLocationData] = useState({
     latitude: [],
     longitude: [],
     timestamp: [],
   });
 
+  // 컴포넌트가 완전히 사라질 때만 위치 추적 종료
   useEffect(() => {
-    // 컴포넌트 언마운트 시 위치 감시 중단
     return () => {
-      if (watchId !== null) {
-        Geolocation.clearWatch(watchId);
-        console.log('위치서비스 종료');
+      if (watchIdRef.current !== null) {
+        Geolocation.clearWatch(watchIdRef.current);
+        console.log('앱 종료/언마운트로 인한 위치서비스 완전 종료');
       }
     };
-  }, [watchId]);
+  }, []);
 
-  const startLocationTracking = () => {
-    if (watchId !== null) {
-      Geolocation.clearWatch(watchId); // 기존 감시 중단
+  // 위치 추적 시작 함수
+  const startLocationTracking = useCallback(() => {
+    // 이미 추적 중이라면 기존 것 취소 (중복 방지)
+    if (watchIdRef.current !== null) {
+      Geolocation.clearWatch(watchIdRef.current);
     }
 
     const id = Geolocation.watchPosition(
@@ -52,16 +65,9 @@ export const LocationProvider = ({children}) => {
       },
     );
 
-    setWatchId(id);
-  };
-
-  // const stopLocationTracking = () => {
-  //   if (watchId !== null) {
-  //     Geolocation.clearWatch(watchId); // 감시 중단
-  //     setWatchId(null); // watchId 초기화
-  //     console.log('위치 추적 중단');
-  //   }
-  // };
+    // Ref에 ID 저장 (리렌더링 발생 안 함)
+    watchIdRef.current = id;
+  }, []);
 
   const formatDate = time => {
     const date = new Date(time);
@@ -76,9 +82,19 @@ export const LocationProvider = ({children}) => {
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${milliseconds}`;
   };
 
+  // [변경 2] useMemo로 context value 감싸기
+  // locationData가 변해도 startLocationTracking 함수 자체는 그대로임을 보장
+  const value = useMemo(
+    () => ({
+      startLocationTracking,
+      locationData,
+      setLocationData,
+    }),
+    [startLocationTracking, locationData],
+  );
+
   return (
-    <LocationContext.Provider
-      value={{startLocationTracking, locationData, setLocationData}}>
+    <LocationContext.Provider value={value}>
       {children}
     </LocationContext.Provider>
   );
