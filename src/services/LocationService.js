@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Platform, PermissionsAndroid, AppState } from 'react-native';
+import React, {useEffect} from 'react';
+import {Platform, PermissionsAndroid, AppState} from 'react-native';
 import Geolocation from 'react-native-geolocation-service';
 import BackgroundActions from 'react-native-background-actions';
 
@@ -7,7 +7,7 @@ let watchId = null; // 구독 ID를 저장할 변수
 const locations = {
   latitude: [],
   longitude: [],
-  timestamp: []
+  timestamp: [],
 };
 let intervalId = null; // Interval ID를 저장할 변수
 // 위치 추적 옵션 설정
@@ -19,24 +19,25 @@ const locationOptions = {
   distanceFilter: 1, // meters
   interval: 1000, // 1 seconds
   fastestInterval: 5000, // 5 seconds
-  forceRequestLocation: true
-
+  forceRequestLocation: true,
 };
 
 // 위치 권한 요청 함수
 const requestLocationPermission = async () => {
   if (Platform.OS === 'ios') {
-    const permission = await new Promise((resolve) => {
-      Geolocation.requestAuthorization((status) => {
+    const permission = await new Promise(resolve => {
+      Geolocation.requestAuthorization(status => {
         resolve(status);
       });
     });
     return permission;
   } else {
     const granted = await PermissionsAndroid.request(
-      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
+      PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
     );
-    return granted === PermissionsAndroid.RESULTS.GRANTED ? 'granted' : 'denied';
+    return granted === PermissionsAndroid.RESULTS.GRANTED
+      ? 'granted'
+      : 'denied';
   }
 };
 
@@ -52,20 +53,20 @@ const startLocationService = async () => {
 
     if (watchId === null) {
       watchId = Geolocation.watchPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
+        position => {
+          const {latitude, longitude} = position.coords;
           const time = new Date().toISOString();
           const timestamp = formatDate(time);
           locations.latitude.push(latitude);
           locations.longitude.push(longitude);
-         
+
           locations.timestamp.push(timestamp);
-          console.log('Location updated:', { latitude, longitude, timestamp });
+          console.log('Location updated:', {latitude, longitude, timestamp});
         },
-        (error) => {
+        error => {
           console.error('Error watching position:', error);
         },
-        locationOptions
+        locationOptions,
       );
 
       console.log('Location service started.');
@@ -89,15 +90,14 @@ const stopLocationService = async () => {
 };
 
 // 백그라운드에서 실행할 작업
-const backgroundTask = async (taskData) => {
+const backgroundTask = async taskData => {
   console.log('백그라운드에서 이게 시작되는거고');
-  await new Promise(async (resolve) => {
+  await new Promise(async resolve => {
     await startLocationService();
 
     intervalId = setInterval(() => {
       console.log('Background task running');
     }, 10000); // 10초마다 로그 출력ㄴ
-
   });
 };
 
@@ -140,7 +140,7 @@ const options = {
 };
 
 // 한국 시간으로 변환하는 함수
-const formatDate = (time) => {
+const formatDate = time => {
   const date = new Date(time);
   const year = date.getFullYear();
   const month = `0${date.getMonth() + 1}`.slice(-2);
@@ -153,7 +153,4 @@ const formatDate = (time) => {
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}.${milliseconds}`;
 };
 
-
-
-export { startBackgroundTask, stopBackgroundTask, locations };
-
+export {startBackgroundTask, stopBackgroundTask, locations};

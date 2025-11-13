@@ -1,7 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import {
   View,
-  // TextInput,
   Text,
   TouchableOpacity,
   Alert,
@@ -21,7 +20,7 @@ import Api from '../api/ApiUtils';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {request, PERMISSIONS, RESULTS} from 'react-native-permissions';
-import {useLocation} from '../context/LocationProvider'; // Context import
+import {useLocation} from '../context/LocationProvider';
 import {AuthContext} from '../context/AuthContext';
 
 const LoginScreen = () => {
@@ -49,30 +48,32 @@ const LoginScreen = () => {
   };
 
   const handleLogin = async () => {
+    // 백엔드가 기대하는 필드명: loginId, password
     const credentials = {
-      login_id: userId,
-      user_pw: password,
+      loginId: userId,
+      password: password,
     };
 
     try {
       const response = await Api.login(credentials);
-      console.log('로그인 응답 데이터:', response); // 디버깅용 로그
+      console.log('로그인 응답 데이터:', response);
 
-      // [수정 1] 백엔드는 success: true 로 응답합니다 (result 아님)
+      // 백엔드 공통 응답: { success: true, data: { accessToken, user: {...} } }
       if (response.success) {
-        // [수정 2] 토큰과 유저 정보는 response.data 안에 들어있습니다.
-        const {token, user} = response.data;
+        const {accessToken, user} = response.data;
 
-        console.log('토큰:', token);
+        console.log('토큰:', accessToken);
 
-        await login(token);
-        // [수정 3] user_id 저장 (user 객체 안에 있는 user_id 사용)
-        await AsyncStorage.setItem('user_id', user?.user_id || userId);
+        // Context의 login 함수 호출 (토큰 저장 및 상태 업데이트)
+        await login(accessToken);
+
+        // 사용자 ID 및 정보 저장
+        await AsyncStorage.setItem('user_id', user?.userId || userId);
+        await AsyncStorage.setItem('user_info', JSON.stringify(user));
         await AsyncStorage.setItem('first_login', 'false');
 
         startLocationTracking();
       } else {
-        // success가 false인 경우 메시지 출력
         Alert.alert(
           '로그인 실패',
           response.message || '로그인 정보를 확인해주세요.',
@@ -81,12 +82,10 @@ const LoginScreen = () => {
     } catch (error) {
       console.error('로그인 에러 객체:', error);
 
-      // [수정 4] 에러 메시지 추출 방식 변경
-      // 백엔드 에러 핸들러(error.handler.js)는 { error: { message: "..." } } 형태로 보냅니다.
-      // ApiUtils에서 error.response.data를 throw하므로, 여기서 받아야 합니다.
+      // 에러 메시지 처리
       const errorMessage =
-        error.error?.message || // 백엔드 표준 에러
-        error.message || // 일반 에러
+        error.error?.message || // 백엔드 에러 객체 구조 { error: { message: ... } }
+        error.message ||
         '로그인 중 오류가 발생했습니다.';
 
       Alert.alert('로그인 실패', errorMessage);
@@ -123,6 +122,7 @@ const LoginScreen = () => {
                     placeholderTextColor={'#ddd'}
                     value={userId}
                     onChangeText={setUserId}
+                    autoCapitalize="none"
                   />
                 </View>
 
@@ -137,12 +137,6 @@ const LoginScreen = () => {
                     secureTextEntry
                   />
                 </View>
-
-                {/* <View style={styles.forgotContainer}>
-                  <TouchableOpacity>
-                    <Text style={styles.forgotText}>비밀번호 찾기</Text>
-                  </TouchableOpacity>
-                </View> */}
 
                 <Button title="로그인" onPress={handleLogin} />
 
@@ -224,13 +218,6 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 14,
     color: colors.gray700,
-  },
-  forgotContainer: {
-    alignItems: 'flex-end',
-  },
-  forgotText: {
-    fontSize: 14,
-    color: colors.blue600,
   },
   signupContainer: {
     flexDirection: 'row',

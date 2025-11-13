@@ -43,15 +43,13 @@ export default function AgreementScreen() {
     }));
   };
 
-  // 전화번호 포맷팅 함수 활성화
   const formatPhoneNumber = text => {
-    const cleaned = text.replace(/\D/g, ''); // 숫자가 아닌 문자는 제거
+    const cleaned = text.replace(/\D/g, '');
     if (cleaned.length <= 3) {
       return cleaned;
     } else if (cleaned.length <= 7) {
       return `${cleaned.slice(0, 3)}-${cleaned.slice(3)}`;
     } else {
-      // 11자리까지만 처리 (010-XXXX-XXXX)
       return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 7)}-${cleaned.slice(
         7,
         11,
@@ -67,7 +65,6 @@ export default function AgreementScreen() {
   const handleSubmit = async () => {
     const {id, password, phone, nickname, confirmPassword} = agreementData;
 
-    // 아이디 유효성 검사
     if (!id.trim()) {
       Alert.alert('입력 오류', '아이디를 입력해주세요.');
       return;
@@ -76,14 +73,11 @@ export default function AgreementScreen() {
       Alert.alert('입력 오류', '아이디는 26자 이내로 입력해주세요.');
       return;
     }
-
-    // 닉네임 유효성 검사
     if (!nickname.trim()) {
       Alert.alert('입력 오류', '닉네임을 입력해주세요.');
       return;
     }
 
-    // 전화번호 유효성 검사 활성화
     const phoneDigits = phone.replace(/-/g, '');
     const phoneRegex = /^010\d{8}$/;
     if (!phoneRegex.test(phoneDigits)) {
@@ -94,7 +88,6 @@ export default function AgreementScreen() {
       return;
     }
 
-    // 비밀번호 유효성 검사
     if (!password.trim()) {
       Alert.alert('입력 오류', '비밀번호를 입력해주세요.');
       return;
@@ -109,19 +102,14 @@ export default function AgreementScreen() {
       return;
     }
 
-    // 필수 약관 동의 확인
     if (!agreements.terms || !agreements.privacy) {
       Alert.alert('약관 동의', '필수 약관에 동의해주세요.');
       return;
     }
 
     try {
-      // [수정됨] 백엔드 컨트롤러 스키마에 맞춰 데이터 전송
-      // login_id -> userId
-      // user_pw -> password
-      // user_name -> nickname
-      // telno -> telNum
-      // role: 'user' 삭제 (서버 컨트롤러에서 받지 않음)
+      // 백엔드 API 스펙에 맞춘 데이터 구조
+      // POST /api/app/users/register
       const response = await Api.register({
         userId: id,
         password: password,
@@ -129,22 +117,27 @@ export default function AgreementScreen() {
         telNum: phone,
       });
 
-      console.log(response);
-      Alert.alert('가입 성공', '회원가입이 완료되었습니다.', [
-        {text: '확인', onPress: () => navigation.navigate('Login')},
-      ]);
+      if (response.success) {
+        Alert.alert('가입 성공', '회원가입이 완료되었습니다.', [
+          {text: '확인', onPress: () => navigation.navigate('Login')},
+        ]);
+      } else {
+        Alert.alert(
+          '가입 실패',
+          response.message || '회원가입에 실패했습니다.',
+        );
+      }
     } catch (error) {
-      // 에러 객체 처리 강화
+      console.error('Register submit error:', error);
+
       const errorMessage =
+        error.error?.message ||
         error.message ||
-        (error.response && error.response.data) ||
-        '회원가입 중 오류가 발생했습니다.';
-      Alert.alert(
-        '가입 실패',
-        typeof errorMessage === 'object'
-          ? JSON.stringify(errorMessage)
-          : errorMessage,
-      );
+        (typeof error === 'string'
+          ? error
+          : '회원가입 중 오류가 발생했습니다.');
+
+      Alert.alert('가입 실패', errorMessage);
     }
   };
 
@@ -191,6 +184,7 @@ export default function AgreementScreen() {
                     placeholderTextColor={'#aaa'}
                     value={agreementData.id}
                     onChangeText={text => handleInputChange('id', text)}
+                    autoCapitalize="none"
                   />
                 </View>
 
@@ -205,7 +199,6 @@ export default function AgreementScreen() {
                   />
                 </View>
 
-                {/* 휴대폰 번호 입력 (활성화됨) */}
                 <View style={styles.inputGroup}>
                   <Text style={styles.label}>휴대폰 번호</Text>
                   <Input
@@ -355,14 +348,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 24,
     gap: 12,
-  },
-  backButton: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: 'rgba(255, 255, 255, 0.2)',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   title: {
     fontSize: 24,
