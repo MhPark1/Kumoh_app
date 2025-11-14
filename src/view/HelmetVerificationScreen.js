@@ -13,6 +13,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import {Card} from '../component/Card';
 import {Button} from '../component/Button';
 import {colors} from '../component/constants/colors';
+import Geolocation from 'react-native-geolocation-service'; // 위치 정보 가져오기 위해 추가
+import Api from '../api/ApiUtils'; // API import
 
 export default function HelmetVerificationScreen({route, navigation}) {
   // MapScreen에서 넘겨준 킥보드 정보
@@ -22,12 +24,16 @@ export default function HelmetVerificationScreen({route, navigation}) {
   const [photoTaken, setPhotoTaken] = useState(false);
   const [agreedToSafety, setAgreedToSafety] = useState(false);
 
+  // [추가] 헬멧 착용 여부 상태 (CameraScreen에서 받아옴)
+  const [isHelmetConfirmed, setIsHelmetConfirmed] = useState(false);
+
   // CameraScreen에서 인증 완료 후 되돌아왔을 때 처리
   useEffect(() => {
     if (route.params?.verificationSuccess) {
       setPhotoTaken(true);
+      setIsHelmetConfirmed(route.params?.isHelmetConfirmed || false);
     }
-  }, [route.params?.verificationSuccess]);
+  }, [route.params]);
 
   // 사진 촬영 버튼 클릭 시 -> 카메라 화면으로 이동
   const handleTakePhoto = () => {
@@ -35,13 +41,55 @@ export default function HelmetVerificationScreen({route, navigation}) {
   };
 
   // 최종 라이딩 시작 버튼 클릭
-  const handleConfirm = () => {
+  const handleConfirm = async () => {
     if (photoTaken && agreedToSafety) {
-      // Gps 화면으로 이동 (scooter 정보 전달)
-      navigation.navigate('Gps', {
-        scooterId: scooter?.number,
-        rideId: 'new_ride_123', // 서버에서 받은 rideId가 있다면 여기 넣음
-      });
+      // 1. 현재 위치 가져오기 (주행 시작 위치)
+      Geolocation.getCurrentPosition(
+        async position => {
+          const {latitude, longitude} = position.coords;
+
+          try {
+            // 2. 주행 시작 API 호출 데이터 구성
+            const startData = {
+              kickboardId: scooter?.number || '0000', // 실제 킥보드 ID (DB의 pm_id)
+              startLocation: {
+                lat: latitude,
+                lng: longitude,
+              },
+            };
+
+            console.log('Starting ride with:', startData);
+
+            // 3. 서버에 주행 시작 요청
+            const response = await Api.startRide(startData, navigation);
+
+            if (response.success) {
+              // 4. 성공 시 GpsScreen으로 이동 (서버가 발급한 rideId 전달)
+              // rideId는 DB에 저장된 주행 기록의 PK입니다.
+              const newRideId = response.data.rideId;
+
+              navigation.navigate('Gps', {
+                scooterId: scooter?.number,
+                rideId: newRideId,
+                isHelmetConfirmed: isHelmetConfirmed,
+              });
+            } else {
+              Alert.alert(
+                '오류',
+                response.message || '주행을 시작할 수 없습니다.',
+              );
+            }
+          } catch (error) {
+            console.error('Start ride error:', error);
+            Alert.alert('오류', '서버 연결 실패');
+          }
+        },
+        error => {
+          console.error(error);
+          Alert.alert('위치 오류', '현재 위치를 가져올 수 없습니다.');
+        },
+        {enableHighAccuracy: true, timeout: 15000, maximumAge: 10000},
+      );
     } else {
       Alert.alert('알림', '모든 단계를 완료해주세요.');
     }
@@ -127,8 +175,18 @@ export default function HelmetVerificationScreen({route, navigation}) {
                 />
                 <View style={{flex: 1, marginLeft: 10}}>
                   <Text style={styles.photoTakenTitle}>사진 촬영 완료</Text>
-                  <Text style={styles.photoTakenText}>
-                    헬멧 착용이 확인되었습니다
+                  <Text
+                    style={[
+                      styles.photoTakenText,
+                      {
+                        color: isHelmetConfirmed
+                          ? colors.green700
+                          : colors.red600,
+                      },
+                    ]}>
+                    {isHelmetConfirmed
+                      ? '헬멧 착용이 확인되었습니다 (인증 성공)'
+                      : '헬멧이 감지되지 않았습니다 (감점 적용)'}
                   </Text>
                 </View>
               </View>

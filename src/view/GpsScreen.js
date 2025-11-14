@@ -50,7 +50,7 @@ const deg2rad = deg => {
 };
 
 export default function GpsScreen({route, navigation}) {
-  const {scooterId} = route.params || {};
+  const {scooterId, rideId, isHelmetConfirmed} = route.params || {};
   // const { locationData } = useLocation(); // 1초마다 갱신되는 컨텍스트 대신 직접 Geolocation 사용 권장 (성능상)
 
   // UI 상태
@@ -258,6 +258,7 @@ export default function GpsScreen({route, navigation}) {
       sudden_accel_cnt: counts.suddenAccel,
       sudden_decel_cnt: counts.suddenDecel,
       turn_noslow_cnt: counts.suddenTurn, // 급회전
+      isHelmet: isHelmetConfirmed,
     };
 
     Alert.alert('반납 완료', '이용해주셔서 감사합니다.', [

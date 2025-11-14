@@ -7,6 +7,7 @@ import {
   Alert,
   Modal,
   Linking,
+  Platform,
 } from 'react-native';
 import {Camera, useCameraDevice} from 'react-native-vision-camera';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
@@ -110,8 +111,10 @@ const CameraScreen = () => {
     }, []),
   );
 
-  // [수정됨] 사진 촬영 및 인증 로직
+  // [수정됨] 사진 촬영 및 서버 인증 로직
   const handleCapture = async () => {
+    console.log('📸 촬영 버튼 눌림!');
+
     if (camera.current) {
       try {
         const photo = await camera.current.takePhoto({
@@ -119,80 +122,67 @@ const CameraScreen = () => {
           qualityPrioritization: 'speed',
         });
 
-        const uri = photo.path;
-        // 실제 서버 전송 시: const response = await Api.uploadPhoto(uri);
+        console.log('✅ 촬영 성공! 경로:', photo.path);
 
-        // [테스트용] 임의의 응답 데이터 (1: 성공, 0: 실패)
-        // 테스트를 위해 성공(1)으로 설정했습니다.
-        const response = {
-          class_id: 1,
-        };
+        // FormData 생성 로그
+        const formData = new FormData();
+        formData.append('image', {
+          uri: Platform.OS === 'android' ? 'file://' + photo.path : photo.path,
+          type: 'image/jpeg',
+          name: 'helmet.jpg',
+        });
+        console.log('📦 FormData 생성 완료');
 
-        // 응답 상태 코드에 따른 처리
-        if (response.class_id !== 1) {
-          // === 실패 시 로직 ===
-          let alertMessage = '';
-          let alertTitle = '분석 실패';
+        // API 호출 로그
+        console.log('📡 API 호출 시도 중...');
+        const response = await Api.verifyHelmet(formData, navigation);
+        console.log('✅ API 호출 완료! 결과:', response); // 여기가 찍혀야 함
 
-          switch (response.class_id) {
-            case 0:
-              alertMessage =
-                '헬멧을 찾을 수 없습니다. 사진을 다시 찍으시겠습니까? 아니면 감점을 받고 넘어가시겠습니까?';
-              break;
-            case 2:
-              alertMessage =
-                '사용자를 찾을 수 없습니다. 사진을 다시 찍으시겠습니까? 아니면 감점을 받고 넘어가시겠습니까?';
-              break;
-            default:
-              alertMessage =
-                '사진 분석에 실패했습니다. 사진을 다시 찍으시겠습니까? 아니면 감점을 받고 넘어가시겠습니까?';
-          }
+        const resultData = response?.data || {};
+        const isVerified = resultData.verified === true;
 
-          Alert.alert(alertTitle, alertMessage, [
-            {
-              text: '사진 다시 찍기',
-              onPress: () => {},
-            },
-            {
-              text: '다음으로 넘어가기 (감점)',
-              onPress: async () => {
-                try {
-                  await AsyncStorage.setItem(
-                    'safty_helmet_on',
-                    JSON.stringify(false),
-                  );
-                  // 실패했지만 강제 진행 시에도 HelmetVerification 화면으로 돌아가서 '완료' 상태로 만듦
-                  // (혹은 바로 Gps로 보내고 싶다면 기존처럼 Gps로 보내도 됩니다)
+        if (isVerified) {
+          Alert.alert('인증 성공', '헬멧 착용이 확인되었습니다.');
+          navigation.navigate({
+            name: 'HelmetVerification',
+            params: {verificationSuccess: true, isHelmetConfirmed: true},
+            merge: true,
+          });
+        } else {
+          Alert.alert(
+            '헬멧 미감지',
+            '헬멧을 찾을 수 없습니다.\n다시 촬영하시겠습니까? 아니면 감점을 감수하고 진행하시겠습니까?',
+            [
+              {
+                text: '다시 촬영',
+                style: 'cancel', // 아무것도 안 하고 알림창 닫기 (카메라 화면 유지)
+              },
+              {
+                text: '그냥 진행 (감점)',
+                style: 'destructive', // 빨간색 버튼 (위험 표시)
+                onPress: () => {
+                  // 실패했지만 절차는 완료했으므로 verificationSuccess: true
+                  // 하지만 헬멧은 안 썼으므로 isHelmetConfirmed: false
                   navigation.navigate({
                     name: 'HelmetVerification',
-                    params: {verificationSuccess: true}, // 일단 절차는 완료했으므로 true 처리 (단, 내부적으론 헬멧 미착용 기록)
+                    params: {
+                      verificationSuccess: true,
+                      isHelmetConfirmed: false,
+                    },
                     merge: true,
                   });
-                } catch (error) {
-                  console.error('AsyncStorage error:', error);
-                }
+                },
               },
-              style: 'destructive',
-            },
-          ]);
-        } else {
-          // === 성공 시 로직 (class_id === 1) ===
-          try {
-            await AsyncStorage.setItem('safty_helmet_on', JSON.stringify(true));
-
-            // [변경] Gps로 바로 가지 않고, HelmetVerification 화면으로 복귀하며 성공 신호 전달
-            navigation.navigate({
-              name: 'HelmetVerification',
-              params: {verificationSuccess: true},
-              merge: true,
-            });
-          } catch (error) {
-            console.error('AsyncStorage error:', error);
-          }
+            ],
+          );
         }
       } catch (error) {
-        console.error('Photo capture error:', error.message);
-        Alert.alert('오류', '사진 캡처 중 오류가 발생했습니다.');
+        console.error('❌ 전체 프로세스 에러:', error); // 에러 발생 시 여기 확인
+        Alert.alert(
+          '오류',
+          '서버 통신 중 오류가 발생했습니다: ' +
+            (error.message || '알 수 없음'),
+        );
       }
     }
   };
@@ -225,7 +215,7 @@ const CameraScreen = () => {
     <View style={styles.container}>
       {isDeviceReady && device ? (
         <Camera
-          key={`camera-${Date.now()}`}
+          // key 속성 삭제 (또는 필요한 경우 key={device.id} 로 설정)
           ref={camera}
           style={styles.camera}
           device={device}

@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 // API 인스턴스 생성
 const apiInstance = axios.create({
   baseURL: 'http://localhost:8080',
+  // baseURL: 'http://172.30.96.13:8080',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -82,6 +83,68 @@ const ApiUtils = {
     } catch (error) {
       console.error('getMe error:', error.response || error);
       throw error.response?.data || error;
+    }
+  },
+
+  // [신규] 주변 킥보드 조회
+  getNearbyKickboards: async location => {
+    // location: { latitude, longitude }
+    try {
+      // 로그인 전이라도 조회 가능하게 하려면 토큰 체크 생략 가능
+      // 하지만 보통은 로그인 후 이용하므로 토큰 포함 권장
+      const accessToken = await AsyncStorage.getItem('token');
+      const token = accessToken ? JSON.parse(accessToken).accessToken : null;
+
+      const response = await apiInstance.get('/api/app/kickboards', {
+        params: {
+          latitude: location.latitude,
+          longitude: location.longitude,
+        },
+        headers: token ? {Authorization: `Bearer ${token}`} : {},
+      });
+      return response.data; // { success: true, data: [...] }
+    } catch (error) {
+      console.error('getNearbyKickboards error:', error);
+      throw error.response?.data || error;
+    }
+  },
+
+  /**
+   * [신규 추가] 헬멧 인증 API 호출
+   * @param {FormData} formData - 이미지 파일이 담긴 FormData
+   */
+  verifyHelmet: async (formData, navigation) => {
+    try {
+      const accessToken = await getAccessToken(navigation);
+      if (!accessToken) return;
+
+      console.log('🚀 서버로 사진 전송 시작...'); // 로그 추가
+
+      // Axios 대신 fetch 사용
+      const response = await fetch(
+        'http://localhost:8080/api/app/kickboards/helmet',
+        {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            // Content-Type 헤더를 생략해야 boundary가 자동으로 생성됩니다!
+          },
+          body: formData,
+        },
+      );
+
+      const responseJson = await response.json();
+      console.log('📩 서버 응답 수신:', responseJson); // 로그 추가
+
+      if (!response.ok) {
+        throw responseJson;
+      }
+
+      // 성공 시 Axios 응답 구조({ data: ... })와 맞춰서 리턴
+      return {data: responseJson.data, success: true};
+    } catch (error) {
+      console.error('❌ verifyHelmet error:', error);
+      throw error;
     }
   },
 

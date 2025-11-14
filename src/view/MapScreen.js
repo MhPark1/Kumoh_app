@@ -1,80 +1,39 @@
 import React, {useState, useEffect, useRef} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-  Alert,
-  Platform,
-} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
-import Geolocation from 'react-native-geolocation-service'; // 직접 위치 가져오기 위해 추가
+import Geolocation from 'react-native-geolocation-service';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors} from '../component/constants/colors';
 import {Card} from '../component/Card';
 import {Button} from '../component/Button';
-
-// useLocation(컨텍스트) 제거 -> 1초마다 재렌더링 방지
-
-const {width, height} = Dimensions.get('window');
-
-const mockScooters = [
-  {
-    id: '1',
-    number: '4287',
-    battery: 85,
-    distance: 0.2,
-    position: {latitude: 37.5665, longitude: 126.978},
-  },
-  {
-    id: '2',
-    number: '3156',
-    battery: 92,
-    distance: 0.5,
-    position: {latitude: 37.567, longitude: 126.9785},
-  },
-  {
-    id: '3',
-    number: '7492',
-    battery: 68,
-    distance: 0.8,
-    position: {latitude: 37.5655, longitude: 126.9775},
-  },
-  {
-    id: '4',
-    number: '5831',
-    battery: 95,
-    distance: 1.2,
-    position: {latitude: 37.568, longitude: 126.979},
-  },
-  {
-    id: '5',
-    number: '2945',
-    battery: 78,
-    distance: 0.3,
-    position: {latitude: 37.566, longitude: 126.977},
-  },
-];
+import Api from '../api/ApiUtils'; // API import 추가
 
 export default function MapScreen({navigation}) {
+  const [scooters, setScooters] = useState([]); // 킥보드 목록 상태
   const [selectedScooter, setSelectedScooter] = useState(null);
-  const mapRef = useRef(null);
-
-  // 초기 지도 위치 (서울시청 부근)
-  const initialRegion = {
+  const [myLocation, setMyLocation] = useState({
+    // 내 위치 상태
     latitude: 37.5665,
     longitude: 126.978,
-    latitudeDelta: 0.01,
-    longitudeDelta: 0.01,
-  };
+  });
+  const mapRef = useRef(null);
 
-  // [최적화] 버튼 누를 때만 현재 위치 가져오기 (실시간 구독 X)
-  const handleMoveToCurrentLocation = () => {
+  // 화면 처음 켜질 때 내 위치 가져오기 + 주변 킥보드 조회
+  useEffect(() => {
+    getCurrentLocationAndFetchScooters();
+  }, []);
+
+  // 내 위치 확인 및 킥보드 데이터 조회 함수
+  const getCurrentLocationAndFetchScooters = () => {
     Geolocation.getCurrentPosition(
-      position => {
+      async position => {
         const {latitude, longitude} = position.coords;
+
+        // 1. 내 위치 갱신
+        setMyLocation({latitude, longitude});
+
+        // 2. 지도 이동
         mapRef.current?.animateToRegion(
           {
             latitude,
@@ -84,6 +43,30 @@ export default function MapScreen({navigation}) {
           },
           500,
         );
+
+        // 3. 서버에서 주변 킥보드 가져오기
+        try {
+          const response = await Api.getNearbyKickboards({latitude, longitude});
+          if (response.success) {
+            // 서버 데이터(pm_id, location 등)를 앱에서 쓰기 편하게 매핑
+            const mappedScooters = response.data.map(kb => ({
+              id: String(kb.pm_id), // 마커 key용
+              number: String(kb.pm_id), // 표시용 번호
+              battery: kb.battery,
+              // location이 {lat, lng} 객체로 온다고 가정 (Service 확인됨)
+              position: {
+                latitude: parseFloat(kb.location.lat),
+                longitude: parseFloat(kb.location.lng),
+              },
+              // 거리는 나중에 계산하거나 서버값 사용 (일단 0으로)
+              distance: 0,
+            }));
+            setScooters(mappedScooters);
+            console.log('킥보드 로딩 완료:', mappedScooters.length, '대');
+          }
+        } catch (error) {
+          console.error('킥보드 조회 실패:', error);
+        }
       },
       error => {
         console.log(error.code, error.message);
@@ -103,7 +86,7 @@ export default function MapScreen({navigation}) {
           text: '확인',
           onPress: () => {
             setSelectedScooter(null);
-            // [변경] Camera 대신 HelmetVerification으로 이동하며 킥보드 정보 전달
+            // 선택한 킥보드 정보(scooter)를 넘겨줌
             navigation.navigate('HelmetVerification', {scooter: scooter});
           },
         },
@@ -113,7 +96,6 @@ export default function MapScreen({navigation}) {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      {/* Header */}
       <View style={styles.header}>
         <View style={styles.headerContent}>
           <TouchableOpacity
@@ -126,23 +108,25 @@ export default function MapScreen({navigation}) {
         </View>
       </View>
 
-      {/* Map View */}
       <View style={styles.mapContainer}>
         <MapView
           ref={mapRef}
           style={styles.map}
           provider={PROVIDER_GOOGLE}
-          initialRegion={initialRegion}
-          showsUserLocation={true} // 내 위치 파란 점 (Native 레벨에서 처리하므로 성능 영향 적음)
+          initialRegion={{
+            ...myLocation,
+            latitudeDelta: 0.01,
+            longitudeDelta: 0.01,
+          }}
+          showsUserLocation={true}
           showsMyLocationButton={false}
-          // [최적화] 지도 이동 중에는 렌더링 부하 줄이기
           loadingEnabled={true}>
-          {mockScooters.map(scooter => (
+          {/* 서버에서 받아온 scooters 목록으로 마커 표시 */}
+          {scooters.map(scooter => (
             <Marker
               key={scooter.id}
               coordinate={scooter.position}
               onPress={() => setSelectedScooter(scooter)}
-              // [최적화 핵심] tracksViewChanges={false} 설정으로 아이콘 렌더링 부하 감소
               tracksViewChanges={false}>
               <View style={styles.markerContainer}>
                 <View
@@ -164,17 +148,17 @@ export default function MapScreen({navigation}) {
           ))}
         </MapView>
 
-        {/* Current Location Button */}
+        {/* 내 위치로 이동 & 새로고침 버튼 */}
         {!selectedScooter && (
           <TouchableOpacity
             style={[styles.locationButton, {bottom: 30}]}
-            onPress={handleMoveToCurrentLocation}>
+            onPress={getCurrentLocationAndFetchScooters}>
             <Ionicons name="locate" size={24} color={colors.blue600} />
           </TouchableOpacity>
         )}
       </View>
 
-      {/* Scooter Details Bottom Sheet */}
+      {/* 하단 정보 시트 */}
       {selectedScooter && (
         <View style={styles.bottomSheet}>
           <Card style={styles.sheetCard}>
@@ -183,9 +167,7 @@ export default function MapScreen({navigation}) {
                 <Text style={styles.scooterTitle}>
                   킥보드 #{selectedScooter.number}
                 </Text>
-                <Text style={styles.scooterDistance}>
-                  {selectedScooter.distance}km 거리
-                </Text>
+                <Text style={styles.scooterDistance}>선택됨</Text>
               </View>
               <TouchableOpacity onPress={() => setSelectedScooter(null)}>
                 <Ionicons name="close" size={24} color={colors.gray400} />
@@ -207,17 +189,6 @@ export default function MapScreen({navigation}) {
               </View>
             </View>
 
-            <View style={styles.priceCard}>
-              <View style={styles.priceRow}>
-                <Text style={styles.priceLabel}>기본요금</Text>
-                <Text style={styles.priceValue}>₩1,000</Text>
-              </View>
-              <View style={styles.priceRow}>
-                <Text style={styles.priceLabel}>분당요금</Text>
-                <Text style={styles.priceValue}>₩200/분</Text>
-              </View>
-            </View>
-
             <Button
               title="이 킥보드 타기"
               onPress={() => handleUnlock(selectedScooter)}
@@ -231,10 +202,8 @@ export default function MapScreen({navigation}) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: colors.white,
-  },
+  // ... (기존 스타일 그대로 유지)
+  container: {flex: 1, backgroundColor: colors.white},
   header: {
     backgroundColor: colors.white,
     borderBottomWidth: 1,
@@ -255,22 +224,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  headerTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: colors.text,
-  },
-  mapContainer: {
-    flex: 1,
-    position: 'relative',
-  },
-  map: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  markerContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+  headerTitle: {fontSize: 18, fontWeight: 'bold', color: colors.text},
+  mapContainer: {flex: 1, position: 'relative'},
+  map: {...StyleSheet.absoluteFillObject},
+  markerContainer: {alignItems: 'center', justifyContent: 'center'},
   marker: {
     width: 40,
     height: 40,
@@ -286,10 +243,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: colors.white,
   },
-  selectedMarker: {
-    backgroundColor: colors.green600,
-    transform: [{scale: 1.1}],
-  },
+  selectedMarker: {backgroundColor: colors.green600, transform: [{scale: 1.1}]},
   markerArrow: {
     width: 0,
     height: 0,
@@ -304,9 +258,7 @@ const styles = StyleSheet.create({
     borderTopColor: colors.blue600,
     marginTop: -2,
   },
-  selectedMarkerArrow: {
-    borderTopColor: colors.green600,
-  },
+  selectedMarkerArrow: {borderTopColor: colors.green600},
   locationButton: {
     position: 'absolute',
     right: 16,
@@ -353,43 +305,8 @@ const styles = StyleSheet.create({
     color: colors.text,
     marginBottom: 4,
   },
-  scooterDistance: {
-    fontSize: 14,
-    color: colors.gray500,
-  },
-  scooterInfo: {
-    flexDirection: 'row',
-    gap: 16,
-    marginBottom: 16,
-  },
-  infoItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  infoText: {
-    fontSize: 16,
-    color: colors.text,
-  },
-  priceCard: {
-    backgroundColor: colors.gray50,
-    borderRadius: 12,
-    padding: 16,
-    marginBottom: 16,
-    gap: 8,
-  },
-  priceRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  priceLabel: {
-    fontSize: 14,
-    color: colors.gray600,
-  },
-  priceValue: {
-    fontSize: 16,
-    fontWeight: '600',
-    color: colors.text,
-  },
+  scooterDistance: {fontSize: 14, color: colors.gray500},
+  scooterInfo: {flexDirection: 'row', gap: 16, marginBottom: 16},
+  infoItem: {flexDirection: 'row', alignItems: 'center', gap: 8},
+  infoText: {fontSize: 16, color: colors.text},
 });
