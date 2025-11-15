@@ -106,9 +106,10 @@ export default function HistoryScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.contentContainer}>
+      <View style={styles.header}>
         <Text style={styles.headerTitle}>이용 내역</Text>
-
+      </View>
+      <View style={styles.contentContainer}>
         {/* 상단 통계 카드 */}
         <View style={styles.statsContainer}>
           <View style={styles.statCard}>
@@ -153,7 +154,14 @@ export default function HistoryScreen() {
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: colors.gray50},
   contentContainer: {flex: 1, padding: 16},
-  headerTitle: {fontSize: 24, fontWeight: 'bold', marginBottom: 20},
+  header: {
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    backgroundColor: colors.white,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+  },
+  headerTitle: {fontSize: 24, fontWeight: 'bold', color: '#111827'},
   statsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',

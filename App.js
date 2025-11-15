@@ -4,7 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createStackNavigator} from '@react-navigation/stack';
 import {AuthProvider, AuthContext} from './src/context/AuthContext';
 import {LocationProvider} from './src/context/LocationProvider';
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from 'react-native-vector-icons/Ionicons';
 import {
   SafeAreaProvider,
   useSafeAreaInsets,
@@ -78,7 +78,7 @@ const SelectionStackNavigator = () => (
     <SelectionStack.Screen
       name="Analysis"
       component={Analysis}
-      options={{title: '운전분석', gestureEnabled: false}}
+      options={{title: '이용 내역', gestureEnabled: false}}
     />
     <SelectionStack.Screen
       name="Map"
@@ -97,7 +97,7 @@ const OptionStackNavigator = () => (
     <OptionStack.Screen
       name="Option"
       component={OptionScreen}
-      options={{title: '설정', headerShown: false}}
+      options={{title: '내 정보', headerShown: false}}
     />
     <OptionStack.Screen
       name="UserEdit"
@@ -137,11 +137,11 @@ const MainTabNavigator = () => {
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
           if (route.name === 'SelectionTab') {
-            iconName = 'home';
+            iconName = 'home-outline'; //home
           } else if (route.name === 'History') {
-            iconName = 'appstore-o';
+            iconName = 'time-outline'; //time
           } else if (route.name === 'OptionTab') {
-            iconName = 'setting';
+            iconName = 'person-circle-outline'; //person-circle
           }
           return <Icon name={iconName} size={size} color={color} />;
         },
@@ -164,12 +164,12 @@ const MainTabNavigator = () => {
       <Tab.Screen
         name="History"
         component={HistoryScreen}
-        options={{title: '주행기록', headerShown: false}}
+        options={{title: '이용 내역', headerShown: false}}
       />
       <Tab.Screen
         name="OptionTab"
         component={OptionStackNavigator}
-        options={{title: '설정', headerShown: false}}
+        options={{title: '내 정보', headerShown: false}}
       />
     </Tab.Navigator>
   );
