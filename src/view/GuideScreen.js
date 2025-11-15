@@ -106,11 +106,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 20,
   },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginLeft: 10,
-  },
 });
 
 export default GuideScreen;

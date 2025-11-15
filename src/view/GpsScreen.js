@@ -6,17 +6,14 @@ import {
   TouchableOpacity,
   Alert,
   Modal,
-  Dimensions,
-  Platform,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView, {PROVIDER_GOOGLE, Polyline} from 'react-native-maps';
 import Geolocation from 'react-native-geolocation-service';
 import {colors} from '../component/constants/colors';
 import {Card} from '../component/Card';
 import {Button} from '../component/Button';
-import {useLocation} from '../context/LocationProvider'; // (선택) 위치 컨텍스트
 import Api from '../api/ApiUtils';
 
 // 센서 라이브러리
@@ -28,7 +25,6 @@ import {
   SensorTypes,
 } from 'react-native-sensors';
 import CompassHeading from 'react-native-compass-heading';
-import crypto from 'crypto-js';
 
 // --- [유틸 함수] 거리 계산 (Haversine Formula) ---
 const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
@@ -51,7 +47,6 @@ const deg2rad = deg => {
 
 export default function GpsScreen({route, navigation}) {
   const {scooterId, rideId, isHelmetConfirmed} = route.params || {};
-  // const { locationData } = useLocation(); // 1초마다 갱신되는 컨텍스트 대신 직접 Geolocation 사용 권장 (성능상)
 
   // UI 상태
   const [duration, setDuration] = useState(0);
@@ -59,34 +54,30 @@ export default function GpsScreen({route, navigation}) {
   const [speed, setSpeed] = useState(0);
   const [cost, setCost] = useState(1000);
   const [showEndDialog, setShowEndDialog] = useState(false);
-  const [currentLocation, setCurrentLocation] = useState(null); // 지도 중심용
+  const [currentLocation, setCurrentLocation] = useState(null);
 
-  // 내부 로직용 Refs (렌더링 없이 값 저장)
+  // 지도 경로 그리기용 상태
+  const [routeCoordinates, setRouteCoordinates] = useState([]);
+
+  // --- Refs (데이터 저장소) ---
   const durationRef = useRef(0);
-  const prevLocationRef = useRef(null); // 이전 위치 저장용
-  // [추가] 이전 속도 저장용 Ref (급가속/감속 계산용)
+  const prevLocationRef = useRef(null);
   const prevSpeedRef = useRef(0);
-  // [수정] 이벤트 카운트 확장
-  const eventCountsRef = useRef({
-    suddenStart: 0, // 급출발
-    suddenStop: 0, // 급정지
-    suddenAccel: 0, // 급가속
-    suddenDecel: 0, // 급감속
-    suddenTurn: 0, // 급회전
-  });
 
-  // 센서 데이터 저장소 (서버 전송용 원본 데이터)
-  const sensorDataRef = useRef({
-    accel: [],
-    gyro: [],
-    mag: [],
-    heading: [],
-  });
+  // [핵심] 센서에서 최신 위치를 조회하기 위한 Ref
+  const currentLocationRef = useRef(null);
+
+  // 로그/경로 저장소
+  const riskLogsRef = useRef([]);
+  const routePathRef = useRef([]);
+
+  // 급회전 중복 로깅 방지용 쿨타임 Ref
+  const lastTurnLogTime = useRef(0);
 
   const mapRef = useRef(null);
   const timerRef = useRef(null);
   const subscriptions = useRef([]);
-  const watchId = useRef(null); // GPS 위치 감시 ID
+  const watchId = useRef(null);
 
   // 1. 주행 시작 (센서 & GPS 가동)
   useEffect(() => {
@@ -96,76 +87,80 @@ export default function GpsScreen({route, navigation}) {
       setUpdateIntervalForType(SensorTypes.gyroscope, 200);
       setUpdateIntervalForType(SensorTypes.magnetometer, 200);
 
-      // 1. 가속도 센서 (충격 감지용 보조)
-      const sub1 = accelerometer.subscribe(({x, y, z}) => {
-        sensorDataRef.current.accel.push({x, y, z, timestamp: Date.now()});
-        // 가속도 데이터는 충돌 감지 등에 활용 가능
-      });
-
-      // 2. 자이로 센서 (★급회전 감지)
+      // 1) 자이로 센서 (급회전 감지)
       const sub2 = gyroscope.subscribe(({x, y, z}) => {
-        sensorDataRef.current.gyro.push({x, y, z, timestamp: Date.now()});
-
-        // z축 회전 속도 절대값이 2.5 rad/s (약 143도/초) 이상이면 급회전으로 간주
-        // (임계값은 테스트하면서 조절 필요: 보통 2.0 ~ 3.0 사이)
         if (Math.abs(z) > 2.5) {
-          eventCountsRef.current.suddenTurn += 1;
-          console.log('급회전 감지!');
+          const now = Date.now();
+          if (now - lastTurnLogTime.current > 2000) {
+            const loc = currentLocationRef.current;
+            if (loc) {
+              console.log('⚠️ 급회전 감지!', loc);
+              riskLogsRef.current.push({
+                type: 'sudden_turn',
+                timestamp: new Date().toISOString(),
+                latitude: loc.latitude,
+                longitude: loc.longitude,
+                value: Math.abs(z).toFixed(2),
+              });
+              lastTurnLogTime.current = now;
+            }
+          }
         }
       });
 
-      const sub3 = magnetometer.subscribe(({x, y, z}) => {
-        sensorDataRef.current.mag.push({x, y, z, timestamp: Date.now()});
-      });
-
-      CompassHeading.start(3, ({heading}) => {
-        sensorDataRef.current.heading.push({heading, timestamp: Date.now()});
-      });
+      const sub1 = accelerometer.subscribe(() => {});
+      const sub3 = magnetometer.subscribe(() => {});
+      CompassHeading.start(3, () => {});
 
       subscriptions.current = [sub1, sub2, sub3];
 
-      // (3) 실제 위치 추적 (거리/속도 계산)
+      // 2) GPS 위치 추적
       watchId.current = Geolocation.watchPosition(
         position => {
           const {latitude, longitude, speed: gpsSpeed} = position.coords;
+          const timestamp = new Date().toISOString();
 
-          // m/s -> km/h 변환
+          const newLoc = {latitude, longitude};
+
+          setCurrentLocation(newLoc);
+          currentLocationRef.current = newLoc;
+
+          setRouteCoordinates(prev => [...prev, newLoc]);
+          routePathRef.current.push({
+            latitude,
+            longitude,
+            timestamp,
+            speed: gpsSpeed || 0,
+          });
+
+          // (3) 급가속/감속 로직
           const currentSpeedKmH = Math.max(0, (gpsSpeed || 0) * 3.6);
           const prevSpeed = prevSpeedRef.current;
-          const speedDiff = currentSpeedKmH - prevSpeed; // 속도 변화량
-
-          // 1초(GPS 갱신주기) 동안 속도가 얼마나 변했는가? (임계값: 10km/h)
-          // 즉, 1초 만에 시속 10km 이상 빨라지거나 느려지면 '급'으로 판단
+          const speedDiff = currentSpeedKmH - prevSpeed;
           const ACCEL_THRESHOLD = 10;
 
-          if (speedDiff > ACCEL_THRESHOLD) {
-            // 속도 증가
-            if (prevSpeed < 5) {
-              eventCountsRef.current.suddenStart += 1; // 거의 정지 상태에서 급가속 -> 급출발
-              console.log('급출발!');
+          if (Math.abs(speedDiff) > ACCEL_THRESHOLD) {
+            let type = '';
+            if (speedDiff > 0) {
+              type = prevSpeed < 5 ? 'sudden_start' : 'sudden_accel';
+              console.log(`🚀 ${type}!`);
             } else {
-              eventCountsRef.current.suddenAccel += 1; // 주행 중 가속 -> 급가속
-              console.log('급가속!');
+              type = currentSpeedKmH < 5 ? 'sudden_stop' : 'sudden_decel';
+              console.log(`🛑 ${type}!`);
             }
-          } else if (speedDiff < -ACCEL_THRESHOLD) {
-            // 속도 감소 (speedDiff는 음수)
-            if (currentSpeedKmH < 5) {
-              eventCountsRef.current.suddenStop += 1; // 급격히 줄어 멈춤 -> 급정지
-              console.log('급정지!');
-            } else {
-              eventCountsRef.current.suddenDecel += 1; // 주행 중 감속 -> 급감속
-              console.log('급감속!');
-            }
+
+            riskLogsRef.current.push({
+              type: type,
+              timestamp: timestamp,
+              latitude: latitude,
+              longitude: longitude,
+              value: Math.abs(speedDiff).toFixed(2),
+            });
           }
 
-          // 상태 업데이트
           setSpeed(Math.floor(currentSpeedKmH));
           prevSpeedRef.current = currentSpeedKmH;
 
-          // 현재 위치 업데이트 (지도 표시용)
-          setCurrentLocation({latitude, longitude});
-
-          // 거리 누적 계산
           if (prevLocationRef.current) {
             const distKm = getDistanceFromLatLonInKm(
               prevLocationRef.current.latitude,
@@ -174,21 +169,19 @@ export default function GpsScreen({route, navigation}) {
               longitude,
             );
 
-            // GPS 튀는 현상 방지 (2m 이상 움직였을 때만)
             if (distKm > 0.002) {
               setDistance(prev => parseFloat((prev + distKm).toFixed(2)));
-              prevLocationRef.current = {latitude, longitude};
+              prevLocationRef.current = newLoc;
             }
           } else {
-            prevLocationRef.current = {latitude, longitude};
+            prevLocationRef.current = newLoc;
           }
 
-          // 지도 중심 이동 (부드럽게)
           mapRef.current?.animateToRegion(
             {
               latitude,
               longitude,
-              latitudeDelta: 0.002, // 좀 더 확대해서 보여줌 (주행 중이니)
+              latitudeDelta: 0.002,
               longitudeDelta: 0.002,
             },
             500,
@@ -197,7 +190,7 @@ export default function GpsScreen({route, navigation}) {
         error => console.log(error),
         {
           enableHighAccuracy: true,
-          distanceFilter: 0, // 정지 상태 변화도 잡기 위해 필터 해제 권장
+          distanceFilter: 0,
           interval: 1000,
           fastestInterval: 1000,
         },
@@ -206,17 +199,13 @@ export default function GpsScreen({route, navigation}) {
 
     startRide();
 
-    // (4) 타이머 (시간 & 요금 계산)
     timerRef.current = setInterval(() => {
       durationRef.current += 1;
       setDuration(durationRef.current);
-
-      // 요금: 기본 1000원 + (분 * 200원)
       const minutes = Math.floor(durationRef.current / 60);
       setCost(1000 + minutes * 200);
     }, 1000);
 
-    // 종료 시 정리
     return () => {
       clearInterval(timerRef.current);
       if (watchId.current !== null) Geolocation.clearWatch(watchId.current);
@@ -226,76 +215,74 @@ export default function GpsScreen({route, navigation}) {
   }, []);
 
   // 반납 처리
-  const handleEndRide = () => {
+  const handleEndRide = async () => {
     setShowEndDialog(false);
 
-    // 정리
     clearInterval(timerRef.current);
     if (watchId.current !== null) Geolocation.clearWatch(watchId.current);
     subscriptions.current.forEach(sub => sub.unsubscribe());
     CompassHeading.stop();
 
-    const counts = eventCountsRef.current;
+    // [수정됨] 점수 계산 로직 삭제
+    // estimatedScore 계산 부분을 제거했습니다.
 
-    // 점수 계산 (예시: 100점에서 감점 방식)
-    const penalty =
-      counts.suddenStart * 2 +
-      counts.suddenStop * 2 +
-      counts.suddenAccel * 1 +
-      counts.suddenDecel * 1 +
-      counts.suddenTurn * 3;
+    const endData = {
+      rideId: rideId,
+      endLocation: currentLocation
+        ? {
+            lat: currentLocation.latitude,
+            lng: currentLocation.longitude,
+          }
+        : null,
+      distance: distance,
+      // score 필드는 서버에서 계산하므로 제외하거나 0으로 전송
+      // score: 0,
 
-    const finalScore = Math.max(0, 100 - penalty);
-
-    const resultData = {
-      total_distance_m: distance * 1000,
-      total_time_sec: durationRef.current,
-      final_score: finalScore,
-      helmet_on: 'true',
-      // 상세 카운트 전달
-      sudden_start_cnt: counts.suddenStart,
-      sudden_stop_cnt: counts.suddenStop,
-      sudden_accel_cnt: counts.suddenAccel,
-      sudden_decel_cnt: counts.suddenDecel,
-      turn_noslow_cnt: counts.suddenTurn, // 급회전
-      isHelmet: isHelmetConfirmed,
+      // 상세 데이터 전송
+      riskLogs: riskLogsRef.current,
+      ridePath: routePathRef.current,
     };
 
-    Alert.alert('반납 완료', '이용해주셔서 감사합니다.', [
-      {
-        text: '확인',
-        onPress: () => {
-          // 1. 홈으로 스택 초기화
-          navigation.reset({
-            index: 0,
-            routes: [{name: 'Selection'}],
-          });
-          // 2. 분석 화면으로 이동 (결과 데이터 전달)
-          // 실제로는 History 대신 'Analysis'로 먼저 가서 결과를 보여주는 게 일반적입니다.
-          navigation.navigate('Analysis', {result: resultData});
-        },
-      },
-    ]);
+    console.log('📤 반납 데이터 전송:', JSON.stringify(endData, null, 2));
+
+    try {
+      const response = await Api.endRide(rideId, endData, navigation);
+
+      if (response && response.success) {
+        Alert.alert('반납 완료', '이용해주셔서 감사합니다.', [
+          {
+            text: '확인',
+            onPress: () => {
+              navigation.reset({
+                index: 0,
+                routes: [{name: 'Selection'}],
+              });
+              // 결과 화면으로 이동 (서버가 준 최종 점수가 response.data.score에 있다면 표시 가능)
+              navigation.navigate('Analysis', {result: response.data});
+            },
+          },
+        ]);
+      } else {
+        Alert.alert(
+          '반납 실패',
+          response?.message || '서버 오류가 발생했습니다.',
+        );
+      }
+    } catch (error) {
+      console.error('End Ride Error:', error);
+      Alert.alert('오류', '반납 처리 중 문제가 발생했습니다.');
+    }
   };
 
-  // 시간 포맷 (MM:SS)
   const formatTimeUI = seconds => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
     return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
   };
 
-  // 초기 맵 위치 (임시)
-  const initialRegion = {
-    latitude: 37.5665,
-    longitude: 126.978,
-    latitudeDelta: 0.005,
-    longitudeDelta: 0.005,
-  };
-
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      {/* 1. 상단 정보 패널 (시간/요금 등) */}
+      {/* 상단 정보 패널 */}
       <View style={styles.topPanel}>
         <View style={styles.statusAlert}>
           <Ionicons
@@ -342,7 +329,7 @@ export default function GpsScreen({route, navigation}) {
         </View>
       </View>
 
-      {/* 2. 지도 영역 */}
+      {/* 지도 영역 */}
       <View style={styles.mapContainer}>
         <MapView
           ref={mapRef}
@@ -355,16 +342,24 @@ export default function GpsScreen({route, navigation}) {
             longitudeDelta: 0.005,
           }}
           showsUserLocation={true}
-          showsMyLocationButton={false}
-        />
+          showsMyLocationButton={false}>
+          {/* 이동 경로 그리기 (Polyline) */}
+          {routeCoordinates.length > 0 && (
+            <Polyline
+              coordinates={routeCoordinates}
+              strokeColor={colors.blue600}
+              strokeWidth={5}
+            />
+          )}
+        </MapView>
 
-        {/* ▼▼▼ [추가] T-map 스타일 속도계 오버레이 (왼쪽 배치) ▼▼▼ */}
+        {/* 속도계 오버레이 */}
         <View style={styles.speedOverlay}>
           <Text style={styles.speedText}>{speed}</Text>
           <Text style={styles.speedUnit}>km/h</Text>
         </View>
-        {/* ▲▲▲ 여기까지 추가 ▲▲▲ */}
 
+        {/* 현위치 버튼 */}
         <TouchableOpacity
           style={styles.locationButton}
           onPress={() => {
@@ -380,7 +375,7 @@ export default function GpsScreen({route, navigation}) {
         </TouchableOpacity>
       </View>
 
-      {/* 3. 하단 반납 버튼 */}
+      {/* 하단 반납 버튼 */}
       <View style={styles.bottomButtonContainer}>
         <Button
           title="반납하기"
@@ -397,7 +392,7 @@ export default function GpsScreen({route, navigation}) {
         />
       </View>
 
-      {/* 반납 확인 모달 (기존과 동일) */}
+      {/* 반납 확인 모달 */}
       <Modal
         visible={showEndDialog}
         transparent={true}
@@ -484,21 +479,20 @@ const styles = StyleSheet.create({
   mapContainer: {flex: 1, position: 'relative'},
   map: {...StyleSheet.absoluteFillObject},
 
-  // [추가] 속도계 스타일 (T-map 느낌)
   speedOverlay: {
     position: 'absolute',
-    left: 20, // 왼쪽 배치
-    top: '40%', // 화면 중간쯤 (상단 패널 피해서)
+    left: 20,
+    top: '40%',
     width: 90,
     height: 90,
-    borderRadius: 45, // 원형
-    backgroundColor: 'rgba(255, 255, 255, 0.9)', // 반투명 흰색 배경
+    borderRadius: 45,
+    backgroundColor: 'rgba(255, 255, 255, 0.9)',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 3,
-    borderColor: colors.blue600, // 테두리 색상
-    elevation: 6, // 그림자 (안드로이드)
-    shadowColor: '#000', // 그림자 (iOS)
+    borderColor: colors.blue600,
+    elevation: 6,
+    shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.2,
     shadowRadius: 4,
@@ -509,11 +503,7 @@ const styles = StyleSheet.create({
     color: colors.text,
     includeFontPadding: false,
   },
-  speedUnit: {
-    fontSize: 12,
-    color: colors.gray500,
-    marginTop: -2,
-  },
+  speedUnit: {fontSize: 12, color: colors.gray500, marginTop: -2},
 
   locationButton: {
     position: 'absolute',
