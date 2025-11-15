@@ -1,7 +1,4 @@
-/**
- * 파일 경로: src/view/ProfileScreen.js
- */
-import React, {useState, useContext} from 'react';
+import React, {useState, useContext, useCallback} from 'react';
 import {
   View,
   Text,
@@ -11,15 +8,51 @@ import {
   Image,
   Switch,
   Alert,
+  RefreshControl,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import {colors} from '../component/constants/colors'; // 기존 색상 상수
-import {AuthContext} from '../context/AuthContext'; // 로그아웃 기능 연동
+import {useFocusEffect} from '@react-navigation/native';
+import {colors} from '../component/constants/colors';
+import {AuthContext} from '../context/AuthContext';
+import Api from '../api/ApiUtils';
 
-export default function ProfileScreen({navigation}) {
+export default function OptionScreen({navigation}) {
   const {logout} = useContext(AuthContext);
   const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+
+  // 사용자 정보 상태 (payment 제거됨)
+  const [userInfo, setUserInfo] = useState({
+    nickname: '사용자',
+    telno: '',
+    total_rides: 0,
+    total_distance: 0,
+    total_duration: 0,
+  });
+
+  const fetchUserProfile = useCallback(async () => {
+    try {
+      const response = await Api.getUserProfile(navigation);
+      if (response && response.success) {
+        setUserInfo(response.data);
+      }
+    } catch (error) {
+      console.error('프로필 로딩 실패:', error);
+    }
+  }, [navigation]);
+
+  useFocusEffect(
+    useCallback(() => {
+      fetchUserProfile();
+    }, [fetchUserProfile]),
+  );
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchUserProfile();
+    setRefreshing(false);
+  };
 
   const toggleSwitch = () =>
     setIsNotificationEnabled(previousState => !previousState);
@@ -32,13 +65,11 @@ export default function ProfileScreen({navigation}) {
         style: 'destructive',
         onPress: async () => {
           await logout();
-          // AuthContext 내부 로직에 따라 로그인 화면으로 전환될 것입니다.
         },
       },
     ]);
   };
 
-  // 공통 메뉴 아이템 컴포넌트
   const MenuItem = ({
     icon,
     label,
@@ -70,21 +101,28 @@ export default function ProfileScreen({navigation}) {
         <Text style={styles.headerTitle}>내 정보</Text>
       </View>
 
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView
+        contentContainerStyle={styles.scrollContent}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
         {/* 1. 프로필 카드 */}
         <View style={styles.card}>
           <View style={styles.profileHeader}>
             <View style={styles.avatarContainer}>
-              {/* 실제 이미지 URL이 있다면 source={{ uri: '...' }} 사용 */}
               <Image
-                source={require('../asset/logo.png')} // 임시로 로고 혹은 기본 이미지 사용
+                source={require('../asset/logo.png')}
                 style={styles.avatar}
                 resizeMode="cover"
               />
             </View>
             <View style={styles.profileInfo}>
-              <Text style={styles.userName}>김철수</Text>
-              <Text style={styles.userEmail}>chulsoo@email.com</Text>
+              <Text style={styles.userName}>
+                {userInfo.nickname || '알 수 없음'}
+              </Text>
+              {userInfo.telno ? (
+                <Text style={styles.userPhone}>{userInfo.telno}</Text>
+              ) : null}
             </View>
             <TouchableOpacity onPress={() => navigation.navigate('UserEdit')}>
               <Text style={styles.editButton}>편집</Text>
@@ -96,66 +134,51 @@ export default function ProfileScreen({navigation}) {
           <View style={styles.statsContainer}>
             <View style={styles.statItem}>
               <Text style={[styles.statValue, {color: colors.blue600}]}>
-                124회
+                {userInfo.total_rides}회
               </Text>
               <Text style={styles.statLabel}>총 이용</Text>
             </View>
             <View style={styles.statItem}>
               <Text style={[styles.statValue, {color: colors.green600}]}>
-                87.5km
+                {userInfo.total_distance}km
               </Text>
               <Text style={styles.statLabel}>총 거리</Text>
             </View>
             <View style={styles.statItem}>
               <Text style={[styles.statValue, {color: colors.purple600}]}>
-                18시간
+                {Math.floor(userInfo.total_duration / 60) > 0
+                  ? `${Math.floor(userInfo.total_duration / 60)}시간 `
+                  : ''}
+                {userInfo.total_duration % 60}분
               </Text>
               <Text style={styles.statLabel}>총 시간</Text>
             </View>
           </View>
         </View>
 
-        {/* 2. 내 지갑 */}
-        <View style={styles.card}>
-          <View style={styles.walletRow}>
-            <View style={styles.walletLeft}>
-              <View style={styles.walletIconBg}>
-                <Ionicons name="wallet" size={20} color={colors.blue600} />
-              </View>
-              <View>
-                <Text style={styles.walletLabel}>내 지갑</Text>
-                <Text style={styles.walletBalance}>₩5,000</Text>
-              </View>
-            </View>
-            <TouchableOpacity style={styles.chargeButton}>
-              <Text style={styles.chargeButtonText}>충전</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-
-        {/* 3. 결제 수단 */}
+        {/* 2. 결제 수단 (내 지갑 카드 삭제됨) */}
         <Text style={styles.sectionTitle}>결제 수단</Text>
         <View style={styles.card}>
           <MenuItem
             icon="card-outline"
             label="결제 카드 관리"
-            onPress={() => {}}
+            onPress={() => Alert.alert('준비 중', '기능 준비 중입니다.')}
           />
           <MenuItem
             icon="receipt-outline"
-            label="충전 내역"
-            onPress={() => {}}
+            label="이용 내역"
+            onPress={() => navigation.navigate('History')}
             isLast
           />
         </View>
 
-        {/* 4. 설정 */}
+        {/* 3. 설정 */}
         <Text style={styles.sectionTitle}>설정</Text>
         <View style={styles.card}>
           <MenuItem
             icon="notifications-outline"
             label="알림 설정"
-            onPress={null} // 스위치 클릭을 위해 null 처리하거나 별도 처리
+            onPress={null}
             rightElement={
               <Switch
                 trackColor={{false: colors.gray300, true: colors.green600}}
@@ -174,13 +197,13 @@ export default function ProfileScreen({navigation}) {
           />
         </View>
 
-        {/* 5. 지원 */}
+        {/* 4. 지원 */}
         <Text style={styles.sectionTitle}>지원</Text>
         <View style={styles.card}>
           <MenuItem
             icon="help-circle-outline"
             label="도움말"
-            onPress={() => navigation.navigate('Guide')} // GuideScreen으로 이동
+            onPress={() => navigation.navigate('Guide')}
           />
           <MenuItem
             icon="document-text-outline"
@@ -210,7 +233,7 @@ export default function ProfileScreen({navigation}) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f9fafb', // colors.gray50
+    backgroundColor: '#f9fafb',
   },
   header: {
     paddingHorizontal: 20,
@@ -232,7 +255,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: colors.white,
     borderRadius: 16,
-    padding: 16, // 내부 패딩
+    padding: 16,
     marginBottom: 24,
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 1},
@@ -255,6 +278,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     backgroundColor: colors.gray200,
     marginRight: 16,
+    borderWidth: 1,
+    borderColor: colors.border,
   },
   avatar: {
     width: '100%',
@@ -269,7 +294,7 @@ const styles = StyleSheet.create({
     color: '#111827',
     marginBottom: 4,
   },
-  userEmail: {
+  userPhone: {
     fontSize: 14,
     color: colors.gray500,
   },
@@ -301,47 +326,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: colors.gray500,
   },
-  // Wallet
-  walletRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  walletLeft: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-  },
-  walletIconBg: {
-    width: 40,
-    height: 40,
-    borderRadius: 20,
-    backgroundColor: '#eff6ff', // blue50
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  walletLabel: {
-    fontSize: 12,
-    color: colors.gray500,
-    marginBottom: 2,
-  },
-  walletBalance: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#111827',
-  },
-  chargeButton: {
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  chargeButtonText: {
-    fontSize: 14,
-    fontWeight: '500',
-    color: '#111827',
-  },
   // Section Titles
   sectionTitle: {
     fontSize: 16,
@@ -368,7 +352,7 @@ const styles = StyleSheet.create({
   },
   menuItemLabel: {
     fontSize: 16,
-    color: '#374151', // gray700
+    color: '#374151',
   },
   // Logout & Version
   logoutButton: {
@@ -379,7 +363,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 12,
     borderWidth: 1,
-    borderColor: colors.red200, // red200
+    borderColor: colors.red200,
     marginBottom: 24,
     gap: 8,
   },

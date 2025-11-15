@@ -78,7 +78,7 @@ const SelectionStackNavigator = () => (
     <SelectionStack.Screen
       name="Analysis"
       component={Analysis}
-      options={{title: '분석결과', headerShown: false, gestureEnabled: false}}
+      options={{title: '운전분석', gestureEnabled: false}}
     />
     <SelectionStack.Screen
       name="Map"

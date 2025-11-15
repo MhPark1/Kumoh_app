@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // API 인스턴스 생성
 const apiInstance = axios.create({
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://shaky-poets-repeat.loca.lt',
   // baseURL: 'http://172.30.96.13:8080',
   headers: {
     'Content-Type': 'application/json',
@@ -84,6 +84,16 @@ const ApiUtils = {
       console.error('getMe error:', error.response || error);
       throw error.response?.data || error;
     }
+  },
+
+  getUserProfile: async navigation => {
+    const token = await getAccessToken(navigation);
+    if (!token) return;
+
+    const response = await apiInstance.get('/api/app/users/me/profile', {
+      headers: {Authorization: `Bearer ${token}`},
+    });
+    return response.data;
   },
 
   // [신규] 주변 킥보드 조회
@@ -198,136 +208,6 @@ const ApiUtils = {
       return response.data; // { success: true, data: [ ... ] }
     } catch (error) {
       console.error('getMyRides error:', error);
-      throw error.response?.data || error;
-    }
-  },
-
-  // 주행 로그 저장 (GPS 측정 결과 전부 저장)
-  saveTripLog: async (data, navigation) => {
-    try {
-      const accessToken = await getAccessToken(navigation);
-      if (!accessToken) return;
-
-      // TODO: 백엔드 경로 확인 필요 (현재 임시 경로 유지)
-      const response = await apiInstance.post('/action/gps_update', data, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`, // Bearer 스키마 추가 권장
-        },
-      });
-
-      return response.data;
-    } catch (error) {
-      console.error(
-        'save trip log error:',
-        error.response?.status,
-        error.response?.data || error.message,
-      );
-      throw error.response?.data || error;
-    }
-  },
-
-  // 주행 결과 저장
-  saveResult: async (result, navigation) => {
-    try {
-      const accessToken = await getAccessToken(navigation);
-      if (!accessToken) return;
-
-      const response = await apiInstance.post(
-        '/action/trip_and_score_update',
-        result,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      );
-      return response.data;
-    } catch (error) {
-      console.error(
-        'result save error:',
-        error.response?.status,
-        error.response?.data || error.message,
-      );
-      throw error.response?.data || error;
-    }
-  },
-
-  // 주행 기록 호출
-  getHistory: async (result, navigation) => {
-    try {
-      const accessToken = await getAccessToken(navigation);
-      if (!accessToken) return;
-
-      const response = await apiInstance.post('/action/get_history', result, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-      console.log(response.data.data);
-      return response.data;
-    } catch (error) {
-      console.error(
-        'getHistory error:',
-        error.response?.status,
-        error.response?.data || error.message,
-      );
-      throw error.response?.data || error;
-    }
-  },
-
-  // 메인 스크린 주행 기록 호출
-  getMainScreenData: async (result, navigation) => {
-    try {
-      const accessToken = await getAccessToken(navigation);
-      if (!accessToken) return;
-      const response = await apiInstance.post(
-        '/action/get_history_main',
-        result,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      );
-      console.log(response.data.data);
-      return response.data;
-    } catch (error) {
-      console.error(
-        'getMainScreenData error:',
-        error.response?.status,
-        error.response?.data || error.message,
-      );
-      throw error.response?.data || error;
-    }
-  },
-
-  // 주행 기록 (주간별 호출)
-  getHistoryByPeriod: async (result, navigation) => {
-    try {
-      const accessToken = await getAccessToken(navigation);
-      if (!accessToken) return;
-      const response = await apiInstance.post(
-        '/action/get_history_by_period',
-        result,
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${accessToken}`,
-          },
-        },
-      );
-      console.log(response.data.data);
-      return response.data;
-    } catch (error) {
-      console.error(
-        'getHistoryByPeriod error:',
-        error.response?.status,
-        error.response?.data || error.message,
-      );
       throw error.response?.data || error;
     }
   },

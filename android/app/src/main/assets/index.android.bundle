@@ -133021,8 +133021,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         name: "Analysis",
         component: _AnalysisScreen.default,
         options: {
-          title: '분석결과',
-          headerShown: false,
+          title: '운전분석',
           gestureEnabled: false
         }
       }), /*#__PURE__*/(0, _jsxRuntime.jsx)(SelectionStack.Screen, {
@@ -137487,7 +137486,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var _asyncStorage = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[3], "@react-native-async-storage/async-storage"));
   // API 인스턴스 생성
   var apiInstance = _axios.default.create({
-    baseURL: 'http://localhost:8080',
+    baseURL: 'https://shaky-poets-repeat.loca.lt',
     // baseURL: 'http://172.30.96.13:8080',
     headers: {
       'Content-Type': 'application/json'
@@ -137586,6 +137585,22 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       }
       return getMe;
     }(),
+    getUserProfile: function () {
+      var _getUserProfile = (0, _asyncToGenerator2.default)(function* (navigation) {
+        var token = yield getAccessToken(navigation);
+        if (!token) return;
+        var response = yield apiInstance.get('/api/app/users/me/profile', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        return response.data;
+      });
+      function getUserProfile(_x5) {
+        return _getUserProfile.apply(this, arguments);
+      }
+      return getUserProfile;
+    }(),
     // [신규] 주변 킥보드 조회
     getNearbyKickboards: function () {
       var _getNearbyKickboards = (0, _asyncToGenerator2.default)(function* (location) {
@@ -137611,7 +137626,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           throw ((_error$response4 = error.response) == null ? void 0 : _error$response4.data) || error;
         }
       });
-      function getNearbyKickboards(_x5) {
+      function getNearbyKickboards(_x6) {
         return _getNearbyKickboards.apply(this, arguments);
       }
       return getNearbyKickboards;
@@ -137653,7 +137668,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           throw error;
         }
       });
-      function verifyHelmet(_x6, _x7) {
+      function verifyHelmet(_x7, _x8) {
         return _verifyHelmet.apply(this, arguments);
       }
       return verifyHelmet;
@@ -137677,7 +137692,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           throw ((_error$response5 = error.response) == null ? void 0 : _error$response5.data) || error;
         }
       });
-      function startRide(_x8, _x9) {
+      function startRide(_x9, _x0) {
         return _startRide.apply(this, arguments);
       }
       return startRide;
@@ -137701,7 +137716,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           throw ((_error$response6 = error.response) == null ? void 0 : _error$response6.data) || error;
         }
       });
-      function endRide(_x0, _x1, _x10) {
+      function endRide(_x1, _x10, _x11) {
         return _endRide.apply(this, arguments);
       }
       return endRide;
@@ -137724,135 +137739,10 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           throw ((_error$response7 = error.response) == null ? void 0 : _error$response7.data) || error;
         }
       });
-      function getMyRides(_x11) {
+      function getMyRides(_x12) {
         return _getMyRides.apply(this, arguments);
       }
       return getMyRides;
-    }(),
-    // 주행 로그 저장 (GPS 측정 결과 전부 저장)
-    saveTripLog: function () {
-      var _saveTripLog = (0, _asyncToGenerator2.default)(function* (data, navigation) {
-        try {
-          var accessToken = yield getAccessToken(navigation);
-          if (!accessToken) return;
-
-          // TODO: 백엔드 경로 확인 필요 (현재 임시 경로 유지)
-          var response = yield apiInstance.post('/action/gps_update', data, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${accessToken}` // Bearer 스키마 추가 권장
-            }
-          });
-          return response.data;
-        } catch (error) {
-          var _error$response8, _error$response9, _error$response0;
-          console.error('save trip log error:', (_error$response8 = error.response) == null ? void 0 : _error$response8.status, ((_error$response9 = error.response) == null ? void 0 : _error$response9.data) || error.message);
-          throw ((_error$response0 = error.response) == null ? void 0 : _error$response0.data) || error;
-        }
-      });
-      function saveTripLog(_x12, _x13) {
-        return _saveTripLog.apply(this, arguments);
-      }
-      return saveTripLog;
-    }(),
-    // 주행 결과 저장
-    saveResult: function () {
-      var _saveResult = (0, _asyncToGenerator2.default)(function* (result, navigation) {
-        try {
-          var accessToken = yield getAccessToken(navigation);
-          if (!accessToken) return;
-          var response = yield apiInstance.post('/action/trip_and_score_update', result, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${accessToken}`
-            }
-          });
-          return response.data;
-        } catch (error) {
-          var _error$response1, _error$response10, _error$response11;
-          console.error('result save error:', (_error$response1 = error.response) == null ? void 0 : _error$response1.status, ((_error$response10 = error.response) == null ? void 0 : _error$response10.data) || error.message);
-          throw ((_error$response11 = error.response) == null ? void 0 : _error$response11.data) || error;
-        }
-      });
-      function saveResult(_x14, _x15) {
-        return _saveResult.apply(this, arguments);
-      }
-      return saveResult;
-    }(),
-    // 주행 기록 호출
-    getHistory: function () {
-      var _getHistory = (0, _asyncToGenerator2.default)(function* (result, navigation) {
-        try {
-          var accessToken = yield getAccessToken(navigation);
-          if (!accessToken) return;
-          var response = yield apiInstance.post('/action/get_history', result, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${accessToken}`
-            }
-          });
-          console.log(response.data.data);
-          return response.data;
-        } catch (error) {
-          var _error$response12, _error$response13, _error$response14;
-          console.error('getHistory error:', (_error$response12 = error.response) == null ? void 0 : _error$response12.status, ((_error$response13 = error.response) == null ? void 0 : _error$response13.data) || error.message);
-          throw ((_error$response14 = error.response) == null ? void 0 : _error$response14.data) || error;
-        }
-      });
-      function getHistory(_x16, _x17) {
-        return _getHistory.apply(this, arguments);
-      }
-      return getHistory;
-    }(),
-    // 메인 스크린 주행 기록 호출
-    getMainScreenData: function () {
-      var _getMainScreenData = (0, _asyncToGenerator2.default)(function* (result, navigation) {
-        try {
-          var accessToken = yield getAccessToken(navigation);
-          if (!accessToken) return;
-          var response = yield apiInstance.post('/action/get_history_main', result, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${accessToken}`
-            }
-          });
-          console.log(response.data.data);
-          return response.data;
-        } catch (error) {
-          var _error$response15, _error$response16, _error$response17;
-          console.error('getMainScreenData error:', (_error$response15 = error.response) == null ? void 0 : _error$response15.status, ((_error$response16 = error.response) == null ? void 0 : _error$response16.data) || error.message);
-          throw ((_error$response17 = error.response) == null ? void 0 : _error$response17.data) || error;
-        }
-      });
-      function getMainScreenData(_x18, _x19) {
-        return _getMainScreenData.apply(this, arguments);
-      }
-      return getMainScreenData;
-    }(),
-    // 주행 기록 (주간별 호출)
-    getHistoryByPeriod: function () {
-      var _getHistoryByPeriod = (0, _asyncToGenerator2.default)(function* (result, navigation) {
-        try {
-          var accessToken = yield getAccessToken(navigation);
-          if (!accessToken) return;
-          var response = yield apiInstance.post('/action/get_history_by_period', result, {
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${accessToken}`
-            }
-          });
-          console.log(response.data.data);
-          return response.data;
-        } catch (error) {
-          var _error$response18, _error$response19, _error$response20;
-          console.error('getHistoryByPeriod error:', (_error$response18 = error.response) == null ? void 0 : _error$response18.status, ((_error$response19 = error.response) == null ? void 0 : _error$response19.data) || error.message);
-          throw ((_error$response20 = error.response) == null ? void 0 : _error$response20.data) || error;
-        }
-      });
-      function getHistoryByPeriod(_x20, _x21) {
-        return _getHistoryByPeriod.apply(this, arguments);
-      }
-      return getHistoryByPeriod;
     }()
   };
   var _default = exports.default = ApiUtils;
@@ -150669,29 +150559,64 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   Object.defineProperty(exports, "__esModule", {
     value: true
   });
-  exports.default = ProfileScreen;
+  exports.default = OptionScreen;
   var _asyncToGenerator2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[1], "@babel/runtime/helpers/asyncToGenerator"));
   var _slicedToArray2 = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[2], "@babel/runtime/helpers/slicedToArray"));
   var _react = _interopRequireWildcard(_$$_REQUIRE(_dependencyMap[3], "react"));
   var _reactNative = _$$_REQUIRE(_dependencyMap[4], "react-native");
   var _Ionicons = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[5], "react-native-vector-icons/Ionicons"));
-  var _jsxRuntime = _$$_REQUIRE(_dependencyMap[6], "react/jsx-runtime");
+  var _ApiUtils = _interopRequireDefault(_$$_REQUIRE(_dependencyMap[6], "../api/ApiUtils"));
+  var _jsxRuntime = _$$_REQUIRE(_dependencyMap[7], "react/jsx-runtime");
   var _jsxFileName = "C:\\Users\\JunSik\\Desktop\\webkit\\Kumoh_app\\src\\view\\OptionScreen.js";
-  /**
-   * 파일 경로: src/view/ProfileScreen.js
-   */
-  // 기존 색상 상수
-  // 로그아웃 기능 연동
   function _interopRequireWildcard(e, t) { if ("function" == typeof WeakMap) var r = new WeakMap(), n = new WeakMap(); return (_interopRequireWildcard = function _interopRequireWildcard(e, t) { if (!t && e && e.__esModule) return e; var o, i, f = { __proto__: null, default: e }; if (null === e || "object" != typeof e && "function" != typeof e) return f; if (o = t ? n : r) { if (o.has(e)) return o.get(e); o.set(e, f); } for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]); return f; })(e, t); }
-  function ProfileScreen(_ref) {
+  function OptionScreen(_ref) {
     var _this = this;
     var navigation = _ref.navigation;
-    var _useContext = (0, _react.useContext)(_$$_REQUIRE(_dependencyMap[7], "../context/AuthContext").AuthContext),
+    var _useContext = (0, _react.useContext)(_$$_REQUIRE(_dependencyMap[8], "../context/AuthContext").AuthContext),
       logout = _useContext.logout;
     var _useState = (0, _react.useState)(true),
       _useState2 = (0, _slicedToArray2.default)(_useState, 2),
       isNotificationEnabled = _useState2[0],
       setIsNotificationEnabled = _useState2[1];
+    var _useState3 = (0, _react.useState)(false),
+      _useState4 = (0, _slicedToArray2.default)(_useState3, 2),
+      refreshing = _useState4[0],
+      setRefreshing = _useState4[1];
+
+    // 사용자 정보 상태 (payment 제거됨)
+    var _useState5 = (0, _react.useState)({
+        nickname: '사용자',
+        telno: '',
+        total_rides: 0,
+        total_distance: 0,
+        total_duration: 0
+      }),
+      _useState6 = (0, _slicedToArray2.default)(_useState5, 2),
+      userInfo = _useState6[0],
+      setUserInfo = _useState6[1];
+    var fetchUserProfile = (0, _react.useCallback)(/*#__PURE__*/(0, _asyncToGenerator2.default)(function* () {
+      try {
+        var response = yield _ApiUtils.default.getUserProfile(navigation);
+        if (response && response.success) {
+          setUserInfo(response.data);
+        }
+      } catch (error) {
+        console.error('프로필 로딩 실패:', error);
+      }
+    }), [navigation]);
+    (0, _$$_REQUIRE(_dependencyMap[9], "@react-navigation/native").useFocusEffect)((0, _react.useCallback)(function () {
+      fetchUserProfile();
+    }, [fetchUserProfile]));
+    var onRefresh = /*#__PURE__*/function () {
+      var _ref3 = (0, _asyncToGenerator2.default)(function* () {
+        setRefreshing(true);
+        yield fetchUserProfile();
+        setRefreshing(false);
+      });
+      return function onRefresh() {
+        return _ref3.apply(this, arguments);
+      };
+    }();
     var toggleSwitch = function toggleSwitch() {
       return setIsNotificationEnabled(function (previousState) {
         return !previousState;
@@ -150707,7 +150632,6 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         onPress: function () {
           var _onPress = (0, _asyncToGenerator2.default)(function* () {
             yield logout();
-            // AuthContext 내부 로직에 따라 로그인 화면으로 전환될 것입니다.
           });
           function onPress() {
             return _onPress.apply(this, arguments);
@@ -150716,16 +150640,14 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         }()
       }]);
     };
-
-    // 공통 메뉴 아이템 컴포넌트
-    var MenuItem = function MenuItem(_ref2) {
-      var icon = _ref2.icon,
-        label = _ref2.label,
-        onPress = _ref2.onPress,
-        isLast = _ref2.isLast,
-        _ref2$showChevron = _ref2.showChevron,
-        showChevron = _ref2$showChevron === void 0 ? true : _ref2$showChevron,
-        rightElement = _ref2.rightElement;
+    var MenuItem = function MenuItem(_ref4) {
+      var icon = _ref4.icon,
+        label = _ref4.label,
+        onPress = _ref4.onPress,
+        isLast = _ref4.isLast,
+        _ref4$showChevron = _ref4.showChevron,
+        showChevron = _ref4$showChevron === void 0 ? true : _ref4$showChevron,
+        rightElement = _ref4.rightElement;
       return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.TouchableOpacity, {
         style: [styles.menuItem, !isLast && styles.menuItemBorder],
         onPress: onPress,
@@ -150736,7 +150658,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_Ionicons.default, {
             name: icon,
             size: 20,
-            color: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.gray600
+            color: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.gray600
           }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
             style: styles.menuItemLabel,
             children: label
@@ -150744,11 +150666,11 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         }), rightElement ? rightElement : showChevron && /*#__PURE__*/(0, _jsxRuntime.jsx)(_Ionicons.default, {
           name: "chevron-forward",
           size: 20,
-          color: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.gray400
+          color: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.gray400
         })]
       });
     };
-    return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_$$_REQUIRE(_dependencyMap[9], "react-native-safe-area-context").SafeAreaView, {
+    return /*#__PURE__*/(0, _jsxRuntime.jsxs)(_$$_REQUIRE(_dependencyMap[11], "react-native-safe-area-context").SafeAreaView, {
       style: styles.container,
       edges: ['top'],
       children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.View, {
@@ -150759,6 +150681,10 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         })
       }), /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.ScrollView, {
         contentContainerStyle: styles.scrollContent,
+        refreshControl: /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.RefreshControl, {
+          refreshing: refreshing,
+          onRefresh: onRefresh
+        }),
         children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.View, {
           style: styles.card,
           children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.View, {
@@ -150766,8 +150692,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.View, {
               style: styles.avatarContainer,
               children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Image, {
-                source: _$$_REQUIRE(_dependencyMap[10], "../asset/logo.png") // 임시로 로고 혹은 기본 이미지 사용
-                ,
+                source: _$$_REQUIRE(_dependencyMap[12], "../asset/logo.png"),
                 style: styles.avatar,
                 resizeMode: "cover"
               })
@@ -150775,11 +150700,11 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
               style: styles.profileInfo,
               children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
                 style: styles.userName,
-                children: "\uAE40\uCCA0\uC218"
-              }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
-                style: styles.userEmail,
-                children: "chulsoo@email.com"
-              })]
+                children: userInfo.nickname || '알 수 없음'
+              }), userInfo.telno ? /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
+                style: styles.userPhone,
+                children: userInfo.telno
+              }) : null]
             }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.TouchableOpacity, {
               onPress: function onPress() {
                 return navigation.navigate('UserEdit');
@@ -150795,69 +150720,39 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             style: styles.statsContainer,
             children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.View, {
               style: styles.statItem,
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
+              children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.Text, {
                 style: [styles.statValue, {
-                  color: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.blue600
+                  color: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.blue600
                 }],
-                children: "124\uD68C"
+                children: [userInfo.total_rides, "\uD68C"]
               }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
                 style: styles.statLabel,
                 children: "\uCD1D \uC774\uC6A9"
               })]
             }), /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.View, {
               style: styles.statItem,
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
+              children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.Text, {
                 style: [styles.statValue, {
-                  color: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.green600
+                  color: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.green600
                 }],
-                children: "87.5km"
+                children: [userInfo.total_distance, "km"]
               }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
                 style: styles.statLabel,
                 children: "\uCD1D \uAC70\uB9AC"
               })]
             }), /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.View, {
               style: styles.statItem,
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
+              children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.Text, {
                 style: [styles.statValue, {
-                  color: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.purple600
+                  color: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.purple600
                 }],
-                children: "18\uC2DC\uAC04"
+                children: [Math.floor(userInfo.total_duration / 60) > 0 ? `${Math.floor(userInfo.total_duration / 60)}시간 ` : '', userInfo.total_duration % 60, "\uBD84"]
               }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
                 style: styles.statLabel,
                 children: "\uCD1D \uC2DC\uAC04"
               })]
             })]
           })]
-        }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.View, {
-          style: styles.card,
-          children: /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.View, {
-            style: styles.walletRow,
-            children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.View, {
-              style: styles.walletLeft,
-              children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.View, {
-                style: styles.walletIconBg,
-                children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_Ionicons.default, {
-                  name: "wallet",
-                  size: 20,
-                  color: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.blue600
-                })
-              }), /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.View, {
-                children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
-                  style: styles.walletLabel,
-                  children: "\uB0B4 \uC9C0\uAC11"
-                }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
-                  style: styles.walletBalance,
-                  children: "\u20A95,000"
-                })]
-              })]
-            }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.TouchableOpacity, {
-              style: styles.chargeButton,
-              children: /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
-                style: styles.chargeButtonText,
-                children: "\uCDA9\uC804"
-              })
-            })]
-          })
         }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
           style: styles.sectionTitle,
           children: "\uACB0\uC81C \uC218\uB2E8"
@@ -150866,11 +150761,15 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(MenuItem, {
             icon: "card-outline",
             label: "\uACB0\uC81C \uCE74\uB4DC \uAD00\uB9AC",
-            onPress: function onPress() {}
+            onPress: function onPress() {
+              return _reactNative.Alert.alert('준비 중', '기능 준비 중입니다.');
+            }
           }), /*#__PURE__*/(0, _jsxRuntime.jsx)(MenuItem, {
             icon: "receipt-outline",
-            label: "\uCDA9\uC804 \uB0B4\uC5ED",
-            onPress: function onPress() {},
+            label: "\uC774\uC6A9 \uB0B4\uC5ED",
+            onPress: function onPress() {
+              return navigation.navigate('History');
+            },
             isLast: true
           })]
         }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
@@ -150881,15 +150780,14 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(MenuItem, {
             icon: "notifications-outline",
             label: "\uC54C\uB9BC \uC124\uC815",
-            onPress: null // 스위치 클릭을 위해 null 처리하거나 별도 처리
-            ,
+            onPress: null,
             rightElement: /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Switch, {
               trackColor: {
-                false: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.gray300,
-                true: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.green600
+                false: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.gray300,
+                true: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.green600
               },
-              thumbColor: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.white,
-              ios_backgroundColor: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.gray300,
+              thumbColor: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.white,
+              ios_backgroundColor: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.gray300,
               onValueChange: toggleSwitch,
               value: isNotificationEnabled
             })
@@ -150909,7 +150807,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
             label: "\uB3C4\uC6C0\uB9D0",
             onPress: function onPress() {
               return navigation.navigate('Guide');
-            } // GuideScreen으로 이동
+            }
           }), /*#__PURE__*/(0, _jsxRuntime.jsx)(MenuItem, {
             icon: "document-text-outline",
             label: "\uC774\uC6A9\uC57D\uAD00",
@@ -150926,7 +150824,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
           children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_Ionicons.default, {
             name: "log-out-outline",
             size: 20,
-            color: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.red600
+            color: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.red600
           }), /*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
             style: styles.logoutText,
             children: "\uB85C\uADF8\uC544\uC6C3"
@@ -150941,14 +150839,14 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
   var styles = _reactNative.StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: '#f9fafb' // colors.gray50
+      backgroundColor: '#f9fafb'
     },
     header: {
       paddingHorizontal: 20,
       paddingVertical: 15,
-      backgroundColor: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.white,
+      backgroundColor: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.white,
       borderBottomWidth: 1,
-      borderBottomColor: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.border
+      borderBottomColor: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.border
     },
     headerTitle: {
       fontSize: 20,
@@ -150961,10 +150859,9 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     },
     // Card Styles
     card: {
-      backgroundColor: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.white,
+      backgroundColor: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.white,
       borderRadius: 16,
       padding: 16,
-      // 내부 패딩
       marginBottom: 24,
       shadowColor: '#000',
       shadowOffset: {
@@ -150975,7 +150872,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       shadowRadius: 2,
       elevation: 2,
       borderWidth: 1,
-      borderColor: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.border
+      borderColor: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.border
     },
     // Profile Header
     profileHeader: {
@@ -150988,8 +150885,10 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       height: 64,
       borderRadius: 32,
       overflow: 'hidden',
-      backgroundColor: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.gray200,
-      marginRight: 16
+      backgroundColor: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.gray200,
+      marginRight: 16,
+      borderWidth: 1,
+      borderColor: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.border
     },
     avatar: {
       width: '100%',
@@ -151004,18 +150903,18 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
       color: '#111827',
       marginBottom: 4
     },
-    userEmail: {
+    userPhone: {
       fontSize: 14,
-      color: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.gray500
+      color: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.gray500
     },
     editButton: {
       fontSize: 14,
-      color: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.blue600,
+      color: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.blue600,
       fontWeight: '600'
     },
     divider: {
       height: 1,
-      backgroundColor: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.border,
+      backgroundColor: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.border,
       marginBottom: 16
     },
     // Stats
@@ -151034,49 +150933,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     },
     statLabel: {
       fontSize: 12,
-      color: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.gray500
-    },
-    // Wallet
-    walletRow: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between'
-    },
-    walletLeft: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      gap: 12
-    },
-    walletIconBg: {
-      width: 40,
-      height: 40,
-      borderRadius: 20,
-      backgroundColor: '#eff6ff',
-      // blue50
-      alignItems: 'center',
-      justifyContent: 'center'
-    },
-    walletLabel: {
-      fontSize: 12,
-      color: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.gray500,
-      marginBottom: 2
-    },
-    walletBalance: {
-      fontSize: 16,
-      fontWeight: 'bold',
-      color: '#111827'
-    },
-    chargeButton: {
-      paddingVertical: 8,
-      paddingHorizontal: 16,
-      borderRadius: 8,
-      borderWidth: 1,
-      borderColor: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.border
-    },
-    chargeButtonText: {
-      fontSize: 14,
-      fontWeight: '500',
-      color: '#111827'
+      color: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.gray500
     },
     // Section Titles
     sectionTitle: {
@@ -151095,7 +150952,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     },
     menuItemBorder: {
       borderBottomWidth: 1,
-      borderBottomColor: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.border
+      borderBottomColor: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.border
     },
     menuItemLeft: {
       flexDirection: 'row',
@@ -151104,34 +150961,33 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
     },
     menuItemLabel: {
       fontSize: 16,
-      color: '#374151' // gray700
+      color: '#374151'
     },
     // Logout & Version
     logoutButton: {
       flexDirection: 'row',
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.white,
+      backgroundColor: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.white,
       padding: 16,
       borderRadius: 12,
       borderWidth: 1,
-      borderColor: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.red200,
-      // red200
+      borderColor: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.red200,
       marginBottom: 24,
       gap: 8
     },
     logoutText: {
       fontSize: 16,
       fontWeight: '600',
-      color: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.red600
+      color: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.red600
     },
     versionText: {
       textAlign: 'center',
-      color: _$$_REQUIRE(_dependencyMap[8], "../component/constants/colors").colors.gray400,
+      color: _$$_REQUIRE(_dependencyMap[10], "../component/constants/colors").colors.gray400,
       fontSize: 12
     }
   });
-},789,[1,101,40,63,2,606,107,766,775,776,790],"src\\view\\OptionScreen.js");
+},789,[1,101,40,63,2,606,608,107,766,663,775,776,790],"src\\view\\OptionScreen.js");
 __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, exports, _dependencyMap) {
   module.exports = _$$_REQUIRE(_dependencyMap[0], "react-native/Libraries/Image/AssetRegistry").registerAsset({
     "__packager_asset": true,
@@ -171987,10 +171843,7 @@ __d(function (global, _$$_REQUIRE, _$$_IMPORT_DEFAULT, _$$_IMPORT_ALL, module, e
         style: styles.scrollView,
         contentContainerStyle: styles.scrollContent,
         showsVerticalScrollIndicator: false,
-        children: [/*#__PURE__*/(0, _jsxRuntime.jsx)(_reactNative.Text, {
-          style: styles.header,
-          children: "\uC6B4\uC804 \uBD84\uC11D"
-        }), /*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.View, {
+        children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.View, {
           style: styles.scoreCard,
           children: [/*#__PURE__*/(0, _jsxRuntime.jsxs)(_reactNative.View, {
             style: styles.scoreHeader,
