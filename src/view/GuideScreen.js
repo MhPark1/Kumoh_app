@@ -6,7 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign'; // AntDesign 아이콘 임포트
+import Icon from 'react-native-vector-icons/Ionicons'; // AntDesign 아이콘 임포트
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 
@@ -22,15 +22,15 @@ const GuideScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
-        <View style={styles.header}>
+        {/* <View style={styles.header}>
           <TouchableOpacity
             onPress={goBack}
             hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}>
-            {/* 뒤로 가기 아이콘 표시 */}
+            {// 뒤로 가기 아이콘 표시 }
             <Icon name="arrowleft" size={20} color="black" />
           </TouchableOpacity>
           <Text style={styles.title}>주행 가이드</Text>
-        </View>
+        </View> */}
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>주행 전 체크리스트</Text>
           <Text style={styles.item}>

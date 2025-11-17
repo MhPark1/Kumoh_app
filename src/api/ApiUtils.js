@@ -96,6 +96,23 @@ const ApiUtils = {
     return response.data;
   },
 
+  //회원정보 수정
+  updateMyInfo: async (updateData, navigation) => {
+    try {
+      const accessToken = await getAccessToken(navigation);
+      if (!accessToken) return;
+
+      const response = await apiInstance.put('/api/app/users/me', updateData, {
+        headers: {Authorization: `Bearer ${accessToken}`},
+      });
+
+      return {success: true, user: response.data.data};
+    } catch (error) {
+      console.error('updateMyInfo error:', error);
+      throw error.response?.data || error;
+    }
+  },
+
   // [신규] 주변 킥보드 조회
   getNearbyKickboards: async location => {
     // location: { latitude, longitude }
