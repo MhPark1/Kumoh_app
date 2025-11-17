@@ -34,7 +34,7 @@ const riskTypeToLabel = {
 
 export default function RideSummaryScreen({route, navigation}) {
   // GpsScreen에서 보낸 두 개의 파라미터를 받습니다.
-  const {result, riskCounts} = route.params || {};
+  const {result, riskCounts, isHelmet} = route.params || {};
 
   // GpsScreen에서 받은 위험 항목 횟수
   const risks = riskCounts || {};
@@ -102,6 +102,21 @@ export default function RideSummaryScreen({route, navigation}) {
             <Text style={styles.summaryLabel}>최종 요금</Text>
             <Text style={styles.summaryValue}>
               ₩{summary.fare?.toLocaleString() || 0}
+            </Text>
+          </View>
+          <View style={styles.summaryRow}>
+            <Ionicons
+              name={isHelmet ? 'shield-checkmark-outline' : 'shield-outline'}
+              size={20}
+              color={isHelmet ? colors.green600 : colors.red600}
+            />
+            <Text style={styles.summaryLabel}>헬멧 착용 여부</Text>
+            <Text
+              style={[
+                styles.summaryValue,
+                {color: isHelmet ? colors.green600 : colors.red600},
+              ]}>
+              {isHelmet ? '착용' : '미착용 (감점)'}
             </Text>
           </View>
         </Card>

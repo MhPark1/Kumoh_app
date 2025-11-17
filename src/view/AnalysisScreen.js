@@ -230,7 +230,7 @@ function DetailsTab({data}) {
   return (
     <View style={styles.tabContent}>
       <View style={styles.detailCard}>
-        <Text style={styles.detailTitle}>누적 운전 패턴</Text>
+        <Text style={styles.detailTitle}>누적 운전 정보</Text>
         <View style={styles.detailRow}>
           <View style={[styles.detailIcon, {backgroundColor: '#dbeafe'}]}>
             <Icon name="map" size={20} color="#2563eb" />

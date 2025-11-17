@@ -269,6 +269,7 @@ export default function GpsScreen({route, navigation}) {
               navigation.navigate('RideSummary', {
                 result: response.data, // 서버가 준 최종 영수증 (score, fare, distance, duration)
                 riskCounts: riskCounts, // 앱이 방금 계산한 위험 횟수
+                isHelmet: isHelmetConfirmed,
               });
             },
           },
