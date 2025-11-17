@@ -28,6 +28,7 @@ import Camera from './src/view/CameraScreen';
 import UserEditScreen from './src/view/UserEditScreen';
 import MapScreen from './src/view/MapScreen';
 import HelmetVerificationScreen from './src/view/HelmetVerificationScreen';
+import RideSummaryScreen from './src/view/RideSummaryScreen';
 
 import {LogBox} from 'react-native';
 LogBox.ignoreLogs([
@@ -92,6 +93,11 @@ const SelectionStackNavigator = () => (
       name="HelmetVerification"
       component={HelmetVerificationScreen}
       options={{title: '헬멧 인증', headerShown: false}}
+    />
+    <SelectionStack.Screen
+      name="RideSummary"
+      component={RideSummaryScreen}
+      options={{headerShown: false}} // 헤더 숨김
     />
   </SelectionStack.Navigator>
 );

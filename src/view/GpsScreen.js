@@ -235,6 +235,7 @@ export default function GpsScreen({route, navigation}) {
           }
         : null,
       distance: distance,
+      isHelmet: isHelmetConfirmed,
       // score 필드는 서버에서 계산하므로 제외하거나 0으로 전송
       // score: 0,
 
@@ -249,16 +250,32 @@ export default function GpsScreen({route, navigation}) {
       const response = await Api.endRide(rideId, endData, navigation);
 
       if (response && response.success) {
+        const riskCounts = {
+          sudden_start: 0,
+          sudden_accel: 0,
+          sudden_stop: 0,
+          sudden_decel: 0,
+          sudden_turn: 0,
+        };
+        riskLogsRef.current.forEach(log => {
+          if (riskCounts.hasOwnProperty(log.type)) {
+            riskCounts[log.type]++;
+          }
+        });
         Alert.alert('반납 완료', '이용해주셔서 감사합니다.', [
           {
             text: '확인',
             onPress: () => {
+              // 3. [수정] 스택 초기화 및 요약 화면으로 이동
               navigation.reset({
                 index: 0,
-                routes: [{name: 'Selection'}],
+                routes: [{name: 'MainTabs'}], // 'MainTabs' 또는 메인 탭 네비게이터 이름
               });
-              // 결과 화면으로 이동 (서버가 준 최종 점수가 response.data.score에 있다면 표시 가능)
-              navigation.navigate('Analysis', {result: response.data});
+
+              navigation.navigate('RideSummary', {
+                result: response.data, // 서버가 준 최종 영수증 (score, fare, distance, duration)
+                riskCounts: riskCounts, // 앱이 방금 계산한 위험 횟수
+              });
             },
           },
         ]);

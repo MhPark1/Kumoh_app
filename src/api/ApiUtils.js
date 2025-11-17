@@ -132,19 +132,18 @@ const ApiUtils = {
 
       // Axios 대신 fetch 사용
       const response = await fetch(
-        'http://localhost:8080/api/app/kickboards/helmet',
+        'https://bong-gun-god.loca.lt/api/app/kickboards/helmet',
         {
           method: 'POST',
           headers: {
             Authorization: `Bearer ${accessToken}`,
-            // Content-Type 헤더를 생략해야 boundary가 자동으로 생성됩니다!
           },
           body: formData,
         },
       );
 
       const responseJson = await response.json();
-      console.log('📩 서버 응답 수신:', responseJson); // 로그 추가
+      console.log('📩 서버 응답 수신:', responseJson);
 
       if (!response.ok) {
         throw responseJson;
@@ -158,7 +157,7 @@ const ApiUtils = {
     }
   },
 
-  // [수정] 주행 시작 (POST /api/app/rides/start)
+  // 주행 시작 (POST /api/app/rides/start)
   startRide: async (data, navigation) => {
     // data: { kickboardId, startLocation: { latitude, longitude } }
     try {
@@ -175,7 +174,7 @@ const ApiUtils = {
     }
   },
 
-  // [수정] 주행 종료 (POST /api/app/rides/:rideId/end)
+  // 주행 종료 (POST /api/app/rides/:rideId/end)
   endRide: async (rideId, data, navigation) => {
     // data: { endLocation: { latitude, longitude } }
     try {
@@ -196,7 +195,7 @@ const ApiUtils = {
     }
   },
 
-  // [수정] 내 주행 이력 조회 (GET /api/app/users/me/rides)
+  // 내 주행 이력 조회 (GET /api/app/users/me/rides)
   getMyRides: async navigation => {
     try {
       const accessToken = await getAccessToken(navigation);
@@ -210,6 +209,17 @@ const ApiUtils = {
       console.error('getMyRides error:', error);
       throw error.response?.data || error;
     }
+  },
+  getAnalysisStats: async (navigation, dateRange = {}) => {
+    const token = await getAccessToken(navigation);
+    if (!token) return;
+
+    const {startDate, endDate} = dateRange;
+
+    const response = await apiInstance.get('/api/app/users/me/analysis', {
+      headers: {Authorization: `Bearer ${token}`},
+    });
+    return response.data; // { success: true, data: { safetyScore, ... } }
   },
 };
 
