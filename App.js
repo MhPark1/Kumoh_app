@@ -123,6 +123,7 @@ const OptionStackNavigator = () => (
 // 하단 탭에는 SelectionStack과 History만 등록
 const MainTabNavigator = () => {
   const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
 
   useEffect(() => {
     const checkFirstLogin = async () => {
@@ -138,7 +139,41 @@ const MainTabNavigator = () => {
     checkFirstLogin();
   }, [navigation]);
 
-  const insets = useSafeAreaInsets();
+  const getTabBarStyle = route => {
+    const routeName = getFocusedRouteNameFromRoute(route);
+
+    // SelectionTab 안의 Stack 화면 이름들
+    const selectionHideScreens = [
+      'Gps',
+      'Camera',
+      'Analysis',
+      'Map',
+      'HelmetVerification',
+    ];
+
+    // OptionTab 안의 Stack 화면 이름들
+    const optionHideScreens = ['UserEdit', 'Guide'];
+
+    if (route.name === 'SelectionTab') {
+      const name = routeName ?? 'Selection';
+      if (selectionHideScreens.includes(name)) {
+        return {display: 'none'};
+      }
+    }
+
+    if (route.name === 'OptionTab') {
+      const name = routeName ?? 'Option';
+      if (optionHideScreens.includes(name)) {
+        return {display: 'none'};
+      }
+    }
+
+    // 기본 탭 스타일
+    return {
+      backgroundColor: '#fff',
+      paddingBottom: insets.bottom, // 하단 안전 영역 패딩 적용
+    };
+  };
 
   return (
     <Tab.Navigator
@@ -156,10 +191,7 @@ const MainTabNavigator = () => {
         },
         tabBarActiveTintColor: '#2563eb',
         tabBarInactiveTintColor: 'gray',
-        // tabBarStyle: {
-        //   backgroundColor: '#fff',
-        //   paddingBottom: insets.bottom, // 하단 안전 영역 패딩 적용
-        // },
+        tabBarStyle: getTabBarStyle(route),
         tabBarLabelStyle: {
           fontSize: 14, // 원하는 폰트 크기로 설정
           fontWeight: 'bold', // 필요하면 글씨 두께 설정 가능
@@ -168,29 +200,10 @@ const MainTabNavigator = () => {
       <Tab.Screen
         name="SelectionTab"
         component={SelectionStackNavigator}
-        options={({route}) => ({
+        options={{
           title: '홈',
           headerShown: false,
-          tabBarStyle: (route => {
-            const routeName = getFocusedRouteNameFromRoute(route);
-            const hideOnScreens = [
-              'Gps',
-              'Camera',
-              'Analysis',
-              'Map',
-              'HelmetVerification',
-            ];
-
-            if (hideOnScreens.includes(routeName)) {
-              return {display: 'none'}; // 5. 숨기기
-            }
-
-            return {
-              backgroundColor: '#fff',
-              paddingBottom: insets.bottom,
-            };
-          })(route),
-        })}
+        }}
       />
       <Tab.Screen
         name="History"
@@ -198,33 +211,15 @@ const MainTabNavigator = () => {
         options={{
           title: '이용 내역',
           headerShown: false,
-          tabBarStyle: {
-            backgroundColor: '#fff',
-            paddingBottom: insets.bottom,
-          },
         }}
       />
       <Tab.Screen
         name="OptionTab"
         component={OptionStackNavigator}
-        options={({route}) => ({
+        options={{
           title: '내 정보',
           headerShown: false,
-          tabBarStyle: (route => {
-            const routeName = getFocusedRouteNameFromRoute(route);
-
-            const hideOnScreens = ['UserEdit', 'Guide'];
-
-            if (hideOnScreens.includes(routeName)) {
-              return {display: 'none'};
-            }
-
-            return {
-              backgroundColor: '#fff',
-              paddingBottom: insets.bottom,
-            };
-          })(route),
-        })}
+        }}
       />
     </Tab.Navigator>
   );
