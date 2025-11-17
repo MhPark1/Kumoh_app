@@ -29,6 +29,7 @@ import UserEditScreen from './src/view/UserEditScreen';
 import MapScreen from './src/view/MapScreen';
 import HelmetVerificationScreen from './src/view/HelmetVerificationScreen';
 import RideSummaryScreen from './src/view/RideSummaryScreen';
+import QRScannerScreen from './src/view/QRScannerScreen';
 
 import {LogBox} from 'react-native';
 LogBox.ignoreLogs([
@@ -99,8 +100,14 @@ const SelectionStackNavigator = () => (
       component={RideSummaryScreen}
       options={{title: '주행 요약', headerShown: false}} // 헤더 숨김
     />
+    <SelectionStack.Screen
+      name="QRScanner"
+      component={QRScannerScreen}
+      options={{title: 'QR 스캔', headerShown: false}}
+    />
   </SelectionStack.Navigator>
 );
+
 const OptionStackNavigator = () => (
   <OptionStack.Navigator
     screenOptions={{
@@ -152,6 +159,7 @@ const MainTabNavigator = () => {
       'Analysis',
       'Map',
       'HelmetVerification',
+      'QRScanner',
     ];
 
     // OptionTab 안의 Stack 화면 이름들
