@@ -92,8 +92,8 @@ export default function AgreementScreen() {
       Alert.alert('입력 오류', '비밀번호를 입력해주세요.');
       return;
     }
-    if (password.length < 8) {
-      Alert.alert('입력 오류', '비밀번호는 8자 이상이어야 합니다.');
+    if (password.length < 3) {
+      Alert.alert('입력 오류', '비밀번호는 3자 이상이어야 합니다.');
       return;
     }
 
@@ -216,7 +216,7 @@ export default function AgreementScreen() {
                   <Text style={styles.label}>비밀번호</Text>
                   <Input
                     icon="lock-closed-outline"
-                    placeholder="비밀번호 (8자 이상)"
+                    placeholder="비밀번호 (3자 이상)"
                     placeholderTextColor={'#aaa'}
                     onChangeText={text => handleInputChange('password', text)}
                     secureTextEntry

@@ -9,7 +9,10 @@ import {
   SafeAreaProvider,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
-import {useNavigation} from '@react-navigation/native';
+import {
+  useNavigation,
+  getFocusedRouteNameFromRoute,
+} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {colors} from './src/component/constants/colors';
 
@@ -78,7 +81,7 @@ const SelectionStackNavigator = () => (
     <SelectionStack.Screen
       name="Analysis"
       component={Analysis}
-      options={{title: '이용 내역', gestureEnabled: false}}
+      options={{title: '운전 분석', gestureEnabled: false}}
     />
     <SelectionStack.Screen
       name="Map"
@@ -147,10 +150,10 @@ const MainTabNavigator = () => {
         },
         tabBarActiveTintColor: '#2563eb',
         tabBarInactiveTintColor: 'gray',
-        tabBarStyle: {
-          backgroundColor: '#fff',
-          paddingBottom: insets.bottom, // 하단 안전 영역 패딩 적용
-        },
+        // tabBarStyle: {
+        //   backgroundColor: '#fff',
+        //   paddingBottom: insets.bottom, // 하단 안전 영역 패딩 적용
+        // },
         tabBarLabelStyle: {
           fontSize: 14, // 원하는 폰트 크기로 설정
           fontWeight: 'bold', // 필요하면 글씨 두께 설정 가능
@@ -159,17 +162,63 @@ const MainTabNavigator = () => {
       <Tab.Screen
         name="SelectionTab"
         component={SelectionStackNavigator}
-        options={{title: '홈', headerShown: false}}
+        options={({route}) => ({
+          title: '홈',
+          headerShown: false,
+          tabBarStyle: (route => {
+            const routeName = getFocusedRouteNameFromRoute(route);
+            const hideOnScreens = [
+              'Gps',
+              'Camera',
+              'Analysis',
+              'Map',
+              'HelmetVerification',
+            ];
+
+            if (hideOnScreens.includes(routeName)) {
+              return {display: 'none'}; // 5. 숨기기
+            }
+
+            return {
+              backgroundColor: '#fff',
+              paddingBottom: insets.bottom,
+            };
+          })(route),
+        })}
       />
       <Tab.Screen
         name="History"
         component={HistoryScreen}
-        options={{title: '이용 내역', headerShown: false}}
+        options={{
+          title: '이용 내역',
+          headerShown: false,
+          tabBarStyle: {
+            backgroundColor: '#fff',
+            paddingBottom: insets.bottom,
+          },
+        }}
       />
       <Tab.Screen
         name="OptionTab"
         component={OptionStackNavigator}
-        options={{title: '내 정보', headerShown: false}}
+        options={({route}) => ({
+          title: '내 정보',
+          headerShown: false,
+          tabBarStyle: (route => {
+            const routeName = getFocusedRouteNameFromRoute(route);
+
+            const hideOnScreens = ['UserEdit', 'Guide'];
+
+            if (hideOnScreens.includes(routeName)) {
+              return {display: 'none'};
+            }
+
+            return {
+              backgroundColor: '#fff',
+              paddingBottom: insets.bottom,
+            };
+          })(route),
+        })}
       />
     </Tab.Navigator>
   );

@@ -157,11 +157,15 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 20,
     paddingVertical: 15,
-    backgroundColor: colors.white,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border,
+    // backgroundColor: colors.white,
+    // borderBottomWidth: 1,
+    // borderBottomColor: colors.border,
   },
-  headerTitle: {fontSize: 24, fontWeight: 'bold', color: '#111827'},
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#4b5563',
+  },
   statsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',

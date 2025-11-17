@@ -165,7 +165,7 @@ export default function OptionScreen({navigation}) {
             onPress={() => Alert.alert('준비 중', '기능 준비 중입니다.')}
           />
           <MenuItem
-            icon="receipt-outline"
+            icon="time-outline" //receipt-outline
             label="이용 내역"
             onPress={() => navigation.navigate('History')}
             isLast
@@ -238,14 +238,14 @@ const styles = StyleSheet.create({
   header: {
     paddingHorizontal: 20,
     paddingVertical: 15,
-    backgroundColor: colors.white,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.border,
+    // backgroundColor: colors.white,
+    // borderBottomWidth: 1,
+    // borderBottomColor: colors.border,
   },
   headerTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#111827',
+    color: '#4b5563',
   },
   scrollContent: {
     padding: 16,

@@ -44,8 +44,8 @@ export default function UserEditScreen() {
       return;
     }
 
-    if (newPassword && newPassword.length < 8) {
-      Alert.alert('입력 오류', '새 비밀번호는 8자 이상이어야 합니다.');
+    if (newPassword && newPassword.length < 3) {
+      Alert.alert('입력 오류', '새 비밀번호는 3자 이상이어야 합니다.');
       return;
     }
 
@@ -57,14 +57,23 @@ export default function UserEditScreen() {
       return;
     }
 
+    if (currentPassword && !newPassword) {
+      Alert.alert('입력 오류', '새 비밀번호를 입력해주세요.');
+      return;
+    }
+
     try {
       const payload = {
         nickname,
-        currentPassword: currentPassword || null,
-        newPassword: newPassword || null,
       };
 
-      const response = await Api.updateMyInfo(payload);
+      // 비밀번호 필드가 둘 다 채워진 경우에만 payload에 추가
+      if (currentPassword && newPassword) {
+        payload.currentPassword = currentPassword;
+        payload.newPassword = newPassword;
+      }
+
+      const response = await Api.updateMyInfo(payload, navigation); //임시 Api명, 추후 수정 필요
 
       if (response.success) {
         updateUser(response.user);
@@ -80,7 +89,7 @@ export default function UserEditScreen() {
       }
     } catch (error) {
       console.error('User update error:', error);
-      Alert.alert('오류', '정보 수정 중 문제가 발생했습니다.');
+      Alert.alert('오류', message);
     }
   };
 
@@ -94,7 +103,7 @@ export default function UserEditScreen() {
           style={styles.keyboardView}>
           <ScrollView contentContainerStyle={styles.scrollContent}>
             <View style={styles.header}>
-              <Text style={styles.subtitle}>내 정보 수정</Text>
+              <Text style={styles.subtitle}>회원 정보 수정</Text>
             </View>
 
             <Card style={styles.card}>
@@ -128,7 +137,7 @@ export default function UserEditScreen() {
                     icon="lock-closed-outline"
                     secureTextEntry
                     value={form.newPassword}
-                    placeholder="새 비밀번호 (8자 이상)"
+                    placeholder="새 비밀번호 (3자 이상)"
                     placeholderTextColor="#aaa"
                     onChangeText={text => handleChange('newPassword', text)}
                   />
@@ -142,7 +151,7 @@ export default function UserEditScreen() {
               style={styles.backButton}
               onPress={() => navigation.goBack()}>
               <Ionicons name="arrow-back" size={20} color={colors.white} />
-              <Text style={styles.backText}>뒤로가기</Text>
+              <Text style={styles.backText}>돌아가기</Text>
             </TouchableOpacity>
           </ScrollView>
         </KeyboardAvoidingView>
