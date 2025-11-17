@@ -9,65 +9,42 @@ import {
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import Api from '../api/ApiUtils';
 import {useFocusEffect} from '@react-navigation/native';
 
 export default function AnalysisScreen({navigation}) {
   const [selectedTab, setSelectedTab] = useState('overview');
   const [loading, setLoading] = useState(true);
-  const [userData, setUserData] = useState(null);
-  const [statsData, setStatsData] = useState(null);
+
+  // [수정] API 응답 전체를 담을 상태
+  const [analysisData, setAnalysisData] = useState(null);
 
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-
-      // 사용자 정보 가져오기
-      const userResponse = await Api.getMainScreenData(
-        {user_id: await AsyncStorage.getItem('user_id')},
-        navigation,
-      );
-      const userInfo = JSON.parse(userResponse.data);
-
-      // 감점 요인 통계 가져오기
-      const statsResponse = await Api.getHistoryByPeriod(
-        {
-          user_id: await AsyncStorage.getItem('user_id'),
-          start_date: new Date(new Date().setMonth(new Date().getMonth() - 1))
-            .toISOString()
-            .split('T')[0],
-          end_date: new Date().toISOString().split('T')[0],
-        },
-        navigation,
-      );
-      const stats = JSON.parse(statsResponse.data);
-
-      setUserData(userInfo);
-      setStatsData(stats);
+      // [수정] 운전 분석 전용 API 호출
+      const response = await Api.getAnalysisStats(navigation);
+      if (response && response.success) {
+        setAnalysisData(response.data);
+      } else {
+        setAnalysisData(null);
+      }
     } catch (error) {
-      console.error('데이터 로드 실패:', error);
+      console.error('분석 데이터 로드 실패:', error);
+      setAnalysisData(null);
     } finally {
       setLoading(false);
     }
-  }, [navigation]); // navigation이 바뀔 때만 함수 재생성
+  }, [navigation]);
 
-  // [수정 2] 의존성 배열에 fetchData 추가
-  // (주의: 사실 useFocusEffect가 있으면 이 useEffect는 불필요합니다. 아래 팁 참고)
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
-  // [수정 3] useFocusEffect 내부의 useCallback 의존성에도 fetchData 추가
   useFocusEffect(
-    React.useCallback(() => {
+    useCallback(() => {
       fetchData();
     }, [fetchData]),
   );
 
-  const safetyScore = Math.round(userData?.average_final_score ?? 0);
-  const previousScore = 88; // 이전 점수는 별도 API 필요
-  const scoreChange = safetyScore - previousScore;
+  // [수정] analysisData에서 안전 점수 가져오기
+  const safetyScore = Math.round(analysisData?.safetyScore ?? 0);
 
   if (loading) {
     return (
@@ -83,13 +60,15 @@ export default function AnalysisScreen({navigation}) {
   const renderTabContent = () => {
     switch (selectedTab) {
       case 'overview':
-        return <OverviewTab />;
+        // [수정] OverviewTab에 analysisData 전달
+        return <OverviewTab data={analysisData} />;
       case 'details':
-        return <DetailsTab />;
+        // [수정] DetailsTab에 analysisData 전달
+        return <DetailsTab data={analysisData} />;
       case 'tips':
         return <TipsTab />;
       default:
-        return <OverviewTab />;
+        return <OverviewTab data={analysisData} />;
     }
   };
 
@@ -99,10 +78,8 @@ export default function AnalysisScreen({navigation}) {
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}>
-        {/* Header */}
-        {/* <Text style={styles.header}>운전 분석</Text> */}
+        <Text style={styles.header}>운전 분석</Text>
 
-        {/* Safety Score Card */}
         <View style={styles.scoreCard}>
           <View style={styles.scoreHeader}>
             <View>
@@ -116,19 +93,6 @@ export default function AnalysisScreen({navigation}) {
               <Icon name="shield-checkmark" size={32} color="#ffffff" />
             </View>
           </View>
-
-          <View style={styles.scoreTrend}>
-            <Icon
-              name={scoreChange > 0 ? 'trending-up' : 'trending-down'}
-              size={16}
-              color={scoreChange > 0 ? '#dcfce7' : '#fecaca'}
-            />
-            <Text style={styles.scoreTrendText}>
-              지난주 대비 {scoreChange > 0 ? '+' : ''}
-              {scoreChange}점 {scoreChange > 0 ? '상승' : '하락'}
-            </Text>
-          </View>
-
           <View style={styles.progressBar}>
             <View style={[styles.progressFill, {width: `${safetyScore}%`}]} />
           </View>
@@ -178,8 +142,26 @@ export default function AnalysisScreen({navigation}) {
   );
 }
 
-// Overview Tab
-function OverviewTab() {
+// Overview Tab (실제 데이터 연동)
+function OverviewTab({data}) {
+  let averageSpeed = 0;
+  if (data && data.totalDuration > 0) {
+    // API 명세서 키: totalDistance / (totalDuration / 60)
+    averageSpeed = data.totalDistance / (data.totalDuration / 60);
+  }
+
+  const totalRides = data?.totalRides || 0;
+  const helmetOffCount = data?.helmetOffCount || 0;
+  const helmetRate =
+    totalRides > 0
+      ? Math.max(0, ((totalRides - helmetOffCount) / totalRides) * 100)
+      : 100;
+
+  // API 명세서 키: riskCounts
+  const totalRisks = data?.riskCounts
+    ? Object.values(data.riskCounts).reduce((acc, val) => acc + val, 0)
+    : 0;
+
   return (
     <View style={styles.tabContent}>
       <View style={styles.overviewGrid}>
@@ -190,9 +172,8 @@ function OverviewTab() {
             color="#16a34a"
             style={styles.overviewIcon}
           />
-          <Text style={styles.overviewLabel}>안전 주행</Text>
-          <Text style={styles.overviewValue}>47회</Text>
-          <Text style={styles.overviewChange}>+5회</Text>
+          <Text style={styles.overviewLabel}>총 주행 횟수</Text>
+          <Text style={styles.overviewValue}>{totalRides}회</Text>
         </View>
 
         <View style={styles.overviewCard}>
@@ -202,9 +183,8 @@ function OverviewTab() {
             color="#ea580c"
             style={styles.overviewIcon}
           />
-          <Text style={styles.overviewLabel}>주의 필요</Text>
-          <Text style={styles.overviewValue}>3회</Text>
-          <Text style={styles.overviewChange}>-1회</Text>
+          <Text style={styles.overviewLabel}>총 위험 감지</Text>
+          <Text style={styles.overviewValue}>{totalRisks}회</Text>
         </View>
 
         <View style={styles.overviewCard}>
@@ -215,8 +195,7 @@ function OverviewTab() {
             style={styles.overviewIcon}
           />
           <Text style={styles.overviewLabel}>헬멧 착용률</Text>
-          <Text style={styles.overviewValue}>98%</Text>
-          <Text style={styles.overviewChange}>+2%</Text>
+          <Text style={styles.overviewValue}>{helmetRate.toFixed(0)}%</Text>
         </View>
 
         <View style={styles.overviewCard}>
@@ -227,103 +206,113 @@ function OverviewTab() {
             style={styles.overviewIcon}
           />
           <Text style={styles.overviewLabel}>평균 속도</Text>
-          <Text style={styles.overviewValue}>18km/h</Text>
-          <Text style={styles.overviewSubtext}>적정 범위</Text>
+          <Text style={styles.overviewValue}>
+            {averageSpeed.toFixed(1)} km/h
+          </Text>
+          <Text style={styles.overviewSubtext}>전체 주행 기준</Text>
         </View>
       </View>
     </View>
   );
 }
 
-// Details Tab
-function DetailsTab() {
+// Details Tab (실제 데이터 연동)
+function DetailsTab({data}) {
+  const totalMinutes = data?.totalDuration || 0;
+  const hours = Math.floor(totalMinutes / 60);
+  const minutes = totalMinutes % 60;
+  const formattedDuration =
+    hours > 0 ? `${hours}시간 ${minutes}분` : `${minutes}분`;
+
+  // API 명세서 키: data.riskCounts
+  const riskStats = data?.riskCounts || {};
+
   return (
     <View style={styles.tabContent}>
       <View style={styles.detailCard}>
-        <Text style={styles.detailTitle}>월간 운전 패턴</Text>
-
+        <Text style={styles.detailTitle}>누적 운전 패턴</Text>
         <View style={styles.detailRow}>
           <View style={[styles.detailIcon, {backgroundColor: '#dbeafe'}]}>
             <Icon name="map" size={20} color="#2563eb" />
           </View>
           <View style={styles.detailInfo}>
             <Text style={styles.detailLabel}>전체 운전거리</Text>
-            <Text style={styles.detailValue}>95.4 km</Text>
+            <Text style={styles.detailValue}>
+              {data?.totalDistance || 0} km
+            </Text>
           </View>
         </View>
-
-        <View style={styles.detailRow}>
-          <View style={[styles.detailIcon, {backgroundColor: '#f3e8ff'}]}>
-            <Icon name="moon" size={20} color="#9333ea" />
-          </View>
-          <View style={styles.detailInfo}>
-            <Text style={styles.detailLabel}>야간 운전거리</Text>
-            <Text style={styles.detailValue}>18.2 km</Text>
-          </View>
-        </View>
-
         <View style={styles.detailRow}>
           <View style={[styles.detailIcon, {backgroundColor: '#dcfce7'}]}>
             <Icon name="time" size={20} color="#16a34a" />
           </View>
           <View style={styles.detailInfo}>
             <Text style={styles.detailLabel}>전체 운전시간</Text>
-            <Text style={styles.detailValue}>4시간 5분</Text>
+            <Text style={styles.detailValue}>{formattedDuration}</Text>
           </View>
         </View>
+      </View>
+
+      <View style={styles.detailCard}>
+        <Text style={styles.detailTitle}>감지된 위험 항목</Text>
 
         <View style={styles.detailRow}>
-          <View style={[styles.detailIcon, {backgroundColor: '#fee2e2'}]}>
-            <Icon name="warning" size={20} color="#dc2626" />
+          <View style={[styles.detailIcon, {backgroundColor: '#fef3c7'}]}>
+            <Icon name="rocket-outline" size={20} color="#f59e0b" />
           </View>
           <View style={styles.detailInfo}>
-            <Text style={styles.detailLabel}>급감속</Text>
-            <Text style={styles.detailValue}>3 회</Text>
+            <Text style={styles.detailLabel}>급출발</Text>
+            <Text style={styles.detailValue}>
+              {riskStats.sudden_start || 0} 회
+            </Text>
           </View>
         </View>
 
         <View style={styles.detailRow}>
           <View style={[styles.detailIcon, {backgroundColor: '#fef3c7'}]}>
-            <Icon name="speedometer" size={20} color="#f59e0b" />
+            <Icon name="speedometer-outline" size={20} color="#f59e0b" />
           </View>
           <View style={styles.detailInfo}>
             <Text style={styles.detailLabel}>급가속</Text>
-            <Text style={styles.detailValue}>5 회</Text>
-          </View>
-        </View>
-      </View>
-
-      {/* Recent Issues */}
-      <View style={styles.detailCard}>
-        <Text style={styles.detailTitle}>최근 이슈</Text>
-
-        <View style={styles.issueItem}>
-          <View style={[styles.issueIcon, {backgroundColor: '#fed7aa'}]}>
-            <Icon name="warning" size={16} color="#ea580c" />
-          </View>
-          <View style={styles.issueInfo}>
-            <Text style={styles.issueText}>급제동 감지</Text>
-            <Text style={styles.issueTime}>2025-11-04 14:23</Text>
+            <Text style={styles.detailValue}>
+              {riskStats.sudden_accel || 0} 회
+            </Text>
           </View>
         </View>
 
-        <View style={styles.issueItem}>
-          <View style={[styles.issueIcon, {backgroundColor: '#bbf7d0'}]}>
-            <Icon name="checkmark-circle" size={16} color="#16a34a" />
+        <View style={styles.detailRow}>
+          <View style={[styles.detailIcon, {backgroundColor: '#fee2e2'}]}>
+            <Icon name="stop-circle-outline" size={20} color="#dc2626" />
           </View>
-          <View style={styles.issueInfo}>
-            <Text style={styles.issueText}>안전 주행 완료</Text>
-            <Text style={styles.issueTime}>2025-11-03 18:45</Text>
+          <View style={styles.detailInfo}>
+            <Text style={styles.detailLabel}>급정지</Text>
+            <Text style={styles.detailValue}>
+              {riskStats.sudden_stop || 0} 회
+            </Text>
           </View>
         </View>
 
-        <View style={styles.issueItem}>
-          <View style={[styles.issueIcon, {backgroundColor: '#bfdbfe'}]}>
-            <Icon name="medal" size={16} color="#2563eb" />
+        <View style={styles.detailRow}>
+          <View style={[styles.detailIcon, {backgroundColor: '#fee2e2'}]}>
+            <Icon name="warning-outline" size={20} color="#dc2626" />
           </View>
-          <View style={styles.issueInfo}>
-            <Text style={styles.issueText}>안전 배지 획득</Text>
-            <Text style={styles.issueTime}>2025-11-02 12:20</Text>
+          <View style={styles.detailInfo}>
+            <Text style={styles.detailLabel}>급감속</Text>
+            <Text style={styles.detailValue}>
+              {riskStats.sudden_decel || 0} 회
+            </Text>
+          </View>
+        </View>
+
+        <View style={styles.detailRow}>
+          <View style={[styles.detailIcon, {backgroundColor: '#f3e8ff'}]}>
+            <Icon name="refresh-outline" size={20} color="#9333ea" />
+          </View>
+          <View style={styles.detailInfo}>
+            <Text style={styles.detailLabel}>급회전</Text>
+            <Text style={styles.detailValue}>
+              {riskStats.sudden_turn || 0} 회
+            </Text>
           </View>
         </View>
       </View>
@@ -331,7 +320,7 @@ function DetailsTab() {
   );
 }
 
-// Tips Tab
+// Tips Tab (팁 보강됨)
 function TipsTab() {
   return (
     <View style={styles.tabContent}>
@@ -345,27 +334,10 @@ function TipsTab() {
             <Text style={styles.tipEmoji}>💡</Text>
           </View>
           <View style={styles.tipTextContainer}>
-            <Text style={styles.tipTitle}>속도 조절</Text>
+            <Text style={styles.tipTitle}>부드러운 출발/정지</Text>
             <Text style={styles.tipDescription}>
-              급가속과 급제동을 피하고 일정한 속도를 유지하세요.
-            </Text>
-          </View>
-        </View>
-      </View>
-
-      <View
-        style={[
-          styles.tipCard,
-          {backgroundColor: '#f0fdf4', borderColor: '#bbf7d0'},
-        ]}>
-        <View style={styles.tipHeader}>
-          <View style={styles.tipIconContainer}>
-            <Text style={styles.tipEmoji}>✅</Text>
-          </View>
-          <View style={styles.tipTextContainer}>
-            <Text style={styles.tipTitle}>올바른 주차</Text>
-            <Text style={styles.tipDescription}>
-              지정된 주차 구역에만 킥보드를 반납해주세요.
+              급가속과 급제동은 배터리 소모가 크고 위험합니다. 스로틀을 천천히
+              당기고, 브레이크를 미리 예측하여 부드럽게 잡으세요.
             </Text>
           </View>
         </View>
@@ -378,12 +350,32 @@ function TipsTab() {
         ]}>
         <View style={styles.tipHeader}>
           <View style={styles.tipIconContainer}>
-            <Text style={styles.tipEmoji}>🛣️</Text>
+            <Text style={styles.tipEmoji}>🔄</Text>
           </View>
           <View style={styles.tipTextContainer}>
-            <Text style={styles.tipTitle}>도로 규칙 준수</Text>
+            <Text style={styles.tipTitle}>급회전 주의</Text>
             <Text style={styles.tipDescription}>
-              자전거 도로를 이용하고 인도 주행을 피해주세요.
+              코너를 돌기 전 속도를 충분히 줄이세요. 방향 전환 시 무게중심을
+              급격히 옮기면 미끄러질 수 있습니다.
+            </Text>
+          </View>
+        </View>
+      </View>
+
+      <View
+        style={[
+          styles.tipCard,
+          {backgroundColor: '#f0fdf4', borderColor: '#bbf7d0'},
+        ]}>
+        <View style={styles.tipHeader}>
+          <View style={styles.tipIconContainer}>
+            <Text style={styles.tipEmoji}>🚦</Text>
+          </View>
+          <View style={styles.tipTextContainer}>
+            <Text style={styles.tipTitle}>안전거리 유지</Text>
+            <Text style={styles.tipDescription}>
+              앞차나 보행자와의 거리를 충분히 유지하면 돌발 상황에 대처할 시간을
+              확보하여 급정지를 예방할 수 있습니다.
             </Text>
           </View>
         </View>
@@ -396,12 +388,32 @@ function TipsTab() {
         ]}>
         <View style={styles.tipHeader}>
           <View style={styles.tipIconContainer}>
-            <Text style={styles.tipEmoji}>⚡</Text>
+            <Text style={styles.tipEmoji}>⛑️</Text>
           </View>
           <View style={styles.tipTextContainer}>
-            <Text style={styles.tipTitle}>안전 장비</Text>
+            <Text style={styles.tipTitle}>헬멧 턱끈 조절</Text>
             <Text style={styles.tipDescription}>
-              헬멧 착용은 필수! 안전을 최우선으로 생각하세요.
+              헬멧을 쓰는 것만큼 턱끈을 알맞게 조이는 것이 중요합니다. 사고 시
+              헬멧이 벗겨지지 않도록 손가락 한두 개가 들어갈 정도로 조이세요.
+            </Text>
+          </View>
+        </View>
+      </View>
+
+      <View
+        style={[
+          styles.tipCard,
+          {backgroundColor: '#fef2f2', borderColor: '#fecaca'},
+        ]}>
+        <View style={styles.tipHeader}>
+          <View style={styles.tipIconContainer}>
+            <Text style={styles.tipEmoji}>🛣️</Text>
+          </View>
+          <View style={styles.tipTextContainer}>
+            <Text style={styles.tipTitle}>도로 규칙 준수</Text>
+            <Text style={styles.tipDescription}>
+              자전거 도로를 이용하고 인도 주행을 피해주세요. 차도에서는 항상
+              우측 가장자리로 주행해야 합니다.
             </Text>
           </View>
         </View>
@@ -410,10 +422,20 @@ function TipsTab() {
   );
 }
 
+// (Styles 코드는 이전 답변과 동일하게 유지)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f9fafb',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    marginTop: 10,
+    color: '#6b7280',
   },
   scrollView: {
     flex: 1,
@@ -428,8 +450,6 @@ const styles = StyleSheet.create({
     color: '#111827',
     marginBottom: 16,
   },
-
-  // Score Card
   scoreCard: {
     backgroundColor: '#16a34a',
     borderRadius: 12,
@@ -475,29 +495,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  scoreTrend: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-    marginBottom: 8,
-  },
-  scoreTrendText: {
-    fontSize: 14,
-    color: '#dcfce7',
-  },
   progressBar: {
     height: 8,
     backgroundColor: 'rgba(255, 255, 255, 0.3)',
     borderRadius: 4,
     overflow: 'hidden',
+    marginTop: 8,
   },
   progressFill: {
     height: '100%',
     backgroundColor: '#ffffff',
     borderRadius: 4,
   },
-
-  // Tabs
   tabContainer: {
     flexDirection: 'row',
     backgroundColor: '#ffffff',
@@ -527,13 +536,9 @@ const styles = StyleSheet.create({
   activeTabText: {
     color: '#2563eb',
   },
-
-  // Tab Content
   tabContent: {
     marginBottom: 24,
   },
-
-  // Overview
   overviewGrid: {
     flexDirection: 'row',
     flexWrap: 'wrap',
@@ -564,16 +569,10 @@ const styles = StyleSheet.create({
     color: '#111827',
     marginBottom: 4,
   },
-  overviewChange: {
-    fontSize: 12,
-    color: '#16a34a',
-  },
   overviewSubtext: {
     fontSize: 12,
     color: '#6b7280',
   },
-
-  // Details
   detailCard: {
     backgroundColor: '#ffffff',
     borderRadius: 12,
@@ -620,35 +619,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#111827',
   },
-
-  // Issues
-  issueItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 12,
-    marginBottom: 12,
-  },
-  issueIcon: {
-    width: 32,
-    height: 32,
-    borderRadius: 16,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  issueInfo: {
-    flex: 1,
-  },
-  issueText: {
-    fontSize: 14,
-    color: '#111827',
-    marginBottom: 2,
-  },
-  issueTime: {
-    fontSize: 12,
-    color: '#6b7280',
-  },
-
-  // Tips
   tipCard: {
     borderRadius: 12,
     padding: 16,
