@@ -48,9 +48,17 @@ export default function RideSummaryScreen({route, navigation}) {
     // 확인 버튼 클릭 시, 스택을 초기화하고 'History' 탭으로 이동
     navigation.reset({
       index: 0,
-      routes: [{name: 'MainTabs'}], // MainScreen(Selection)이 포함된 탭 네비게이터 이름
+      routes: [
+        {
+          name: 'Selection', // 1. 메인 탭 네비게이터 이름 (MainScreen.js가 포함된)
+          state: {
+            routes: [
+              {name: 'History'}, // 2. 그 안에서 활성화할 탭 스크린 이름
+            ],
+          },
+        },
+      ],
     });
-    navigation.navigate('History');
   };
 
   return (

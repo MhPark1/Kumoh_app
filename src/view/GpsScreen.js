@@ -266,12 +266,6 @@ export default function GpsScreen({route, navigation}) {
           {
             text: '확인',
             onPress: () => {
-              // 3. [수정] 스택 초기화 및 요약 화면으로 이동
-              navigation.reset({
-                index: 0,
-                routes: [{name: 'MainTabs'}], // 'MainTabs' 또는 메인 탭 네비게이터 이름
-              });
-
               navigation.navigate('RideSummary', {
                 result: response.data, // 서버가 준 최종 영수증 (score, fare, distance, duration)
                 riskCounts: riskCounts, // 앱이 방금 계산한 위험 횟수
