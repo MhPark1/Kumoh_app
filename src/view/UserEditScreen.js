@@ -89,6 +89,11 @@ export default function UserEditScreen() {
       }
     } catch (error) {
       console.error('User update error:', error);
+      const message =
+        error.message ||
+        error.error?.message ||
+        '정보 수정 중 문제가 발생했습니다.';
+
       Alert.alert('오류', message);
     }
   };
@@ -102,9 +107,9 @@ export default function UserEditScreen() {
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={styles.keyboardView}>
           <ScrollView contentContainerStyle={styles.scrollContent}>
-            <View style={styles.header}>
+            {/* <View style={styles.header}>
               <Text style={styles.subtitle}>회원 정보 수정</Text>
-            </View>
+            </View> */}
 
             <Card style={styles.card}>
               <View style={styles.form}>

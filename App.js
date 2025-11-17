@@ -97,12 +97,15 @@ const SelectionStackNavigator = () => (
     <SelectionStack.Screen
       name="RideSummary"
       component={RideSummaryScreen}
-      options={{headerShown: false}} // 헤더 숨김
+      options={{title: '주행 요약', headerShown: false}} // 헤더 숨김
     />
   </SelectionStack.Navigator>
 );
 const OptionStackNavigator = () => (
-  <OptionStack.Navigator>
+  <OptionStack.Navigator
+    screenOptions={{
+      headerTintColor: colors.primary,
+    }}>
     <OptionStack.Screen
       name="Option"
       component={OptionScreen}
@@ -111,12 +114,12 @@ const OptionStackNavigator = () => (
     <OptionStack.Screen
       name="UserEdit"
       component={UserEditScreen}
-      options={{title: '회원 정보 수정', headerShown: false}}
+      options={{title: '회원 정보 수정'}}
     />
     <OptionStack.Screen
       name="Guide"
       component={GuideScreen}
-      options={{title: '주행 가이드', headerShown: false}}
+      options={{title: '주행 가이드'}}
     />
   </OptionStack.Navigator>
 );
