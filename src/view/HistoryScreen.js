@@ -132,14 +132,34 @@ export default function HistoryScreen() {
         {/* 상단 통계 카드 */}
         <View style={styles.statsContainer}>
           <View style={styles.statCard}>
+            <Ionicons
+              name="flash-outline" // 총 이용 아이콘, leaf-outline
+              size={22}
+              color={colors.info}
+              style={styles.statIcon}
+            />
             <Text style={styles.statLabel}>총 이용</Text>
             <Text style={styles.statValue}>{totalRides}회</Text>
           </View>
+
           <View style={styles.statCard}>
+            <Ionicons
+              name="navigate-outline" // 총 거리 아이콘
+              size={22}
+              color={colors.success}
+              style={styles.statIcon}
+            />
             <Text style={styles.statLabel}>총 거리</Text>
             <Text style={styles.statValue}>{totalDist.toFixed(1)}km</Text>
           </View>
+
           <View style={styles.statCard}>
+            <Ionicons
+              name="card-outline" // 총 금액 아이콘,
+              size={22}
+              color={colors.purple600}
+              style={styles.statIcon}
+            />
             <Text style={styles.statLabel}>총 금액</Text>
             <Text style={styles.statValue}>₩{totalCost.toLocaleString()}</Text>
           </View>
@@ -197,6 +217,9 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     marginHorizontal: 4,
+  },
+  statIcon: {
+    marginBottom: 6,
   },
   statLabel: {color: '#666', marginBottom: 5},
   statValue: {fontWeight: 'bold', fontSize: 16},

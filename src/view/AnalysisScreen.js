@@ -78,7 +78,7 @@ export default function AnalysisScreen({navigation}) {
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}>
-        <Text style={styles.header}>운전 분석</Text>
+        {/* <Text style={styles.header}>운전 분석</Text> */}
 
         <View style={styles.scoreCard}>
           <View style={styles.scoreHeader}>
