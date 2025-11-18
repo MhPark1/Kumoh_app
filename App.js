@@ -39,6 +39,7 @@ LogBox.ignoreLogs([
 const AuthStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const SelectionStack = createStackNavigator();
+const HistoryStack = createStackNavigator();
 const OptionStack = createStackNavigator();
 
 const AuthNavigator = () => (
@@ -96,16 +97,29 @@ const SelectionStackNavigator = () => (
       options={{title: '헬멧 인증', headerShown: false}}
     />
     <SelectionStack.Screen
-      name="RideSummary"
-      component={RideSummaryScreen}
-      options={{title: '주행 요약', headerShown: false}} // 헤더 숨김
-    />
-    <SelectionStack.Screen
       name="QRScanner"
       component={QRScannerScreen}
       options={{title: 'QR 스캔', headerShown: false}}
     />
   </SelectionStack.Navigator>
+);
+
+const HistoryStackNavigator = () => (
+  <HistoryStack.Navigator
+    screenOptions={{
+      headerTintColor: colors.primary,
+    }}>
+    <HistoryStack.Screen
+      name="History"
+      component={HistoryScreen}
+      options={{title: '이용 내역', headerShown: false}}
+    />
+    <HistoryStack.Screen
+      name="RideSummary"
+      component={RideSummaryScreen}
+      options={{title: '주행 요약', headerShown: false}}
+    />
+  </HistoryStack.Navigator>
 );
 
 const OptionStackNavigator = () => (
@@ -162,12 +176,21 @@ const MainTabNavigator = () => {
       'QRScanner',
     ];
 
+    const historyHideScreens = ['RideSummary'];
+
     // OptionTab 안의 Stack 화면 이름들
     const optionHideScreens = ['UserEdit', 'Guide'];
 
     if (route.name === 'SelectionTab') {
       const name = routeName ?? 'Selection';
       if (selectionHideScreens.includes(name)) {
+        return {display: 'none'};
+      }
+    }
+
+    if (route.name === 'HistoryTab') {
+      const name = routeName ?? 'History';
+      if (historyHideScreens.includes(name)) {
         return {display: 'none'};
       }
     }
@@ -193,7 +216,7 @@ const MainTabNavigator = () => {
           let iconName;
           if (route.name === 'SelectionTab') {
             iconName = 'home-outline'; //home
-          } else if (route.name === 'History') {
+          } else if (route.name === 'HistoryTab') {
             iconName = 'time-outline'; //time
           } else if (route.name === 'OptionTab') {
             iconName = 'person-circle-outline'; //person-circle
@@ -217,8 +240,8 @@ const MainTabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="History"
-        component={HistoryScreen}
+        name="HistoryTab"
+        component={HistoryStackNavigator}
         options={{
           title: '이용 내역',
           headerShown: false,
