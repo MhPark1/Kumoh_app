@@ -123,7 +123,8 @@ export default function HomeScreen({navigation}) {
 
           <TouchableOpacity
             style={[styles.actionCard, styles.qrCard]}
-            onPress={() => setShowQRScanner(true)}>
+            // [수정] 모달을 띄우는 대신 'QRScanner' 스크린으로 바로 이동
+            onPress={() => navigation.navigate('QRScanner')}>
             <View style={styles.actionIconContainer}>
               <View style={[styles.actionIcon, {backgroundColor: '#2563eb'}]}>
                 <Ionicons name="qr-code-outline" size={28} color="#ffffff" />
@@ -204,42 +205,6 @@ export default function HomeScreen({navigation}) {
           </TouchableOpacity>
         </View>
       </ScrollView>
-
-      {/* QR Scanner Modal */}
-      <Modal
-        visible={showQRScanner}
-        animationType="slide"
-        transparent={true}
-        onRequestClose={() => setShowQRScanner(false)}>
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>QR 코드 스캔</Text>
-            <Text style={styles.modalDescription}>
-              킥보드의 QR 코드를 스캔해주세요
-            </Text>
-            <View style={styles.qrPlaceholder}>
-              <Ionicons name="qr-code-outline" size={96} color="#9ca3af" />
-            </View>
-
-            <TouchableOpacity
-              style={{marginTop: 10, marginBottom: 20}}
-              onPress={() => {
-                setShowQRScanner(false);
-                navigation.navigate('Camera');
-              }}>
-              <Text style={{color: '#2563eb', fontWeight: 'bold'}}>
-                (임시) 스캔 완료했다고 가정하고 이동
-              </Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.closeButton}
-              onPress={() => setShowQRScanner(false)}>
-              <Text style={styles.closeButtonText}>닫기</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
     </SafeAreaView>
   );
 }
