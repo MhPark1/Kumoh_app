@@ -1,29 +1,46 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react'; // ★ useEffect 추가
 import {
   View,
   Text,
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  ActivityIndicator, // ★ 추가
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors} from '../component/constants/colors';
 import {Card} from '../component/Card';
 import {Button} from '../component/Button';
+import Api from '../api/ApiUtils'; // ★ API 호출을 위해 추가
+import {CommonActions} from '@react-navigation/native';
 
-// 헬퍼 함수: 분을 'X시간 Y분' 또는 'Y분'으로 변환
 const formatDuration = totalMinutes => {
-  if (!totalMinutes || totalMinutes === 0) return '0분';
+  // ★ [수정]
+  // totalMinutes가 0 (즉, 1분 미만 주행)일 경우 '1분'으로 표시
+  if (totalMinutes === 0) {
+    return '1분';
+  }
+
+  // (방어 코드) null 또는 undefined인 경우 0분 표시
+  if (!totalMinutes) {
+    return '0분';
+  }
+
+  // 1분 이상일 경우
   const hours = Math.floor(totalMinutes / 60);
   const minutes = totalMinutes % 60;
+
+  // 60분, 120분 등 딱 떨어질 때 '0분' 제거
+  if (hours > 0 && minutes === 0) {
+    return `${hours}시간`;
+  }
   if (hours > 0) {
     return `${hours}시간 ${minutes}분`;
   }
+
   return `${minutes}분`;
 };
-
-// 헬퍼 함수: 위험 항목 텍스트 매핑
 const riskTypeToLabel = {
   sudden_start: '급출발',
   sudden_accel: '급가속',
@@ -33,40 +50,111 @@ const riskTypeToLabel = {
 };
 
 export default function RideSummaryScreen({route, navigation}) {
-  // GpsScreen에서 보낸 두 개의 파라미터를 받습니다.
-  const {result, riskCounts, isHelmet} = route.params || {};
+  // GpsScreen에서 오면: { result, riskCounts, isHelmet }
+  // HistoryScreen에서 오면: { ride_id }
+  const {result, riskCounts, isHelmet, ride_id} = route.params || {};
 
-  // GpsScreen에서 받은 위험 항목 횟수
-  const risks = riskCounts || {};
-  // 서버에서 받은 최종 결과 (요금, 점수 등)
-  const summary = result || {};
+  // ★ [추가] 상태 관리
+  const [loading, setLoading] = useState(false);
+  const [summary, setSummary] = useState(result || null);
+  const [risks, setRisks] = useState(riskCounts || null);
+  const [helmetStatus, setHelmetStatus] = useState(isHelmet);
 
-  // 위험 항목이 하나라도 있는지 확인
-  const hasRisks = Object.values(risks).some(count => count > 0);
+  // ★ [추가] ride_id만 넘어온 경우 (HistoryScreen), 서버에서 데이터 로드
+  useEffect(() => {
+    // GpsScreen에서 데이터를 이미 다 받았으면 실행 안 함
+    if (summary && risks) {
+      return;
+    }
+
+    const fetchRideDetails = async () => {
+      if (ride_id) {
+        setLoading(true);
+        try {
+          const response = await Api.getRideSummary(ride_id, navigation);
+          if (response.data) {
+            setSummary(response.data.summary);
+            setRisks(response.data.riskCounts);
+            setHelmetStatus(response.data.summary.isHelmet);
+          } else {
+            throw new Error(response.message || '데이터 로드 실패');
+          }
+        } catch (error) {
+          console.error('상세 내역 로딩 실패:', error);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchRideDetails();
+  }, [ride_id, summary, risks, navigation]); // 의존성 배열 설정
+
+  const hasRisks = risks && Object.values(risks).some(count => count > 0);
 
   const handleConfirm = () => {
-    // 확인 버튼 클릭 시, 스택을 초기화하고 'History' 탭으로 이동
-    navigation.reset({
-      index: 0,
-      routes: [
-        {
-          name: 'Selection', // 1. 메인 탭 네비게이터 이름 (MainScreen.js가 포함된)
-          state: {
-            routes: [
-              {name: 'History'}, // 2. 그 안에서 활성화할 탭 스크린 이름
-            ],
+    // HistoryScreen에서 이 화면을 연 경우 (뒤로가기)
+    if (!result) {
+      navigation.goBack();
+      return;
+    }
+
+    // GpsScreen에서 온 경우 (스택 리셋)
+    // CommonActions.reset을 사용하여 스택을 초기화합니다.
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [
+          {
+            name: 'Selection', // 1. 메인 탭 네비게이터 이름
+            // 2. 탭 네비게이터에 'History' 탭으로 이동하라고 params 전달
+            params: {
+              screen: 'History',
+            },
           },
-        },
-      ],
-    });
+        ],
+      }),
+    );
   };
+
+  // ★ [추가] 로딩 중 화면
+  if (loading) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <ActivityIndicator
+          size="large"
+          color={colors.primary}
+          style={{marginTop: 50}}
+        />
+        <Text style={styles.loadingText}>주행 상세 내역을 불러오는 중...</Text>
+      </SafeAreaView>
+    );
+  }
+
+  // ★ [추가] 데이터 로드 실패 시
+  if (!summary) {
+    return (
+      <SafeAreaView style={styles.container}>
+        <Text style={styles.noRiskText}>
+          주행 내역을 불러오는 데 실패했습니다.
+        </Text>
+        <View style={styles.bottomButtonContainer}>
+          <Button
+            title="뒤로가기"
+            onPress={() => navigation.goBack()}
+            variant="outline"
+          />
+        </View>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollContent}>
         {/* 1. 상단 점수 카드 */}
         <Card style={styles.scoreCard}>
-          <Text style={styles.scoreLabel}>이번 주행 안전 점수</Text>
+          <Text style={styles.scoreLabel}>주행 안전 점수</Text>
           <View style={styles.scoreValueContainer}>
             <Text style={styles.scoreValue}>{summary.score || 0}</Text>
             <Text style={styles.scoreMax}>/ 100</Text>
@@ -104,19 +192,23 @@ export default function RideSummaryScreen({route, navigation}) {
               ₩{summary.fare?.toLocaleString() || 0}
             </Text>
           </View>
+
+          {/* ★ [수정] GpsScreen/HistoryScreen 둘 다 커버 */}
           <View style={styles.summaryRow}>
             <Ionicons
-              name={isHelmet ? 'shield-checkmark-outline' : 'shield-outline'}
+              name={
+                helmetStatus ? 'shield-checkmark-outline' : 'shield-outline'
+              }
               size={20}
-              color={isHelmet ? colors.green600 : colors.red600}
+              color={helmetStatus ? colors.green600 : colors.red600}
             />
             <Text style={styles.summaryLabel}>헬멧 착용 여부</Text>
             <Text
               style={[
                 styles.summaryValue,
-                {color: isHelmet ? colors.green600 : colors.red600},
+                {color: helmetStatus ? colors.green600 : colors.red600},
               ]}>
-              {isHelmet ? '착용' : '미착용 (감점)'}
+              {helmetStatus ? '착용' : '미착용 (감점)'}
             </Text>
           </View>
         </Card>
@@ -127,7 +219,7 @@ export default function RideSummaryScreen({route, navigation}) {
           {hasRisks ? (
             <View style={styles.riskGrid}>
               {Object.entries(risks).map(([key, value]) => {
-                if (value === 0) return null; // 0회인 항목은 표시 안 함
+                if (value === 0) return null;
                 return (
                   <View key={key} style={styles.riskItem}>
                     <Text style={styles.riskValue}>{value}회</Text>
@@ -147,16 +239,21 @@ export default function RideSummaryScreen({route, navigation}) {
 
       {/* 하단 확인 버튼 */}
       <View style={styles.bottomButtonContainer}>
-        <Button title="확인" onPress={handleConfirm} />
+        {/* ★ [수정] 버튼 텍스트 변경 */}
+        <Button
+          title={result ? '내역 확인하기' : '뒤로가기'}
+          onPress={handleConfirm}
+        />
       </View>
     </SafeAreaView>
   );
 }
 
+// ... (스타일 동일)
 const styles = StyleSheet.create({
   container: {flex: 1, backgroundColor: colors.gray50},
-  scrollContent: {padding: 16, paddingBottom: 100}, // 하단 버튼 공간 확보
-  // 점수 카드
+  loadingText: {textAlign: 'center', marginTop: 10, color: colors.gray500},
+  scrollContent: {padding: 16, paddingBottom: 100},
   scoreCard: {
     backgroundColor: colors.green600,
     marginBottom: 16,
@@ -178,7 +275,6 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderRadius: 4,
   },
-  // 요약 카드
   summaryCard: {padding: 20, marginBottom: 16, gap: 16},
   sectionTitle: {
     fontSize: 18,
@@ -189,7 +285,6 @@ const styles = StyleSheet.create({
   summaryRow: {flexDirection: 'row', alignItems: 'center', gap: 12},
   summaryLabel: {fontSize: 16, color: colors.gray600, flex: 1},
   summaryValue: {fontSize: 16, fontWeight: '600', color: colors.text},
-  // 위험 카드
   riskCard: {padding: 20},
   riskGrid: {
     flexDirection: 'row',
@@ -197,7 +292,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   riskItem: {
-    minWidth: '45%', // 2열 배치
+    minWidth: '45%',
     backgroundColor: colors.gray50,
     borderColor: colors.border,
     borderWidth: 1,
@@ -215,14 +310,13 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     lineHeight: 24,
   },
-  // 하단 버튼
   bottomButtonContainer: {
     position: 'absolute',
     bottom: 0,
     left: 0,
     right: 0,
     padding: 16,
-    paddingBottom: 32, // SafeArea 고려
+    paddingBottom: 32,
     backgroundColor: colors.white,
     borderTopWidth: 1,
     borderTopColor: colors.border,

@@ -6,6 +6,7 @@ import {
   FlatList,
   SafeAreaView,
   ActivityIndicator,
+  TouchableOpacity,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors} from '../component/constants/colors';
@@ -54,43 +55,60 @@ export default function HistoryScreen() {
     ).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
   };
 
-  const renderItem = ({item}) => (
-    <View style={styles.card}>
-      <View style={styles.cardHeader}>
-        <View>
-          <View style={styles.dateTimeRow}>
-            <Ionicons
-              name="calendar-outline"
-              size={14}
-              color={colors.gray400}
-            />
-            <Text style={styles.dateText}>{formatDate(item.start_time)}</Text>
-          </View>
-          {/* pm_id가 킥보드 번호 */}
-          <Text style={styles.scooterId}>킥보드 #{item.pm_id}</Text>
-        </View>
-        <Text style={styles.costText}>₩{item.fare?.toLocaleString() || 0}</Text>
-      </View>
+  const handleItemPress = ride_id => {
+    navigation.navigate('RideSummary', {
+      ride_id: ride_id, // ride_id만 전달
+    });
+  };
 
-      <View style={styles.statsRow}>
-        <View style={styles.statBadge}>
-          <Ionicons name="time-outline" size={14} color={colors.gray600} />
-          <Text style={styles.statText}>{item.duration}분</Text>
+  const renderItem = ({item}) => (
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => handleItemPress(item.ride_id)}
+      activeOpacity={0.7}>
+      <View style={styles.card}>
+        <View style={styles.cardHeader}>
+          <View>
+            <View style={styles.dateTimeRow}>
+              <Ionicons
+                name="calendar-outline"
+                size={14}
+                color={colors.gray400}
+              />
+              <Text style={styles.dateText}>{formatDate(item.start_time)}</Text>
+            </View>
+            {/* pm_id가 킥보드 번호 */}
+            <Text style={styles.scooterId}>킥보드 #{item.pm_id}</Text>
+          </View>
+          <Text style={styles.costText}>
+            ₩{item.fare?.toLocaleString() || 0}
+          </Text>
         </View>
-        <View style={styles.statBadge}>
-          <Ionicons name="navigate-outline" size={14} color={colors.gray600} />
-          <Text style={styles.statText}>{item.distance}km</Text>
-        </View>
-        <View style={styles.statBadge}>
-          <Ionicons
-            name="shield-checkmark-outline"
-            size={14}
-            color={colors.green600}
-          />
-          <Text style={styles.statText}>{item.score}점</Text>
+
+        <View style={styles.statsRow}>
+          <View style={styles.statBadge}>
+            <Ionicons name="time-outline" size={14} color={colors.gray600} />
+            <Text style={styles.statText}>{item.duration}분</Text>
+          </View>
+          <View style={styles.statBadge}>
+            <Ionicons
+              name="navigate-outline"
+              size={14}
+              color={colors.gray600}
+            />
+            <Text style={styles.statText}>{item.distance}km</Text>
+          </View>
+          <View style={styles.statBadge}>
+            <Ionicons
+              name="shield-checkmark-outline"
+              size={14}
+              color={colors.green600}
+            />
+            <Text style={styles.statText}>{item.score}점</Text>
+          </View>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   // 통계 계산
@@ -99,6 +117,7 @@ export default function HistoryScreen() {
     (acc, cur) => acc + (parseFloat(cur.distance) || 0),
     0,
   );
+
   const totalCost = historyData.reduce(
     (acc, cur) => acc + (parseInt(cur.fare) || 0),
     0,

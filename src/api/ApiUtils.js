@@ -238,6 +238,23 @@ const ApiUtils = {
     });
     return response.data; // { success: true, data: { safetyScore, ... } }
   },
+  getRideSummary: async (rideId, navigation) => {
+    const token = await getAccessToken(navigation);
+    if (!token) return;
+
+    try {
+      const response = await apiInstance.get(
+        `/api/app/rides/${rideId}/summary`, // 새 API 엔드포인트
+        {
+          headers: {Authorization: `Bearer ${token}`},
+        },
+      );
+      return response.data; // { success: true, data: { summary: {...}, riskCounts: {...} } }
+    } catch (error) {
+      console.error('getRideSummary error:', error);
+      throw error.response?.data || error;
+    }
+  },
 };
 
 export default ApiUtils;
