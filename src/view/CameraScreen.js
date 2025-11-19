@@ -13,6 +13,7 @@ import {Camera, useCameraDevice} from 'react-native-vision-camera';
 import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Api from '../api/ApiUtils'; // API 유틸 (실제 연동 시 사용)
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const CameraScreen = () => {
   const [hasPermission, setHasPermission] = useState(false);
@@ -226,6 +227,13 @@ const CameraScreen = () => {
 
       {/* 헤더 */}
       <View style={styles.header}>
+        {/* X 버튼 */}
+        <TouchableOpacity
+          style={styles.closeButton}
+          onPress={() => navigation.goBack()}>
+          <Icon name="close" size={30} color="#fff" />
+        </TouchableOpacity>
+
         <Text style={styles.headerText}>
           {'헬멧 착용한 모습을\n촬영해주세요.'}
         </Text>
@@ -344,6 +352,13 @@ const styles = StyleSheet.create({
     color: 'white',
     textAlign: 'center',
     flex: 1,
+  },
+  closeButton: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   infoButton: {
     width: 30,

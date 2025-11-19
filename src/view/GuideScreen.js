@@ -6,9 +6,10 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons'; // AntDesign 아이콘 임포트
+import Icon from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {colors} from '../component/constants/colors';
 
 const GuideScreen = () => {
   const navigation = useNavigation(); // 네비게이션 훅 사용
@@ -21,16 +22,21 @@ const GuideScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        {/* <View style={styles.header}>
+      <View style={styles.header}>
+        <View style={styles.headerContent}>
           <TouchableOpacity
-            onPress={goBack}
-            hitSlop={{top: 20, bottom: 20, left: 20, right: 20}}>
-            {// 뒤로 가기 아이콘 표시 }
-            <Icon name="arrowleft" size={20} color="black" />
+            style={styles.closeButton}
+            onPress={() => navigation.goBack()}>
+            <Icon name="close" size={24} color={colors.text} />
           </TouchableOpacity>
-          <Text style={styles.title}>주행 가이드</Text>
-        </View> */}
+          <Text style={styles.headerTitle}>주행 가이드</Text>
+          <View style={{width: 40}} />
+        </View>
+      </View>
+      <ScrollView
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollContent}
+        showsVerticalScrollIndicator={false}>
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>주행 전 체크리스트</Text>
           <Text style={styles.item}>
@@ -84,7 +90,7 @@ const GuideScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#fff', padding: 20},
+  container: {flex: 1, backgroundColor: '#fff'},
   title: {fontSize: 22, fontWeight: 'bold', color: '#ff6a33', marginBottom: 20},
   section: {
     backgroundColor: '#dcfce7',
@@ -101,11 +107,34 @@ const styles = StyleSheet.create({
   subTitle: {fontSize: 16, fontWeight: 'bold', color: '#ff6a33', marginTop: 10},
   item: {fontSize: 16, color: '#333', marginTop: 5},
   highlight: {fontWeight: 'bold', color: '#ff6a33'},
+  scrollView: {
+    flex: 1,
+  },
+  scrollContent: {
+    padding: 16,
+    paddingBottom: 32,
+  },
   header: {
+    backgroundColor: colors.white,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+    zIndex: 10,
+  },
+  headerContent: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
   },
+  closeButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerTitle: {fontSize: 18, fontWeight: 'bold', color: colors.text},
 });
 
 export default GuideScreen;
