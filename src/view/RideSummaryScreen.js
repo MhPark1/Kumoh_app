@@ -181,7 +181,6 @@ export default function RideSummaryScreen({route, navigation}) {
               {formatDuration(summary.duration)}
             </Text>
           </View>
-          {/* [★수정 부분] 최종 요금 및 할인 배지 */}
           <View style={styles.summaryRow}>
             <Ionicons
               name="wallet-outline"
@@ -190,18 +189,19 @@ export default function RideSummaryScreen({route, navigation}) {
             />
             <Text style={styles.summaryLabel}>최종 요금</Text>
 
-            {/* 요금 값과 배지를 가로로 정렬 */}
+            {/* 요금 값과 배지를 가로로 정렬 (flexDirection: 'row') */}
             <View style={styles.fareValueContainer}>
-              <Text style={styles.summaryValue}>
-                ₩{summary.fare?.toLocaleString() || 0}
-              </Text>
-
-              {/* isDiscounted가 true일 때만 할인 배지 표시 */}
+              {/* 1. [위치 변경] 할인 배지를 먼저 작성 -> 왼쪽에 표시됨 */}
               {summary.isDiscounted && (
                 <View style={styles.discountBadge}>
                   <Text style={styles.discountText}>10% 할인됨</Text>
                 </View>
               )}
+
+              {/* 2. 요금 텍스트를 나중에 작성 -> 오른쪽에 표시됨 */}
+              <Text style={styles.summaryValue}>
+                ₩{summary.fare?.toLocaleString() || 0}
+              </Text>
             </View>
           </View>
 
