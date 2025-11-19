@@ -359,6 +359,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 10,
   },
   infoButton: {
     width: 30,
@@ -513,7 +514,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  closeButton: {padding: 10},
   closeButtonText: {fontSize: 20, fontWeight: 'bold'},
 });
 
