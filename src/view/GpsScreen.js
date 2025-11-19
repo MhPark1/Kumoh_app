@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Alert,
   Modal,
+  BackHandler,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -103,6 +104,25 @@ export default function GpsScreen({route, navigation}) {
   const timerRef = useRef(null);
   const subscriptions = useRef([]);
   const watchId = useRef(null);
+
+  // [신규 추가] 뒤로가기 버튼 막기 (주행 중 이탈 방지)
+  useEffect(() => {
+    const backAction = () => {
+      Alert.alert(
+        '주행 중 알림',
+        '주행 중에는 뒤로 갈 수 없습니다.\n반납하기 버튼을 이용해주세요.',
+        [{text: '확인', onPress: () => null, style: 'cancel'}],
+      );
+      return true; // true를 반환하면 뒤로가기 동작을 막음
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      backAction,
+    );
+
+    return () => backHandler.remove();
+  }, []);
 
   // 1. 주행 시작 (센서 & GPS 가동)
   useEffect(() => {
@@ -317,9 +337,9 @@ export default function GpsScreen({route, navigation}) {
                   navigation.navigate('HistoryTab', {
                     screen: 'RideSummary',
                     params: {
-                      result,
-                      riskCounts,
-                      isHelmet,
+                      result: response.data,
+                      riskCounts: riskCounts,
+                      isHelmet: isHelmetConfirmed,
                     },
                   });
                 },

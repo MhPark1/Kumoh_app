@@ -38,6 +38,10 @@ LogBox.ignoreLogs([
 
 const AuthStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+// 1. [신규] 최상위 네비게이터 (탭바 + 전체화면 페이지들)
+const RootStack = createStackNavigator();
+
 const SelectionStack = createStackNavigator();
 const HistoryStack = createStackNavigator();
 const OptionStack = createStackNavigator();
@@ -60,7 +64,8 @@ const AuthNavigator = () => (
   </AuthStack.Navigator>
 );
 
-// Selection 탭 안에 중첩되는 Stack Navigator
+// 2. [수정] 홈 탭 내부 스택 (이제 메인 홈 화면만 남깁니다)
+// Gps, Camera 등은 RootStack으로 이동했으므로 여기서 제거합니다.
 const SelectionStackNavigator = () => (
   <SelectionStack.Navigator
     screenOptions={{
@@ -71,36 +76,7 @@ const SelectionStackNavigator = () => (
       component={MainScreen}
       options={{title: '홈', headerShown: false}}
     />
-    <SelectionStack.Screen
-      name="Gps"
-      component={Gps}
-      options={{title: '운행', headerShown: false}}
-    />
-    <SelectionStack.Screen
-      name="Camera"
-      component={Camera}
-      options={{title: '카메라 분석', headerShown: false}}
-    />
-    <SelectionStack.Screen
-      name="Analysis"
-      component={Analysis}
-      options={{title: '운전 분석', headerShown: false, gestureEnabled: false}}
-    />
-    <SelectionStack.Screen
-      name="Map"
-      component={MapScreen}
-      options={{title: '지도', headerShown: false}}
-    />
-    <SelectionStack.Screen
-      name="HelmetVerification"
-      component={HelmetVerificationScreen}
-      options={{title: '헬멧 인증', headerShown: false}}
-    />
-    <SelectionStack.Screen
-      name="QRScanner"
-      component={QRScannerScreen}
-      options={{title: 'QR 스캔', headerShown: false}}
-    />
+    {/* 나머지 화면들은 탭바 밖(RootStack)으로 이동됨 */}
   </SelectionStack.Navigator>
 );
 
@@ -132,6 +108,12 @@ const OptionStackNavigator = () => (
       component={OptionScreen}
       options={{title: '내 정보', headerShown: false}}
     />
+    {/* UserEdit, Guide는 탭바 위에 덮어씌워지는 형태가 좋으므로 RootStack으로 이동해도 되지만,
+        설정 탭 안에 있는 느낌을 유지하려면 여기 둬도 됩니다. 
+        다만, 기존 코드에서 탭을 숨기셨으므로 일관성을 위해 RootStack으로 뺄 수도 있습니다.
+        여기서는 기존 로직 유지를 위해 일단 OptionStack 내부에 둡니다. 
+        (만약 이 화면들도 탭바를 없애고 싶다면 RootStack으로 옮기세요)
+    */}
     <OptionStack.Screen
       name="UserEdit"
       component={UserEditScreen}
@@ -144,7 +126,8 @@ const OptionStackNavigator = () => (
     />
   </OptionStack.Navigator>
 );
-// 하단 탭에는 SelectionStack과 History만 등록
+
+// 3. [수정] 메인 탭 네비게이터 (복잡한 숨김 로직 삭제)
 const MainTabNavigator = () => {
   const navigation = useNavigation();
   const insets = useSafeAreaInsets();
@@ -163,99 +146,98 @@ const MainTabNavigator = () => {
     checkFirstLogin();
   }, [navigation]);
 
-  const getTabBarStyle = route => {
-    const routeName = getFocusedRouteNameFromRoute(route);
-
-    // SelectionTab 안의 Stack 화면 이름들
-    const selectionHideScreens = [
-      'Gps',
-      'Camera',
-      'Analysis',
-      'Map',
-      'HelmetVerification',
-      'QRScanner',
-    ];
-
-    const historyHideScreens = ['RideSummary'];
-
-    // OptionTab 안의 Stack 화면 이름들
-    const optionHideScreens = ['UserEdit', 'Guide'];
-
-    if (route.name === 'SelectionTab') {
-      const name = routeName ?? 'Selection';
-      if (selectionHideScreens.includes(name)) {
-        return {display: 'none'};
-      }
-    }
-
-    if (route.name === 'HistoryTab') {
-      const name = routeName ?? 'History';
-      if (historyHideScreens.includes(name)) {
-        return {display: 'none'};
-      }
-    }
-
-    if (route.name === 'OptionTab') {
-      const name = routeName ?? 'Option';
-      if (optionHideScreens.includes(name)) {
-        return {display: 'none'};
-      }
-    }
-
-    // 기본 탭 스타일
-    return {
-      backgroundColor: '#fff',
-      paddingBottom: insets.bottom, // 하단 안전 영역 패딩 적용
-    };
-  };
+  // getTabBarStyle 함수 삭제됨 (필요 없음)
 
   return (
     <Tab.Navigator
-      screenOptions={({route}) => ({
-        tabBarIcon: ({focused, color, size}) => {
-          let iconName;
-          if (route.name === 'SelectionTab') {
-            iconName = 'home-outline'; //home
-          } else if (route.name === 'HistoryTab') {
-            iconName = 'time-outline'; //time
-          } else if (route.name === 'OptionTab') {
-            iconName = 'person-circle-outline'; //person-circle
+      screenOptions={({route}) => {
+        // OptionTab 내부의 UserEdit, Guide 화면일 때만 탭바 숨김 처리
+        const routeName = getFocusedRouteNameFromRoute(route);
+        const optionHideScreens = ['UserEdit', 'Guide'];
+        let tabBarStyle = {
+          backgroundColor: '#fff',
+          paddingBottom: insets.bottom,
+          height: 60 + insets.bottom / 2, // 높이 약간 조정
+        };
+
+        if (route.name === 'OptionTab') {
+          const name = routeName ?? 'Option';
+          if (optionHideScreens.includes(name)) {
+            tabBarStyle = {display: 'none'};
           }
-          return <Icon name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: '#2563eb',
-        tabBarInactiveTintColor: 'gray',
-        tabBarStyle: getTabBarStyle(route),
-        tabBarLabelStyle: {
-          fontSize: 14, // 원하는 폰트 크기로 설정
-          fontWeight: 'bold', // 필요하면 글씨 두께 설정 가능
-        },
-      })}>
+        }
+
+        return {
+          tabBarIcon: ({focused, color, size}) => {
+            let iconName;
+            if (route.name === 'SelectionTab') {
+              iconName = 'home-outline';
+            } else if (route.name === 'HistoryTab') {
+              iconName = 'time-outline';
+            } else if (route.name === 'OptionTab') {
+              iconName = 'person-circle-outline';
+            }
+            return <Icon name={iconName} size={size} color={color} />;
+          },
+          tabBarActiveTintColor: '#2563eb',
+          tabBarInactiveTintColor: 'gray',
+          tabBarStyle: tabBarStyle, // 수정된 스타일 적용
+          tabBarLabelStyle: {
+            fontSize: 12,
+            fontWeight: 'bold',
+            marginBottom: 5,
+          },
+          headerShown: false,
+        };
+      }}>
       <Tab.Screen
         name="SelectionTab"
         component={SelectionStackNavigator}
-        options={{
-          title: '홈',
-          headerShown: false,
-        }}
+        options={{title: '홈'}}
       />
       <Tab.Screen
         name="HistoryTab"
         component={HistoryStackNavigator}
-        options={{
-          title: '이용 내역',
-          headerShown: false,
-        }}
+        options={{title: '이용 내역'}}
       />
       <Tab.Screen
         name="OptionTab"
         component={OptionStackNavigator}
-        options={{
-          title: '내 정보',
-          headerShown: false,
-        }}
+        options={{title: '내 정보'}}
       />
     </Tab.Navigator>
+  );
+};
+
+// 4. [신규] 로그인 후 보여줄 RootNavigator
+// 메인 탭과 전체화면(Gps 등)을 형제 관계로 배치합니다.
+const RootNavigator = () => {
+  return (
+    <RootStack.Navigator screenOptions={{headerShown: false}}>
+      {/* 1) 메인 탭 화면 */}
+      <RootStack.Screen name="MainTab" component={MainTabNavigator} />
+
+      {/* 2) 탭바 없이 전체화면으로 떠야 하는 화면들 */}
+      <RootStack.Screen
+        name="QRScanner"
+        component={QRScannerScreen}
+        options={{presentation: 'fullScreenModal'}} // (선택) 모달처럼 뜨게 하려면 추가
+      />
+      <RootStack.Screen
+        name="HelmetVerification"
+        component={HelmetVerificationScreen}
+      />
+      <RootStack.Screen name="Camera" component={Camera} />
+      <RootStack.Screen name="Map" component={MapScreen} />
+      <RootStack.Screen name="Analysis" component={Analysis} />
+      <RootStack.Screen
+        name="Gps"
+        component={Gps}
+        options={{
+          gestureEnabled: false, // 아이폰에서 스와이프로 뒤로가기 방지
+        }}
+      />
+    </RootStack.Navigator>
   );
 };
 
@@ -268,7 +250,8 @@ const AppContent = () => {
 
   return (
     <NavigationContainer>
-      {isLoggedIn ? <MainTabNavigator /> : <AuthNavigator />}
+      {/* isLoggedIn이 true면 RootNavigator(탭+전체화면), 아니면 AuthNavigator */}
+      {isLoggedIn ? <RootNavigator /> : <AuthNavigator />}
     </NavigationContainer>
   );
 };

@@ -51,16 +51,16 @@ const CameraScreen = () => {
     requestCameraPermission();
   }, []);
 
-  // 탭바 숨김 처리
-  useEffect(() => {
-    navigation.getParent()?.setOptions({tabBarStyle: {display: 'none'}});
+  // // 탭바 숨김 처리
+  // useEffect(() => {
+  //   navigation.getParent()?.setOptions({tabBarStyle: {display: 'none'}});
 
-    return () => {
-      setTimeout(() => {
-        navigation.getParent()?.setOptions({tabBarStyle: {display: 'flex'}});
-      }, 50);
-    };
-  }, [navigation]);
+  //   return () => {
+  //     setTimeout(() => {
+  //       navigation.getParent()?.setOptions({tabBarStyle: {display: 'flex'}});
+  //     }, 50);
+  //   };
+  // }, [navigation]);
 
   useFocusEffect(
     React.useCallback(() => {

@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   StyleSheet,
   ScrollView,
-  Modal,
   Alert,
   RefreshControl,
 } from 'react-native';
@@ -14,19 +13,17 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {useFocusEffect} from '@react-navigation/native';
 import Api from '../api/ApiUtils';
+// colors import 경로 확인 필요 (상대 경로에 맞게 조정하세요)
 import {colors} from '../component/constants/colors';
 
 export default function HomeScreen({navigation}) {
-  const [showQRScanner, setShowQRScanner] = useState(false);
-
   const [userInfo, setUserInfo] = useState({
     nickname: '사용자',
     safety_score: 0,
   });
   const [refreshing, setRefreshing] = useState(false);
 
-  // [수정] fetchUserInfo를 useCallback으로 감싸서 메모이제이션(기억) 처리
-  // navigation 객체가 바뀔 때만 함수가 새로 생성됨
+  // 내 정보 가져오기
   const fetchUserInfo = useCallback(async () => {
     try {
       const response = await Api.getMe(navigation);
@@ -38,8 +35,6 @@ export default function HomeScreen({navigation}) {
     }
   }, [navigation]);
 
-  // [수정] useFocusEffect의 의존성 배열에 fetchUserInfo 추가
-  // 이제 경고가 사라지고, 화면이 포커스될 때 정상적으로 실행됩니다.
   useFocusEffect(
     useCallback(() => {
       fetchUserInfo();
@@ -57,6 +52,9 @@ export default function HomeScreen({navigation}) {
     if (score >= 70) return '안전 운전에 조금 더 신경 써주세요! ⚠️';
     return '위험해요! 안전 운전이 필요합니다. 🚨';
   };
+
+  // ★ [추가] 할인 여부 판단 로직 (90점 이상)
+  const isDiscountActive = (userInfo.safety_score || 0) >= 90;
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
@@ -87,7 +85,18 @@ export default function HomeScreen({navigation}) {
           <View style={styles.scoreCard}>
             <View style={styles.scoreContent}>
               <View style={styles.scoreLeft}>
-                <Text style={styles.scoreLabel}>안전운전점수</Text>
+                {/* ★ [수정] 라벨과 할인 배지를 가로로 배치 */}
+                <View style={styles.labelRow}>
+                  <Text style={styles.scoreLabel}>안전운전점수</Text>
+
+                  {/* 90점 이상일 때만 할인 배지 표시 */}
+                  {isDiscountActive && (
+                    <View style={styles.discountBadge}>
+                      <Text style={styles.discountText}>🎉 10% 할인 적용</Text>
+                    </View>
+                  )}
+                </View>
+
                 <View style={styles.scoreRow}>
                   <Text style={styles.scoreValue}>
                     {userInfo.safety_score !== undefined
@@ -123,7 +132,6 @@ export default function HomeScreen({navigation}) {
 
           <TouchableOpacity
             style={[styles.actionCard, styles.qrCard]}
-            // [수정] 모달을 띄우는 대신 'QRScanner' 스크린으로 바로 이동
             onPress={() => navigation.navigate('QRScanner')}>
             <View style={styles.actionIconContainer}>
               <View style={[styles.actionIcon, {backgroundColor: '#2563eb'}]}>
@@ -273,10 +281,31 @@ const styles = StyleSheet.create({
   scoreLeft: {
     flex: 1,
   },
+  // ★ [추가] 라벨과 배지를 감싸는 스타일
+  labelRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    marginBottom: 4,
+  },
   scoreLabel: {
     fontSize: 14,
     color: '#d1fae5',
-    marginBottom: 4,
+    // marginBottom 제거 (labelRow에서 제어)
+  },
+  // ★ [추가] 할인 배지 스타일
+  discountBadge: {
+    backgroundColor: '#ffffff', // 흰색 배경
+    paddingHorizontal: 8,
+    paddingVertical: 2,
+    borderRadius: 12,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  discountText: {
+    fontSize: 11,
+    fontWeight: 'bold',
+    color: '#ea580c', // 진한 주황/골드 텍스트
   },
   scoreRow: {
     flexDirection: 'row',
