@@ -99,22 +99,35 @@ export default function RideSummaryScreen({route, navigation}) {
       return;
     }
 
-    // GpsScreen에서 온 경우 (스택 리셋)
-    // CommonActions.reset을 사용하여 스택을 초기화합니다.
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [
-          {
-            name: 'Selection', // 1. 메인 탭 네비게이터 이름
-            // 2. 탭 네비게이터에 'History' 탭으로 이동하라고 params 전달
-            params: {
-              screen: 'History',
-            },
-          },
-        ],
-      }),
-    );
+    // // GpsScreen에서 온 경우 (스택 리셋)
+    // // CommonActions.reset을 사용하여 스택을 초기화합니다.
+    // navigation.dispatch(
+    //   CommonActions.reset({
+    //     index: 0,
+    //     routes: [
+    //       {
+    //         name: 'Selection', // 1. 메인 탭 네비게이터 이름
+    //         // 2. 탭 네비게이터에 'History' 탭으로 이동하라고 params 전달
+    //         params: {
+    //           screen: 'History',
+    //         },
+    //       },
+    //     ],
+    //   }),
+    // );
+    // GpsScreen에서 온 경우: History 탭의 History 화면으로 이동
+    // 방법 1: 부모(Tab) 네비게이터에 명시적으로 보내기
+    const parentNav = navigation.getParent();
+    if (parentNav) {
+      parentNav.navigate('HistoryTab', {
+        screen: 'History',
+      });
+    } else {
+      // 부모를 못 찾는 경우를 대비한 fallback (대부분 필요 없겠지만 방어 코드)
+      navigation.navigate('HistoryTab', {
+        screen: 'History',
+      });
+    }
   };
 
   // ★ [추가] 로딩 중 화면

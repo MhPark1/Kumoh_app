@@ -314,10 +314,13 @@ export default function GpsScreen({route, navigation}) {
               {
                 text: '확인',
                 onPress: () => {
-                  navigation.navigate('RideSummary', {
-                    result: response.data,
-                    riskCounts: riskCounts,
-                    isHelmet: isHelmetConfirmed,
+                  navigation.navigate('HistoryTab', {
+                    screen: 'RideSummary',
+                    params: {
+                      result,
+                      riskCounts,
+                      isHelmet,
+                    },
                   });
                 },
               },
