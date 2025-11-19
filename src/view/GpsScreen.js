@@ -19,11 +19,10 @@ import Api from '../api/ApiUtils';
 // 센서 라이브러리 (가속도계 사용)
 import {
   accelerometer,
-  gyroscope, // (급회전용)
+  gyroscope,
   setUpdateIntervalForType,
   SensorTypes,
 } from 'react-native-sensors';
-import CompassHeading from 'react-native-compass-heading'; // (현재 사용 안함)
 
 // --- 유틸 함수 (거리 계산) ---
 const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
@@ -42,12 +41,13 @@ const getDistanceFromLatLonInKm = (lat1, lon1, lat2, lon2) => {
 const deg2rad = deg => deg * (Math.PI / 180);
 
 // --- 사고 감지 설정 ---
-const IMPACT_THRESHOLD_G = 6.0; // 6G 이상이면 '강한 충격' (조절 필요)
-const NO_MOVEMENT_DURATION_MS = 60000; // 1분 (60,000ms)
+const IMPACT_THRESHOLD_G = 6.0; // 강한 충격 임계값
+const NO_MOVEMENT_DURATION_MS = 60000; // 1분
 const MODAL_COUNTDOWN_SECONDS = 60; // 60초
 
 export default function GpsScreen({route, navigation}) {
-  const {scooterId, rideId, isHelmetConfirmed} = route.params || {};
+  const {scooterId, rideId, isHelmetConfirmed, initialLat, initialLng} =
+    route.params || {};
 
   // --- UI 상태 ---
   const [duration, setDuration] = useState(0);
@@ -55,28 +55,49 @@ export default function GpsScreen({route, navigation}) {
   const [speed, setSpeed] = useState(0);
   const [cost, setCost] = useState(1000);
   const [showEndDialog, setShowEndDialog] = useState(false);
-  const [currentLocation, setCurrentLocation] = useState(null);
-  const [routeCoordinates, setRouteCoordinates] = useState([]);
 
-  // --- [신규] 사고 감지 모달 상태 ---
+  // 초기 위치 설정
+  const [currentLocation, setCurrentLocation] = useState(
+    initialLat && initialLng
+      ? {latitude: initialLat, longitude: initialLng}
+      : null,
+  );
+  const [routeCoordinates, setRouteCoordinates] = useState(
+    initialLat && initialLng
+      ? [{latitude: initialLat, longitude: initialLng}]
+      : [],
+  );
+
+  // --- 사고 감지 모달 상태 ---
   const [showAccidentModal, setShowAccidentModal] = useState(false);
   const [modalCountdown, setModalCountdown] = useState(MODAL_COUNTDOWN_SECONDS);
 
   // --- Refs (데이터 저장소) ---
   const durationRef = useRef(0);
-  const prevLocationRef = useRef(null);
+  const prevLocationRef = useRef(
+    initialLat && initialLng
+      ? {latitude: initialLat, longitude: initialLng}
+      : null,
+  );
   const prevSpeedRef = useRef(0);
-  const currentLocationRef = useRef(null);
+  const currentLocationRef = useRef(
+    initialLat && initialLng
+      ? {latitude: initialLat, longitude: initialLng}
+      : null,
+  );
   const riskLogsRef = useRef([]);
   const routePathRef = useRef([]);
   const lastTurnLogTime = useRef(0);
 
-  // --- [신규] 사고 감지 상태 Ref ---
+  // --- 사고 감지 상태 Ref ---
   const fallDetectionRef = useRef({
-    hasImpact: false, // (1) 충격 감지 여부
-    noMovementTimerId: null, // (2) 1분간 움직임 없음 타이머
-    modalTimerId: null, // (3) 60초 응답 타이머
+    hasImpact: false,
+    noMovementTimerId: null,
+    modalTimerId: null,
   });
+
+  // ★ [핵심] handleEndRide 함수를 담을 Ref (의존성 끊기용)
+  const handleEndRideRef = useRef(null);
 
   const mapRef = useRef(null);
   const timerRef = useRef(null);
@@ -85,20 +106,19 @@ export default function GpsScreen({route, navigation}) {
 
   // 1. 주행 시작 (센서 & GPS 가동)
   useEffect(() => {
-    // ★ [수정] ESLint 경고 해결을 위해 ref 객체를 로컬 변수에 할당
     const timerRefForCleanup = timerRef;
     const watchIdForCleanup = watchId;
     const subscriptionsForCleanup = subscriptions;
     const fallDetectionRefForCleanup = fallDetectionRef;
 
     const startRide = () => {
-      setUpdateIntervalForType(SensorTypes.accelerometer, 200); // 0.2초 간격
+      setUpdateIntervalForType(SensorTypes.accelerometer, 200);
       setUpdateIntervalForType(SensorTypes.gyroscope, 200);
 
       // 1) 가속도계 (충격 감지)
       const sub1 = accelerometer.subscribe(({x, y, z}) => {
         const magnitude = Math.sqrt(x * x + y * y + z * z);
-        const gForce = magnitude / 9.81; // m/s^2 -> G
+        const gForce = magnitude / 9.81;
 
         if (gForce > IMPACT_THRESHOLD_G) {
           if (fallDetectionRef.current.hasImpact) return;
@@ -114,7 +134,6 @@ export default function GpsScreen({route, navigation}) {
           if (now - lastTurnLogTime.current > 2000) {
             const loc = currentLocationRef.current;
             if (loc) {
-              console.log('⚠️ 급회전 감지!', loc);
               riskLogsRef.current.push({
                 type: 'sudden_turn',
                 timestamp: new Date().toISOString(),
@@ -130,7 +149,7 @@ export default function GpsScreen({route, navigation}) {
 
       subscriptions.current = [sub1, sub2];
 
-      // 3) GPS 위치 추적 (핵심 로직)
+      // 3) GPS 위치 추적
       watchId.current = Geolocation.watchPosition(
         position => {
           const {latitude, longitude, speed: gpsSpeed} = position.coords;
@@ -138,7 +157,6 @@ export default function GpsScreen({route, navigation}) {
           const newLoc = {latitude, longitude};
           const currentSpeedKmH = Math.max(0, (gpsSpeed || 0) * 3.6);
 
-          // (1) 상태 업데이트
           setCurrentLocation(newLoc);
           currentLocationRef.current = newLoc;
           setRouteCoordinates(prev => [...prev, newLoc]);
@@ -149,12 +167,10 @@ export default function GpsScreen({route, navigation}) {
             speed: gpsSpeed || 0,
           });
 
-          // (2) [신규] 사고 감지 후속 처리 (GPS 기반)
+          // 사고 감지 후속 처리 (정지 감지)
           if (fallDetectionRef.current.hasImpact) {
             if (currentSpeedKmH > 1.0) {
-              console.log(
-                '✅ 충격 후 움직임 감지. (휴대폰 떨어뜨림) 사고 감지 리셋.',
-              );
+              console.log('✅ 충격 후 움직임 감지. 사고 감지 리셋.');
               fallDetectionRef.current.hasImpact = false;
               if (fallDetectionRef.current.noMovementTimerId) {
                 clearTimeout(fallDetectionRef.current.noMovementTimerId);
@@ -167,12 +183,12 @@ export default function GpsScreen({route, navigation}) {
               console.log('...충격 후 1분간 움직임 없는지 감시 시작...');
               fallDetectionRef.current.noMovementTimerId = setTimeout(() => {
                 console.log('🚨 1분간 움직임 없음! "괜찮으신가요?" 모달 표시');
-                setShowAccidentModal(true); // ★ 1분 뒤 모달 표시
+                setShowAccidentModal(true); // 모달 켜짐 -> useEffect 트리거
               }, NO_MOVEMENT_DURATION_MS);
             }
           }
 
-          // (3) 급가속/감속 로직
+          // 급가속/감속
           const prevSpeed = prevSpeedRef.current;
           const speedDiff = currentSpeedKmH - prevSpeed;
           const ACCEL_THRESHOLD = 10;
@@ -181,10 +197,8 @@ export default function GpsScreen({route, navigation}) {
             let type = '';
             if (speedDiff > 0) {
               type = prevSpeed < 5 ? 'sudden_start' : 'sudden_accel';
-              console.log(`🚀 ${type}!`);
             } else {
               type = currentSpeedKmH < 5 ? 'sudden_stop' : 'sudden_decel';
-              console.log(`🛑 ${type}!`);
             }
             riskLogsRef.current.push({
               type: type,
@@ -197,7 +211,7 @@ export default function GpsScreen({route, navigation}) {
           setSpeed(Math.floor(currentSpeedKmH));
           prevSpeedRef.current = currentSpeedKmH;
 
-          // (4) 거리 누적 (동일)
+          // 거리 누적
           if (prevLocationRef.current) {
             const distKm = getDistanceFromLatLonInKm(
               prevLocationRef.current.latitude,
@@ -222,9 +236,10 @@ export default function GpsScreen({route, navigation}) {
         },
       );
     };
+
     startRide();
 
-    // 4) 타이머 (동일)
+    // 4) 타이머
     timerRef.current = setInterval(() => {
       durationRef.current += 1;
       setDuration(durationRef.current);
@@ -232,27 +247,25 @@ export default function GpsScreen({route, navigation}) {
       setCost(1000 + minutes * 200);
     }, 1000);
 
-    // 5) 클린업 함수 (모든 타이머 정리)
+    // 5) 클린업
     return () => {
-      // ★ [수정] 캡처된 로컬 변수를 통해 .current에 접근
       clearInterval(timerRefForCleanup.current);
       if (watchIdForCleanup.current !== null) {
         Geolocation.clearWatch(watchIdForCleanup.current);
       }
       subscriptionsForCleanup.current.forEach(sub => sub.unsubscribe());
-
-      // [신규] 사고 감지 타이머 모두 제거 (캡처된 변수 사용)
       clearTimeout(fallDetectionRefForCleanup.current.noMovementTimerId);
       clearInterval(fallDetectionRefForCleanup.current.modalTimerId);
     };
-  }, []); // 의존성 배열은 비어있는 것이 맞습니다.
+  }, []); // 의존성 배열 비움
 
-  // --- [수정] 반납 처리 (useCallback 적용) ---
+  // --- 반납 처리 ---
   const handleEndRide = useCallback(
     async (isAccident = false) => {
-      setShowEndDialog(false); // Setter 함수는 의존성에 포함할 필요 없음
+      setShowEndDialog(false);
+      setShowAccidentModal(false); // 모달 닫기 추가
 
-      // Ref(current)는 의존성에 포함할 필요 없음
+      // 모든 센서/타이머 정지
       clearInterval(timerRef.current);
       if (watchId.current !== null) Geolocation.clearWatch(watchId.current);
       subscriptions.current.forEach(sub => sub.unsubscribe());
@@ -260,15 +273,15 @@ export default function GpsScreen({route, navigation}) {
       clearInterval(fallDetectionRef.current.modalTimerId);
 
       const endData = {
-        rideId: rideId, // route.params에서 온 값
+        rideId: rideId,
         endLocation: currentLocation
           ? {lat: currentLocation.latitude, lng: currentLocation.longitude}
           : null,
-        distance: distance, // state 값
+        distance: distance,
         riskLogs: riskLogsRef.current,
         ridePath: routePathRef.current,
-        isHelmet: isHelmetConfirmed, // route.params에서 온 값
-        isAccident: isAccident,
+        isHelmet: isHelmetConfirmed,
+        accident: isAccident, // ★ 명시적으로 전달된 값 사용
         score: 0,
       };
 
@@ -281,7 +294,6 @@ export default function GpsScreen({route, navigation}) {
         const response = await Api.endRide(rideId, endData, navigation);
 
         if (response && response.success) {
-          // ... (로그 횟수 계산 로직 동일)
           const riskCounts = {
             sudden_start: 0,
             sudden_accel: 0,
@@ -322,38 +334,36 @@ export default function GpsScreen({route, navigation}) {
         Alert.alert('오류', '반납 처리 중 문제가 발생했습니다.');
       }
     },
-    [
-      // ★ 이 함수가 의존하는 모든 props와 state를 배열에 나열
-      rideId,
-      currentLocation,
-      distance,
-      isHelmetConfirmed,
-      navigation,
-    ],
+    [rideId, currentLocation, distance, isHelmetConfirmed, navigation],
   );
 
-  // --- [신규] 60초 무응답 시 강제 반납 (useCallback 적용) ---
-  const handleAutomaticEndRide = useCallback(() => {
-    console.log('🚨 60초 무응답. 사고로 간주하고 강제 반납 실행.');
-    setShowAccidentModal(false);
-    handleEndRide(true);
-  }, [handleEndRide]); // ★ handleEndRide가 변경될 때만 이 함수도 새로 만듦
+  // ★ [핵심 수정] handleEndRide가 변경될 때마다 Ref를 업데이트
+  // 이렇게 하면 다른 useEffect나 함수에서 이 Ref를 통해 항상 최신 handleEndRide를 호출할 수 있습니다.
+  useEffect(() => {
+    handleEndRideRef.current = handleEndRide;
+  }, [handleEndRide]);
 
-  // --- [신규] 사고 모달 60초 카운트다운 ---
+  // --- 사고 모달 60초 카운트다운 ---
   useEffect(() => {
     if (!showAccidentModal) {
       clearInterval(fallDetectionRef.current.modalTimerId);
       return;
     }
 
-    setModalCountdown(MODAL_COUNTDOWN_SECONDS); // 카운트다운 초기화
+    // 모달이 켜질 때 타이머 초기화 (단 한 번만 실행됨)
+    setModalCountdown(MODAL_COUNTDOWN_SECONDS);
 
-    // ★ [수정] 타이머 ID를 로컬 변수에 저장
     const timerId = setInterval(() => {
       setModalCountdown(prev => {
         if (prev <= 1) {
-          clearInterval(timerId); // ★ 로컬 변수로 타이머 정리
-          handleAutomaticEndRide();
+          clearInterval(timerId);
+
+          // ★ [핵심 수정]
+          // Ref를 통해 최신 함수를 호출하므로 의존성 배열에 handleEndRide를 넣을 필요가 없음
+          console.log('🚨 60초 무응답. 강제 반납 실행.');
+          if (handleEndRideRef.current) {
+            handleEndRideRef.current(true); // isAccident = true 전달
+          }
           return 0;
         }
         return prev - 1;
@@ -362,21 +372,29 @@ export default function GpsScreen({route, navigation}) {
 
     fallDetectionRef.current.modalTimerId = timerId;
 
-    // ★ [수정] 클린업 함수는 '로컬 변수'인 timerId를 참조
     return () => {
       clearInterval(timerId);
     };
-  }, [showAccidentModal, handleAutomaticEndRide]); // 의존성 배열
+    // ★ 의존성 배열에 'showAccidentModal'만 남김!
+    // 이제 위치가 바뀌어도 타이머가 리셋되지 않습니다.
+  }, [showAccidentModal]);
 
-  // --- [신규] 모달 "괜찮아요" 버튼 ---
+  // --- 모달 "괜찮아요" 버튼 ---
   const handleModalSafe = () => {
     console.log('사용자가 "괜찮아요" 응답. 주행 계속.');
     setShowAccidentModal(false);
-    // 사고 감지 상태 초기화
     fallDetectionRef.current.hasImpact = false;
     clearTimeout(fallDetectionRef.current.noMovementTimerId);
     fallDetectionRef.current.noMovementTimerId = null;
-    // (modalTimerId는 위 useEffect에서 자동으로 정리됨)
+  };
+
+  // --- 도움 필요 (즉시 신고) ---
+  const handleImmediateReport = () => {
+    setShowAccidentModal(false);
+    // ★ [핵심 수정] Ref를 사용하여 최신 상태가 반영된 handleEndRide 호출
+    if (handleEndRideRef.current) {
+      handleEndRideRef.current(true); // isAccident = true 전달
+    }
   };
 
   const formatTimeUI = seconds => {
@@ -387,7 +405,7 @@ export default function GpsScreen({route, navigation}) {
 
   return (
     <SafeAreaView style={styles.container} edges={['top']}>
-      {/* 상단 정보 패널 */}
+      {/* ... 상단 정보 패널 (기존과 동일) ... */}
       <View style={styles.topPanel}>
         <View style={styles.statusAlert}>
           <Ionicons
@@ -434,21 +452,20 @@ export default function GpsScreen({route, navigation}) {
         </View>
       </View>
 
-      {/* 지도 영역 */}
+      {/* ... 지도 영역 (기존과 동일) ... */}
       <View style={styles.mapContainer}>
         <MapView
           ref={mapRef}
           style={styles.map}
           provider={PROVIDER_GOOGLE}
           initialRegion={{
-            latitude: 37.5665,
-            longitude: 126.978,
+            latitude: initialLat || 37.5665,
+            longitude: initialLng || 126.978,
             latitudeDelta: 0.005,
             longitudeDelta: 0.005,
           }}
           showsUserLocation={true}
           showsMyLocationButton={false}>
-          {/* 이동 경로 그리기 (Polyline) */}
           {routeCoordinates.length > 0 && (
             <Polyline
               coordinates={routeCoordinates}
@@ -458,13 +475,11 @@ export default function GpsScreen({route, navigation}) {
           )}
         </MapView>
 
-        {/* 속도계 오버레이 */}
         <View style={styles.speedOverlay}>
           <Text style={styles.speedText}>{speed}</Text>
           <Text style={styles.speedUnit}>km/h</Text>
         </View>
 
-        {/* 현위치 버튼 */}
         <TouchableOpacity
           style={styles.locationButton}
           onPress={() => {
@@ -480,7 +495,7 @@ export default function GpsScreen({route, navigation}) {
         </TouchableOpacity>
       </View>
 
-      {/* 하단 반납 버튼 */}
+      {/* ... 하단 반납 버튼 (기존과 동일) ... */}
       <View style={styles.bottomButtonContainer}>
         <Button
           title="반납하기"
@@ -497,7 +512,7 @@ export default function GpsScreen({route, navigation}) {
         />
       </View>
 
-      {/* 반납 확인 모달 */}
+      {/* ... 반납 확인 모달 (기존과 동일) ... */}
       <Modal
         visible={showEndDialog}
         transparent={true}
@@ -536,13 +551,12 @@ export default function GpsScreen({route, navigation}) {
         </View>
       </Modal>
 
-      {/* (2) ★ [신규] 사고 감지 모달 ★ */}
+      {/* 사고 감지 모달 */}
       <Modal
         visible={showAccidentModal}
         transparent={true}
         animationType="fade"
-        onRequestClose={handleModalSafe} // 백그라운드 클릭 시 '안전'으로 간주
-      >
+        onRequestClose={handleModalSafe}>
         <View style={styles.modalOverlay}>
           <View style={styles.modalContent}>
             <Ionicons
@@ -564,7 +578,7 @@ export default function GpsScreen({route, navigation}) {
             />
             <Button
               title="도움 필요 (즉시 신고)"
-              onPress={() => handleAutomaticEndRide()} // 즉시 강제 반납
+              onPress={handleImmediateReport} // ★ Ref를 사용하는 핸들러
               variant="outline"
               style={{borderColor: colors.red600}}
               textStyle={{color: colors.red600}}
@@ -577,6 +591,7 @@ export default function GpsScreen({route, navigation}) {
 }
 
 const styles = StyleSheet.create({
+  // ... (스타일 코드는 이전과 동일하여 생략 가능하지만, 편의를 위해 전체 포함) ...
   container: {flex: 1, backgroundColor: '#f0fdf4'},
   topPanel: {
     padding: 16,

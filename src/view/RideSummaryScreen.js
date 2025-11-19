@@ -181,6 +181,7 @@ export default function RideSummaryScreen({route, navigation}) {
               {formatDuration(summary.duration)}
             </Text>
           </View>
+          {/* [★수정 부분] 최종 요금 및 할인 배지 */}
           <View style={styles.summaryRow}>
             <Ionicons
               name="wallet-outline"
@@ -188,9 +189,20 @@ export default function RideSummaryScreen({route, navigation}) {
               color={colors.purple600}
             />
             <Text style={styles.summaryLabel}>최종 요금</Text>
-            <Text style={styles.summaryValue}>
-              ₩{summary.fare?.toLocaleString() || 0}
-            </Text>
+
+            {/* 요금 값과 배지를 가로로 정렬 */}
+            <View style={styles.fareValueContainer}>
+              <Text style={styles.summaryValue}>
+                ₩{summary.fare?.toLocaleString() || 0}
+              </Text>
+
+              {/* isDiscounted가 true일 때만 할인 배지 표시 */}
+              {summary.isDiscounted && (
+                <View style={styles.discountBadge}>
+                  <Text style={styles.discountText}>10% 할인됨</Text>
+                </View>
+              )}
+            </View>
           </View>
 
           {/* ★ [수정] GpsScreen/HistoryScreen 둘 다 커버 */}
@@ -320,5 +332,23 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     borderTopWidth: 1,
     borderTopColor: colors.border,
+  },
+  fareValueContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8, // 요금과 배지 사이 간격
+  },
+  discountBadge: {
+    backgroundColor: '#dcfce7', // 연한 초록 배경
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: '#16a34a', // 진한 초록 테두리
+  },
+  discountText: {
+    fontSize: 12,
+    fontWeight: 'bold',
+    color: '#15803d', // 글자색
   },
 });

@@ -72,6 +72,8 @@ export default function HelmetVerificationScreen({route, navigation}) {
                 scooterId: scooter?.number,
                 rideId: newRideId,
                 isHelmetConfirmed: isHelmetConfirmed,
+                initialLat: latitude, // 추가됨
+                initialLng: longitude,
               });
             } else {
               Alert.alert(

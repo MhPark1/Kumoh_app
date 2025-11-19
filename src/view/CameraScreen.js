@@ -61,10 +61,6 @@ const CameraScreen = () => {
     };
   }, [navigation]);
 
-  useEffect(() => {
-    console.log('현재 카메라 장치:', device);
-  }, [device]);
-
   useFocusEffect(
     React.useCallback(() => {
       // 화면 진입 시
