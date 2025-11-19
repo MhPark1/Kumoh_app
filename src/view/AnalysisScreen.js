@@ -11,6 +11,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import Icon from 'react-native-vector-icons/Ionicons';
 import Api from '../api/ApiUtils';
 import {useFocusEffect} from '@react-navigation/native';
+import {colors} from '../component/constants/colors';
 
 export default function AnalysisScreen({navigation}) {
   const [selectedTab, setSelectedTab] = useState('overview');
@@ -74,12 +75,21 @@ export default function AnalysisScreen({navigation}) {
 
   return (
     <SafeAreaView style={styles.container}>
+      <View style={styles.header}>
+        <View style={styles.headerContent}>
+          <TouchableOpacity
+            style={styles.closeButton}
+            onPress={() => navigation.goBack()}>
+            <Icon name="close" size={24} color={colors.text} />
+          </TouchableOpacity>
+          <Text style={styles.headerTitle}>운전 분석</Text>
+          <View style={{width: 40}} />
+        </View>
+      </View>
       <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         showsVerticalScrollIndicator={false}>
-        {/* <Text style={styles.header}>운전 분석</Text> */}
-
         <View style={styles.scoreCard}>
           <View style={styles.scoreHeader}>
             <View>
@@ -445,11 +455,26 @@ const styles = StyleSheet.create({
     paddingBottom: 32,
   },
   header: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: '#111827',
-    marginBottom: 16,
+    backgroundColor: colors.white,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+    zIndex: 10,
   },
+  headerContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+  },
+  closeButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerTitle: {fontSize: 18, fontWeight: 'bold', color: colors.text},
   scoreCard: {
     backgroundColor: '#16a34a',
     borderRadius: 12,

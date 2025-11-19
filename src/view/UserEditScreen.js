@@ -106,59 +106,62 @@ export default function UserEditScreen() {
         <KeyboardAvoidingView
           behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
           style={styles.keyboardView}>
-          <ScrollView contentContainerStyle={styles.scrollContent}>
-            {/* <View style={styles.header}>
-              <Text style={styles.subtitle}>회원 정보 수정</Text>
-            </View> */}
-
-            <Card style={styles.card}>
-              <View style={styles.form}>
-                <View style={styles.inputGroup}>
-                  <Text style={styles.label}>닉네임</Text>
-                  <Input
-                    icon="happy-outline"
-                    value={form.nickname}
-                    placeholder="닉네임을 입력하세요"
-                    placeholderTextColor="#aaa"
-                    onChangeText={text => handleChange('nickname', text)}
-                  />
-                </View>
-
-                <View style={styles.inputGroup}>
-                  <Text style={styles.label}>현재 비밀번호 (선택)</Text>
-                  <Input
-                    icon="lock-closed-outline"
-                    secureTextEntry
-                    value={form.currentPassword}
-                    placeholder="현재 비밀번호"
-                    placeholderTextColor="#aaa"
-                    onChangeText={text => handleChange('currentPassword', text)}
-                  />
-                </View>
-
-                <View style={styles.inputGroup}>
-                  <Text style={styles.label}>새 비밀번호 (선택)</Text>
-                  <Input
-                    icon="lock-closed-outline"
-                    secureTextEntry
-                    value={form.newPassword}
-                    placeholder="새 비밀번호 (3자 이상)"
-                    placeholderTextColor="#aaa"
-                    onChangeText={text => handleChange('newPassword', text)}
-                  />
-                </View>
-
-                <Button title="저장하기" onPress={handleSubmit} />
+          <View style={styles.inner}>
+            <ScrollView contentContainerStyle={styles.scrollContent}>
+              <View style={styles.header}>
+                <Text style={styles.subtitle}>회원 정보 수정</Text>
               </View>
-            </Card>
 
+              <Card style={styles.card}>
+                <View style={styles.form}>
+                  <View style={styles.inputGroup}>
+                    <Text style={styles.label}>닉네임</Text>
+                    <Input
+                      icon="happy-outline"
+                      value={form.nickname}
+                      placeholder="닉네임을 입력하세요"
+                      placeholderTextColor="#aaa"
+                      onChangeText={text => handleChange('nickname', text)}
+                    />
+                  </View>
+
+                  <View style={styles.inputGroup}>
+                    <Text style={styles.label}>현재 비밀번호 (선택)</Text>
+                    <Input
+                      icon="lock-closed-outline"
+                      secureTextEntry
+                      value={form.currentPassword}
+                      placeholder="현재 비밀번호"
+                      placeholderTextColor="#aaa"
+                      onChangeText={text =>
+                        handleChange('currentPassword', text)
+                      }
+                    />
+                  </View>
+
+                  <View style={styles.inputGroup}>
+                    <Text style={styles.label}>새 비밀번호 (선택)</Text>
+                    <Input
+                      icon="lock-closed-outline"
+                      secureTextEntry
+                      value={form.newPassword}
+                      placeholder="새 비밀번호 (3자 이상)"
+                      placeholderTextColor="#aaa"
+                      onChangeText={text => handleChange('newPassword', text)}
+                    />
+                  </View>
+
+                  <Button title="저장하기" onPress={handleSubmit} />
+                </View>
+              </Card>
+            </ScrollView>
             <TouchableOpacity
               style={styles.backButton}
               onPress={() => navigation.goBack()}>
               <Ionicons name="arrow-back" size={20} color={colors.white} />
               <Text style={styles.backText}>돌아가기</Text>
             </TouchableOpacity>
-          </ScrollView>
+          </View>
         </KeyboardAvoidingView>
       </SafeAreaView>
     </LinearGradient>
@@ -172,6 +175,12 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     padding: 16,
+  },
+  inner: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingTop: 16,
+    paddingBottom: 16,
   },
   header: {
     marginBottom: 24,
@@ -192,9 +201,10 @@ const styles = StyleSheet.create({
   backButton: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginTop: 12,
     alignItems: 'center',
     gap: 6,
+    paddingVertical: 12,
+    marginTop: 8,
   },
   backText: {
     color: colors.white,

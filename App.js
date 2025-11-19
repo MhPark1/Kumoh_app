@@ -79,12 +79,12 @@ const SelectionStackNavigator = () => (
     <SelectionStack.Screen
       name="Camera"
       component={Camera}
-      options={{title: '카메라 분석'}}
+      options={{title: '카메라 분석', headerShown: false}}
     />
     <SelectionStack.Screen
       name="Analysis"
       component={Analysis}
-      options={{title: '운전 분석', gestureEnabled: false}}
+      options={{title: '운전 분석', headerShown: false, gestureEnabled: false}}
     />
     <SelectionStack.Screen
       name="Map"
@@ -135,12 +135,12 @@ const OptionStackNavigator = () => (
     <OptionStack.Screen
       name="UserEdit"
       component={UserEditScreen}
-      options={{title: '회원 정보 수정'}}
+      options={{title: '회원 정보 수정', headerShown: false}}
     />
     <OptionStack.Screen
       name="Guide"
       component={GuideScreen}
-      options={{title: '주행 가이드'}}
+      options={{title: '주행 가이드', headerShown: false}}
     />
   </OptionStack.Navigator>
 );
