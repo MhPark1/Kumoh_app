@@ -161,7 +161,11 @@ export default function HomeScreen({navigation}) {
 
           <TouchableOpacity
             style={styles.linkCard}
-            onPress={() => navigation.navigate('History')}>
+            onPress={() =>
+              navigation.navigate('HistoryTab', {
+                screen: 'History',
+              })
+            }>
             <View style={[styles.linkIcon, {backgroundColor: '#ede9fe'}]}>
               <Ionicons name="time-outline" size={24} color="#7c3aed" />
             </View>

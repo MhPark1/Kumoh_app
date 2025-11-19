@@ -167,7 +167,11 @@ export default function OptionScreen({navigation}) {
           <MenuItem
             icon="time-outline" //receipt-outline
             label="이용 내역"
-            onPress={() => navigation.navigate('History')}
+            onPress={() =>
+              navigation.navigate('HistoryTab', {
+                screen: 'History',
+              })
+            }
             isLast
           />
         </View>
