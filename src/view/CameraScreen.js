@@ -14,6 +14,7 @@ import {useNavigation, useFocusEffect} from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Api from '../api/ApiUtils'; // API 유틸 (실제 연동 시 사용)
 import Icon from 'react-native-vector-icons/Ionicons';
+import ImageResizer from '@bam.tech/react-native-image-resizer';
 
 const CameraScreen = () => {
   const [hasPermission, setHasPermission] = useState(false);
@@ -114,17 +115,33 @@ const CameraScreen = () => {
 
     if (camera.current) {
       try {
+        // 1. 촬영 (기존 코드)
         const photo = await camera.current.takePhoto({
           flash: 'off',
           qualityPrioritization: 'speed',
         });
 
-        console.log('✅ 촬영 성공! 경로:', photo.path);
+        console.log('📸 원본 사진 크기:', photo.width, 'x', photo.height);
 
-        // FormData 생성 로그
+        // 2. [추가] 이미지 리사이징 (압축)
+        // AI 모델(YOLO)은 보통 640x640이면 충분합니다.
+        const resizedImage = await ImageResizer.createResizedImage(
+          Platform.OS === 'android' ? 'file://' + photo.path : photo.path,
+          800, // 너비 (800px 정도면 AI 인식에 충분하고 용량은 100KB 미만)
+          800, // 높이
+          'JPEG', // 포맷
+          80, // 퀄리티 (0~100)
+          0, // 회전
+          null, // 출력 경로 (null이면 임시 폴더)
+        );
+
+        console.log('📦 압축된 사진 경로:', resizedImage.uri);
+        console.log('📦 압축된 사진 용량:', resizedImage.size); // 용량 확인해보세요!
+
+        // 3. 압축된 이미지를 전송
         const formData = new FormData();
         formData.append('image', {
-          uri: Platform.OS === 'android' ? 'file://' + photo.path : photo.path,
+          uri: resizedImage.uri, // 원본 대신 리사이징된 uri 사용
           type: 'image/jpeg',
           name: 'helmet.jpg',
         });

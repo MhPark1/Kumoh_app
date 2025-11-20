@@ -149,7 +149,8 @@ export default function GpsScreen({route, navigation}) {
 
       // 2) 자이로 센서 (급회전 감지)
       const sub2 = gyroscope.subscribe(({z}) => {
-        if (Math.abs(z) > 2.5) {
+        if (Math.abs(z) > 4.5) {
+          console.log(z);
           const now = Date.now();
           if (now - lastTurnLogTime.current > 2000) {
             const loc = currentLocationRef.current;

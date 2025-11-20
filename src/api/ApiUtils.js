@@ -3,8 +3,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // API 인스턴스 생성
 const apiInstance = axios.create({
-  // baseURL: 'https://bong-gun-god.loca.lt/',
-  baseURL: 'http://localhost:8080',
+  baseURL: 'https://bong-gun-god.loca.lt/',
+  // baseURL: 'http://localhost:8080',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -149,8 +149,8 @@ const ApiUtils = {
 
       // Axios 대신 fetch 사용
       const response = await fetch(
-        // 'https://bong-gun-god.loca.lt/api/app/kickboards/helmet',
-        'http://localhost:8080/api/app/kickboards/helmet',
+        'https://bong-gun-god.loca.lt/api/app/kickboards/helmet',
+        // 'http://localhost:8080/api/app/kickboards/helmet',
         {
           method: 'POST',
           headers: {
