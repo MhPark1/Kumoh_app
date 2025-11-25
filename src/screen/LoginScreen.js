@@ -108,7 +108,7 @@ const LoginScreen = () => {
               <View style={styles.logoContainer}>
                 <Ionicons name="flash" size={40} color={colors.green600} />
               </View>
-              <Text style={styles.title}>SafeRide</Text>
+              <Text style={styles.title}>S:Drive</Text>
               <Text style={styles.subtitle}>안전한 킥보드 라이딩의 시작</Text>
             </View>
             {/* Login Form */}
