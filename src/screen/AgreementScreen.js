@@ -169,7 +169,7 @@ export default function AgreementScreen() {
             {/* Header */}
             <View style={styles.header}>
               <View>
-                <Text style={styles.subtitle}>SafeRide와 함께 시작하세요</Text>
+                <Text style={styles.subtitle}>S:Drive와 함께 시작하세요</Text>
               </View>
             </View>
 
